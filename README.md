@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ROOT DIGITAL — Creative Technology Studio
 
-## Getting Started
+An immersive, Awwwards-style single-page experience: R3F galaxy hero, Lenis
+smooth scroll, GSAP ScrollTrigger choreography, and 17 handcrafted sections.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm start          # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Layer | Tech |
+|---|---|
+| Framework | Next.js 16 (App Router) + TypeScript |
+| Styling | Tailwind CSS v4 (design tokens in `globals.css`) |
+| Scroll | Lenis, driven by GSAP's ticker |
+| Animation | GSAP + ScrollTrigger (`@gsap/react` for cleanup) |
+| 3D | three.js via React Three Fiber (galaxy point cloud) |
+| Type | Space Grotesk (display) · Inter (body) · JetBrains Mono (labels) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+```
+src/
+├─ app/            layout (fonts, metadata), page (section composition), globals.css (tokens)
+├─ lib/
+│  ├─ data.ts      all content: services, 16 case studies, team, pricing, FAQ…
+│  ├─ gsap.ts      single GSAP registration + reduced-motion/pointer helpers
+│  └─ scroll.ts    shared Lenis instance (anchor glide, modal scroll lock)
+└─ components/
+   ├─ providers/   SmoothScroll (Lenis ↔ ScrollTrigger sync)
+   ├─ effects/     Cursor (glow + ring follower)
+   ├─ three/       GalaxyScene (client-only, lazy, mobile-degraded)
+   ├─ ui/          Reveal/WordReveal, Magnetic, Button, Counter, Marquee, Tilt, Icons, SectionHead
+   ├─ layout/      Navbar (hide-on-scroll, fullscreen menu), Footer
+   └─ sections/    Hero, TrustedBy, About, Stats, Services, Work (+ WorkModal),
+                   Industries, TechStack, Process, Team, Testimonials,
+                   Achievements, Pricing, Faq, Blog, Contact
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Conventions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Every animation respects `prefers-reduced-motion`; heavy effects are gated
+  to `(pointer: fine)`.
+- The horizontal Work gallery pins with GSAP on desktop and falls back to
+  native snap scrolling on touch.
+- All imagery is Unsplash via `next/image` (`images.unsplash.com` allowed in
+  `next.config.ts`); swap `src/lib/data.ts` URLs for real project assets.
+- The contact form simulates submission — wire `onSubmit` in
+  `components/sections/Contact.tsx` to a route handler or CRM.

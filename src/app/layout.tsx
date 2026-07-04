@@ -23,29 +23,68 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_URL = "https://www.360mediaconcepts.com";
+const TITLE = "Media 360 Concept | Branding & Creative Agency in Kochi, Kerala";
+const DESCRIPTION =
+  "Premium branding agency in Kochi, Kerala — logo design, brand identity, packaging, advertising, digital marketing & video production. 17+ years in KSA, 12+ in India. Free consultation.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rootdigital.studio"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "ROOT DIGITAL — Creative Technology Studio",
-    template: "%s — ROOT DIGITAL",
+    default: TITLE,
+    template: "%s — Media 360 Concept",
   },
-  description:
-    "We build digital experiences that people remember. Branding, marketing, engineering, AI and automation — one studio, end to end.",
+  description: DESCRIPTION,
   keywords: [
-    "creative technology studio",
-    "branding",
-    "web design",
-    "SaaS development",
-    "AI automation",
-    "digital marketing",
+    "branding agency Kerala",
+    "creative agency Kerala",
+    "advertising agency Kerala",
+    "graphic design company Kerala",
+    "logo design Kerala",
+    "brand identity Kerala",
+    "digital marketing agency Kerala",
+    "packaging design Kerala",
+    "marketing agency Kochi",
+    "creative agency Kochi",
+    "video production Kerala",
+    "signage company Kerala",
+    "Media 360 Concept",
   ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "ROOT DIGITAL — Creative Technology Studio",
-    description:
-      "We build digital experiences that people remember. Branding, marketing, engineering, AI and automation.",
-    url: "https://rootdigital.studio",
-    siteName: "ROOT DIGITAL",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Media 360 Concept",
     type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  applicationName: "Media 360 Concept",
+  authors: [{ name: "Media 360 Concept", url: SITE_URL }],
+  creator: "Media 360 Concept",
+  publisher: "Media 360 Concept",
+  category: "Branding & Advertising",
+  other: {
+    "geo.region": "IN-KL",
+    "geo.placename": "Kochi, Kerala",
   },
 };
 

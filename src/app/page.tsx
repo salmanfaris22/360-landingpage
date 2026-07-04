@@ -16,17 +16,93 @@ import { Pricing } from "@/components/sections/Pricing";
 import { Faq } from "@/components/sections/Faq";
 import { Blog } from "@/components/sections/Blog";
 import { Contact } from "@/components/sections/Contact";
+import { FAQS, SERVICES, CONTACT } from "@/lib/data";
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "ROOT DIGITAL",
-  description:
-    "Creative technology studio building brands, startups, products and experiences.",
-  url: "https://rootdigital.studio",
-  email: "hello@rootdigital.studio",
-  foundingDate: "2016",
-  sameAs: [],
+  "@graph": [
+    {
+      "@type": ["ProfessionalService", "Organization"],
+      "@id": `${CONTACT.site}/#organization`,
+      name: "Media 360 Concept",
+      alternateName: "Media 360 Concept Kerala",
+      description:
+        "Media 360 Concept is a premium branding, advertising, and creative agency headquartered in Kochi, Kerala — delivering brand identity, logo design, packaging, digital marketing, media production, web and app development for clients across Kerala, India, Saudi Arabia, the UAE, and the USA.",
+      url: CONTACT.site,
+      email: CONTACT.email,
+      telephone: CONTACT.phone,
+      foundingDate: "2009",
+      slogan: "Designing Brands. Connecting Worlds.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kochi",
+        addressRegion: "Kerala",
+        addressCountry: "IN",
+      },
+      areaServed: [
+        { "@type": "State", name: "Kerala" },
+        { "@type": "Country", name: "India" },
+        { "@type": "Country", name: "Saudi Arabia" },
+        { "@type": "Country", name: "United Arab Emirates" },
+        { "@type": "Country", name: "United States" },
+      ],
+      knowsAbout: [
+        "Branding",
+        "Brand Identity Design",
+        "Logo Design",
+        "Advertising",
+        "Packaging Design",
+        "Digital Marketing",
+        "Media Buying",
+        "Video Production",
+        "Signage",
+        "Vehicle Branding",
+        "Web Development",
+        "App Development",
+        "UI/UX Design",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Branding & Creative Services",
+        itemListElement: SERVICES.map((s) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: s.title,
+            description: s.description,
+            areaServed: "Kerala, India",
+            provider: { "@id": `${CONTACT.site}/#organization` },
+          },
+        })),
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${CONTACT.site}/#website`,
+      url: CONTACT.site,
+      name: "Media 360 Concept",
+      inLanguage: "en-IN",
+      publisher: { "@id": `${CONTACT.site}/#organization` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${CONTACT.site}/#webpage`,
+      url: CONTACT.site,
+      name: "Media 360 Concept | Branding & Creative Agency in Kochi, Kerala",
+      isPartOf: { "@id": `${CONTACT.site}/#website` },
+      about: { "@id": `${CONTACT.site}/#organization` },
+      inLanguage: "en-IN",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${CONTACT.site}/#faq`,
+      mainEntity: FAQS.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    },
+  ],
 };
 
 export default function Home() {

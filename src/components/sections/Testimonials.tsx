@@ -20,7 +20,7 @@ export function Testimonials() {
         }}
       />
       <div className="relative mx-auto max-w-7xl px-6">
-        <SectionHead index="08" label="Client voices" title="Don't take our word for it." />
+        <SectionHead index="08" label="Why choose us" title="Built on trust. Proven by work." />
 
         {/* Featured quote */}
         <figure className="mb-20 max-w-4xl">

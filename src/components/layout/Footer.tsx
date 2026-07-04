@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="relative overflow-hidden border-t border-line">
       {/* Closing mantra */}
       <Marquee duration={38} className="border-b border-line py-8">
-        {["We build memorable", "We build brands", "We build products", "We build experiences"].map(
+        {["We build brands", "Kerala to the world", "We craft identities", "We create together"].map(
           (phrase) => (
             <span key={phrase} className="mx-8 flex items-center gap-16">
               <span className="text-stroke font-display text-5xl font-bold tracking-tight whitespace-nowrap uppercase md:text-7xl">
@@ -34,16 +34,15 @@ export function Footer() {
                 scrollToSection("#hero");
               }}
               data-cursor
-              aria-label="ROOT DIGITAL — back to top"
+              aria-label="Media 360 Concept — back to top"
               className="group inline-block cursor-pointer"
             >
               <span className="font-display text-[clamp(4rem,10vw,8rem)] leading-none font-bold tracking-[-0.04em] transition-all duration-500 group-hover:text-transparent group-hover:[-webkit-text-stroke:1px_rgb(255_255_255/60%)]">
-                ROOT<span className="text-gradient">.</span>
+                MEDIA 360<span className="text-gradient">.</span>
               </span>
             </a>
             <p className="mt-6 max-w-sm leading-relaxed text-dim">
-              A creative technology studio building brands, startups, products
-              and experiences that people remember.
+              Media 360 Concept is a premium branding and advertising agency in Kochi, Kerala — crafting brand identities, packaging, campaigns, and digital experiences for businesses across Kerala, India, KSA, the UAE, and the USA.
             </p>
           </div>
 
@@ -72,13 +71,32 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-dim">
               <li>
                 <a
-                  href="mailto:hello@rootdigital.studio"
+                  href="mailto:media360concept@gmail.com"
                   className="link-underline cursor-pointer transition-colors hover:text-white"
                 >
-                  hello@rootdigital.studio
+                  media360concept@gmail.com
                 </a>
               </li>
-              <li>Dubai — London — Worldwide</li>
+              <li>
+                <a
+                  href="https://wa.me/919061460360?text=Hi%20Media%20360%20Concept%2C%20I%27d%20like%20to%20talk%20about%20branding%20for%20my%20business."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline cursor-pointer transition-colors hover:text-white"
+                >
+                  WhatsApp: +91 9061 460 360
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+919061460360"
+                  className="link-underline cursor-pointer transition-colors hover:text-white"
+                >
+                  +91 9061 460 360
+                </a>
+              </li>
+              <li>Kochi, Kerala, India</li>
+              <li>Kerala — India — KSA — UAE — USA</li>
               <li className="pt-4">
                 <Magnetic strength={0.3}>
                   <button
@@ -105,10 +123,10 @@ export function Footer() {
 
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8">
           <p className="font-mono text-[11px] tracking-[0.2em] text-dim uppercase">
-            © 2026 ROOT DIGITAL — All rights reserved
+            © 2026 Media 360 Concept — All rights reserved
           </p>
           <p className="font-mono text-[11px] tracking-[0.2em] text-dim uppercase">
-            Built with obsession, GSAP & three.js
+            Branding · Advertising · Design — Kochi, Kerala
           </p>
         </div>
       </div>

@@ -12,13 +12,12 @@ export function Achievements() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHead
               index="09"
-              label="Recognition"
-              title="Proof, framed."
+              label="Future vision"
+              title="Designing Brands. Connecting Worlds."
             />
             <Reveal>
               <p className="-mt-8 max-w-sm leading-relaxed text-dim lg:-mt-12">
-                Awards don&apos;t ship products. But they&apos;re a decent signal
-                that the people who judge craft for a living think ours holds up.
+                From Kochi to Riyadh to the wider world — we&apos;re expanding our creative capabilities and helping businesses build meaningful, memorable, future-ready brands through innovation and strategic thinking.
               </p>
             </Reveal>
           </div>

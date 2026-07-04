@@ -11,18 +11,18 @@ const GalaxyScene = dynamic(() => import("@/components/three/GalaxyScene"), {
 
 const HEADLINE = [
   { text: "WE BUILD", style: "" },
-  { text: "DIGITAL", style: "text-stroke" },
-  { text: "EXPERIENCES", style: "" },
-  { text: "THAT PEOPLE", style: "" },
-  { text: "REMEMBER.", style: "text-gradient" },
+  { text: "BRANDS", style: "text-stroke" },
+  { text: "KERALA", style: "" },
+  { text: "CAN'T", style: "" },
+  { text: "FORGET.", style: "text-gradient" },
 ];
 
-const DISCIPLINES = ["Branding", "Marketing", "Development", "AI", "Automation"];
+const DISCIPLINES = ["Branding", "Advertising", "Design", "Digital Marketing", "Production"];
 
 const FLOATING_STATS = [
-  { value: "250+", label: "Projects", pos: "left-[5%] top-[26%]", delay: "0s" },
-  { value: "98%", label: "Client Satisfaction", pos: "right-[5%] top-[22%]", delay: "-2.4s" },
-  { value: "15+", label: "Countries", pos: "right-[10%] bottom-[24%]", delay: "-4.8s" },
+  { value: "17+", label: "Years — Saudi Arabia", pos: "left-[5%] top-[26%]", delay: "0s" },
+  { value: "12+", label: "Years — India", pos: "right-[5%] top-[22%]", delay: "-2.4s" },
+  { value: "08+", label: "Years — USA", pos: "right-[10%] bottom-[24%]", delay: "-4.8s" },
 ];
 
 export function Hero() {
@@ -113,7 +113,7 @@ export function Hero() {
 
       <div ref={inner} className="relative z-10 mx-auto w-full max-w-7xl px-6 py-32 text-center">
         <p className="hero-fade label-mono">
-          Creative Technology Studio — Est. 2016
+          Media 360 Concept — Branding Agency in Kochi, Kerala
         </p>
 
         <h1 className="mt-10 font-display font-bold uppercase leading-[0.93] tracking-[-0.04em] text-[clamp(2.6rem,9.5vw,8.25rem)]">
@@ -127,6 +127,9 @@ export function Hero() {
         </h1>
 
         <p className="hero-fade mx-auto mt-10 flex max-w-2xl flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs tracking-[0.28em] text-dim uppercase">
+          <span className="mb-4 w-full text-center leading-relaxed">
+            Premium branding, advertising, and creative design from Kochi — backed by 17+ years in Saudi Arabia, 12+ across India, and 8+ in the USA. Strategy, design, production, and marketing under one roof.
+          </span>
           {DISCIPLINES.map((d, i) => (
             <span key={d} className="flex items-center gap-4">
               {i > 0 && <span className="text-cyan" aria-hidden>◆</span>}
@@ -136,9 +139,9 @@ export function Hero() {
         </p>
 
         <div className="hero-fade mt-12 flex flex-wrap items-center justify-center gap-5">
-          <Button href="#contact">Start Your Project</Button>
+          <Button href="#contact">Get a Free Brand Consultation</Button>
           <Button href="#work" variant="ghost">
-            View Our Work
+            See Our Work
           </Button>
         </div>
       </div>

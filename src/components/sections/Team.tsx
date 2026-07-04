@@ -12,9 +12,9 @@ export function Team() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionHead
           index="07"
-          label="The people"
-          title="Fifteen experts. One obsession."
-          blurb="The nine you'll talk to most. Small enough to care, senior enough to ship."
+          label="The team"
+          title="The minds behind the brands."
+          blurb="Senior strategists, designers, engineers, and producers — the same people who scope your project craft it, from first sketch to final delivery."
         />
 
         <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
@@ -29,7 +29,7 @@ export function Team() {
                     <div className="relative aspect-[3/4]">
                       <Image
                         src={member.image}
-                        alt={`${member.name}, ${member.role} at ROOT DIGITAL`}
+                        alt={`${member.name}, ${member.role} at Media 360 Concept`}
                         fill
                         sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                         className="object-cover grayscale transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0"

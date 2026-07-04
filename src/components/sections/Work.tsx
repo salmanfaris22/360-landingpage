@@ -56,8 +56,8 @@ export function Work() {
         <SectionHead
           index="03"
           label="Selected work"
-          title="Work that moves markets."
-          blurb="Sixteen chapters from the archive — every one shipped, measured and still running."
+          title="Work that works."
+          blurb="Brand identity, packaging, signage, print, video, and digital — deliverables crafted for restaurants, retailers, hospitals, and startups across Kerala, India, and the Gulf."
         />
       </div>
 

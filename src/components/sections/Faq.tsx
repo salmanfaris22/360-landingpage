@@ -18,8 +18,7 @@ export function Faq() {
             <SectionHead index="11" label="Questions" title="Asked, answered." />
             <Reveal>
               <p className="-mt-8 max-w-sm leading-relaxed text-dim lg:-mt-12">
-                Everything clients usually ask in the first call. Anything
-                else — the contact form is one scroll away.
+                What Kerala businesses ask us most — services, branding costs, timelines, and how to get started with Media 360 Concept.
               </p>
             </Reveal>
           </div>

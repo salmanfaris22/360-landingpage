@@ -11,9 +11,9 @@ export function Pricing() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionHead
           index="10"
-          label="Investment"
-          title="Priced like a partner, not a vendor."
-          blurb="Transparent tiers to start the conversation. Every engagement is scoped precisely before you sign anything."
+          label="Engagement"
+          title="Three ways to work with us."
+          blurb="Launching new, refreshing an established brand, or running a full campaign — every engagement is scoped to your goals and budget, with a clear, itemised quote before work begins."
         />
 
         <div className="grid gap-8 lg:grid-cols-3 lg:items-stretch">

@@ -13,9 +13,9 @@ export function Blog() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionHead
           index="12"
-          label="Journal"
-          title="Notes from the frontier."
-          blurb="What we're learning about AI, design, engineering and growth — written by the people doing the work."
+          label="Insights"
+          title="Branding insights for Kerala businesses."
+          blurb="Straight answers to the questions business owners actually search — branding costs, rebranding timing, and what makes identities work in this market."
         />
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">

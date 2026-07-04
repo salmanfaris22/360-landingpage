@@ -61,8 +61,8 @@ export function Contact() {
         <SectionHead
           index="13"
           label="Contact"
-          title="Have an idea? Let's make it unforgettable."
-          blurb="Tell us where you're headed. We'll reply within 24 hours with honest thoughts — even if the honest thought is 'you don't need us yet'."
+          title="Let's build your brand."
+          blurb="Tell us what you're launching, refreshing, or planning — we reply within 24 hours. Prefer to talk now? Message us on WhatsApp at +91 9061 460 360 for a free consultation."
         />
 
         <div className="grid gap-16 lg:grid-cols-[1.4fr_1fr] lg:gap-24">
@@ -79,7 +79,7 @@ export function Contact() {
                     name="name"
                     required
                     autoComplete="name"
-                    placeholder="Ada Lovelace"
+                    placeholder="Priya Menon"
                     className={inputClass}
                   />
                 </div>
@@ -93,7 +93,7 @@ export function Contact() {
                     type="email"
                     required
                     autoComplete="email"
-                    placeholder="ada@company.com"
+                    placeholder="priya@yourcompany.com"
                     className={inputClass}
                   />
                 </div>
@@ -108,7 +108,7 @@ export function Contact() {
                     id="company"
                     name="company"
                     autoComplete="organization"
-                    placeholder="Analytical Engines Ltd"
+                    placeholder="Your business name"
                     className={inputClass}
                   />
                 </div>
@@ -120,9 +120,9 @@ export function Contact() {
                     <option value="" disabled>
                       Select a range
                     </option>
-                    <option value="starter">$5k — $15k</option>
-                    <option value="business">$15k — $50k</option>
-                    <option value="enterprise">$50k+</option>
+                    <option value="starter">Under ₹1 Lakh</option>
+                    <option value="business">₹1 — ₹5 Lakhs</option>
+                    <option value="enterprise">₹5 Lakhs+</option>
                     <option value="unsure">Not sure yet</option>
                   </select>
                 </div>
@@ -137,7 +137,7 @@ export function Contact() {
                   name="message"
                   required
                   rows={5}
-                  placeholder="We want to build…"
+                  placeholder="We're opening a new restaurant in Kochi and need branding…"
                   className={`${inputClass} resize-none`}
                 />
               </div>
@@ -211,7 +211,7 @@ export function Contact() {
             <Reveal delay={0.2}>
               <div
                 className="relative h-44 overflow-hidden rounded-2xl border border-line"
-                aria-label="ROOT DIGITAL operates worldwide"
+                aria-label="Media 360 Concept — headquartered in Kochi, Kerala, serving KSA and the USA"
                 role="img"
               >
                 <div
@@ -224,9 +224,9 @@ export function Contact() {
                   }}
                 />
                 {[
-                  { pos: "top-[38%] left-[58%]", label: "DXB" },
-                  { pos: "top-[26%] left-[44%]", label: "LDN" },
-                  { pos: "top-[55%] left-[30%]", label: "NYC" },
+                  { pos: "top-[38%] left-[58%]", label: "KSA" },
+                  { pos: "top-[26%] left-[44%]", label: "KOCHI" },
+                  { pos: "top-[55%] left-[30%]", label: "USA" },
                 ].map((pin) => (
                   <span key={pin.label} className={`absolute ${pin.pos} flex items-center gap-2`}>
                     <span className="relative flex h-2.5 w-2.5">
@@ -243,12 +243,31 @@ export function Contact() {
 
             <Reveal delay={0.25}>
               <div className="flex items-center justify-between border-t border-line pt-6">
-                <a
-                  href="mailto:hello@rootdigital.studio"
-                  className="link-underline cursor-pointer font-mono text-xs tracking-[0.2em] text-white/80 uppercase"
-                >
-                  hello@rootdigital.studio
-                </a>
+                <div className="space-y-2">
+                  <a
+                    href="https://wa.me/919061460360?text=Hi%20Media%20360%20Concept%2C%20I%27d%20like%20to%20talk%20about%20branding%20for%20my%20business."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline block cursor-pointer font-mono text-xs tracking-[0.2em] text-cyan uppercase"
+                  >
+                    WhatsApp: +91 9061 460 360
+                  </a>
+                  <a
+                    href="mailto:media360concept@gmail.com"
+                    className="link-underline block cursor-pointer font-mono text-xs tracking-[0.2em] text-white/80 uppercase"
+                  >
+                    media360concept@gmail.com
+                  </a>
+                  <a
+                    href="tel:+919061460360"
+                    className="link-underline block cursor-pointer font-mono text-xs tracking-[0.2em] text-white/80 uppercase"
+                  >
+                    +91 9061 460 360
+                  </a>
+                  <p className="font-mono text-xs tracking-[0.2em] text-white/60 uppercase">
+                    Kochi, Kerala, India
+                  </p>
+                </div>
                 <div className="flex gap-3">
                   {[
                     { Icon: SocialX, label: "X" },
@@ -259,7 +278,7 @@ export function Contact() {
                     <a
                       key={label}
                       href="#contact"
-                      aria-label={`ROOT DIGITAL on ${label}`}
+                      aria-label={`Media 360 Concept on ${label}`}
                       className="glass flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-white/70 transition-all duration-300 hover:-translate-y-1 hover:text-cyan"
                     >
                       <Icon size={14} />

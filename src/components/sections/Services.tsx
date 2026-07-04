@@ -40,8 +40,8 @@ export function Services() {
         <SectionHead
           index="02"
           label="What we do"
-          title="Full-stack creativity, engineered."
-          blurb="Twenty-two disciplines, six practices, one accountable team. Hover, tap, explore."
+          title="Branding, advertising & digital — under one roof."
+          blurb="Eleven services, one accountable team. From brand identity and packaging to media buying, video production, and web development — everything a growing business in Kerala needs to look, sound, and sell like a leader."
         />
 
         <div

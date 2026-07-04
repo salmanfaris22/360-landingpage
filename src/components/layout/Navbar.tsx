@@ -73,12 +73,12 @@ export function Navbar() {
             }}
             data-cursor
             className="group flex cursor-pointer items-baseline gap-2 font-display text-lg font-bold tracking-tight"
-            aria-label="ROOT DIGITAL — back to top"
+            aria-label="Media 360 Concept — back to top"
           >
-            ROOT
+            MEDIA 360
             <span className="inline-block h-2 w-2 rounded-full bg-gradient-to-r from-blue to-cyan transition-transform duration-500 group-hover:scale-150" />
             <span className="font-mono text-[10px] font-normal tracking-[0.3em] text-dim">
-              DIGITAL
+              CONCEPT
             </span>
           </a>
 
@@ -163,7 +163,7 @@ export function Navbar() {
           </nav>
           <div className="menu-meta flex items-center justify-between border-t border-line pt-6">
             <span className="font-mono text-xs tracking-[0.3em] text-dim uppercase">
-              hello@rootdigital.studio
+              media360concept@gmail.com
             </span>
             <div className="flex gap-5 text-dim">
               <SocialX size={18} />

@@ -5,7 +5,7 @@ import { CLIENTS } from "@/lib/data";
 export function TrustedBy() {
   return (
     <section aria-label="Trusted by" className="relative border-y border-line py-14">
-      <p className="label-mono mb-10 text-center">Trusted by forward thinkers</p>
+      <p className="label-mono mb-10 text-center">Trusted by businesses across Kerala, India, KSA & the USA</p>
 
       <Marquee duration={44} className="mb-6">
         {CLIENTS.map((client) => (

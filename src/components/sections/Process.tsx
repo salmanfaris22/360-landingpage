@@ -34,8 +34,8 @@ export function Process() {
         <SectionHead
           index="06"
           label="How we work"
-          title="Nine steps. Zero surprises."
-          blurb="A process refined over a decade — transparent enough to plan around, flexible enough to chase a better idea mid-flight."
+          title="From first call to lasting brand."
+          blurb="A proven nine-step process that carries your brand from research and strategy through design, production, launch, and growth — with you in the loop at every stage."
         />
 
         <div className="process-list relative">

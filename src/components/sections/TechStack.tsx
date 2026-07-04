@@ -24,9 +24,9 @@ export function TechStack() {
       <div className="relative mx-auto max-w-7xl px-6">
         <SectionHead
           index="05"
-          label="Technology"
-          title="A stack in constant orbit."
-          blurb="Twenty battle-tested technologies gravitating around one principle: ship fast, scale forever."
+          label="Deliverables"
+          title="Everything your brand needs."
+          blurb="Branding at the core, orbited by everything that amplifies it — packaging and print, digital marketing and video, web, apps, and automation."
         />
 
         {/* Orbit system — md and up */}
@@ -42,10 +42,10 @@ export function TechStack() {
               }}
             >
               <span className="font-display text-xl font-bold tracking-tight">
-                ROOT
+                M360
               </span>
             </div>
-            <span className="label-mono mt-4 block text-[10px]">Core stack</span>
+            <span className="label-mono mt-4 block text-[10px]">Full service</span>
           </div>
 
           {TECH_ORBITS.map((ring, ringIndex) => {

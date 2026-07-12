@@ -42,7 +42,8 @@ export function Reveal({
 
 /**
  * Editorial word-mask reveal: each word slides out of an overflow-hidden
- * slot with a stagger. Screen readers get the plain string via aria-label.
+ * slot with a stagger. Screen readers get the plain string via a visually
+ * hidden span (aria-label is prohibited on p/blockquote/span roles).
  */
 export function WordReveal({
   text,
@@ -80,8 +81,8 @@ export function WordReveal({
         ref.current = el;
       }}
       className={className}
-      aria-label={text}
     >
+      <span className="sr-only">{text}</span>
       {text.split(" ").map((word, i) => (
         <span
           key={i}

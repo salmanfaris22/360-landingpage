@@ -45,7 +45,7 @@ export function Testimonials() {
                 {featured.role}, {featured.company}
               </span>
             </span>
-            <span className="ml-auto flex gap-1 text-cyan" aria-label="5 out of 5 stars">
+            <span role="img" className="ml-auto flex gap-1 text-cyan" aria-label="5 out of 5 stars">
               {Array.from({ length: featured.rating }).map((_, i) => (
                 <Star key={i} size={14} />
               ))}
@@ -61,7 +61,7 @@ export function Testimonials() {
             className="glass mx-4 flex w-[22rem] shrink-0 flex-col justify-between rounded-2xl p-7 md:w-[26rem]"
           >
             <div>
-              <span className="flex gap-1 text-cyan" aria-label={`${t.rating} out of 5 stars`}>
+              <span role="img" className="flex gap-1 text-cyan" aria-label={`${t.rating} out of 5 stars`}>
                 {Array.from({ length: t.rating }).map((_, i) => (
                   <Star key={i} size={12} />
                 ))}

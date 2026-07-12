@@ -14,9 +14,9 @@ export function Stats() {
             "radial-gradient(60% 120% at 50% 0%, rgb(139 92 246 / 7%), transparent 60%)",
         }}
       />
-      <dl className="relative mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-5">
+      <ul className="relative mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-5">
         {STATS.map((stat, i) => (
-          <div
+          <li
             key={stat.label}
             className={`px-6 py-14 text-center md:py-20 ${
               i > 0 ? "border-l border-line" : ""
@@ -25,16 +25,16 @@ export function Stats() {
             }`}
           >
             <Reveal delay={i * 0.08}>
-              <dd className="font-display text-[clamp(2.6rem,5vw,4.25rem)] font-bold tracking-tight">
+              <span className="block font-display text-[clamp(2.6rem,5vw,4.25rem)] font-bold tracking-tight">
                 <Counter value={stat.value} suffix={stat.suffix} />
-              </dd>
-              <dt className="mt-2 font-mono text-[11px] tracking-[0.25em] text-dim uppercase">
+              </span>
+              <span className="mt-2 block font-mono text-[11px] tracking-[0.25em] text-dim uppercase">
                 {stat.label}
-              </dt>
+              </span>
             </Reveal>
-          </div>
+          </li>
         ))}
-      </dl>
+      </ul>
     </section>
   );
 }

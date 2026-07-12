@@ -28,7 +28,7 @@ const logoNode = {
   contentUrl: `${SITE_URL}/opengraph-image`,
   width: 1200,
   height: 630,
-  caption: "Media 360 Concept — Branding & Creative Agency in Kochi, Kerala",
+  caption: "Media 360 Concept — Branding & Creative Agency in Kozhikode, Kerala",
 };
 
 const organizationNode = {
@@ -37,7 +37,7 @@ const organizationNode = {
   name: "Media 360 Concept",
   alternateName: ["Media360 Concept", "Media 360 Concept Kerala"],
   description:
-    "Media 360 Concept is a premium branding, advertising, and creative agency headquartered in Kochi, Kerala — delivering brand identity, logo design, packaging, digital marketing, media production, web and app development for clients across Kerala, India, Saudi Arabia, the UAE, and the USA.",
+    "Media 360 Concept is a premium branding, advertising, and creative agency headquartered at Business Park, Calicut (Kozhikode), Kerala — delivering brand identity, logo design, packaging, digital marketing, media production, web and app development for clients across Kerala, India, Saudi Arabia, the UAE, and the USA.",
   url: SITE_URL,
   email: CONTACT.email,
   telephone: CONTACT.phone,
@@ -48,14 +48,14 @@ const organizationNode = {
   image: { "@id": LOGO_ID },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Kochi",
+    addressLocality: "Kozhikode",
     addressRegion: "Kerala",
     addressCountry: "IN",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 9.9312,
-    longitude: 76.2673,
+    latitude: 11.2588,
+    longitude: 75.7804,
   },
   contactPoint: {
     "@type": "ContactPoint",
@@ -66,7 +66,7 @@ const organizationNode = {
     areaServed: ["IN", "SA", "AE", "US"],
   },
   areaServed: [
-    { "@type": "City", name: "Kochi" },
+    { "@type": "City", name: "Kozhikode" },
     { "@type": "State", name: "Kerala" },
     { "@type": "Country", name: "India" },
     { "@type": "Country", name: "Saudi Arabia" },
@@ -165,7 +165,7 @@ export function homeGraph() {
         "@type": "WebPage",
         "@id": `${SITE_URL}/#webpage`,
         url: SITE_URL,
-        name: "Media 360 Concept | Branding & Creative Agency in Kochi, Kerala",
+        name: "Media 360 Concept | Branding & Creative Agency in Kozhikode, Kerala",
         isPartOf: { "@id": WEBSITE_ID },
         about: { "@id": ORG_ID },
         primaryImageOfPage: { "@id": LOGO_ID },
@@ -204,7 +204,7 @@ export function servicePageGraph(page: {
         url,
         provider: { "@id": ORG_ID },
         areaServed: [
-          { "@type": "City", name: "Kochi" },
+          { "@type": "City", name: "Kozhikode" },
           { "@type": "State", name: "Kerala" },
           { "@type": "Country", name: "India" },
         ],

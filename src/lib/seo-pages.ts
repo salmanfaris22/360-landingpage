@@ -37,16 +37,16 @@ export type SeoPage = {
 
 export const SEO_PAGES: SeoPage[] = [
   {
-    slug: "branding-agency-kochi",
-    keyword: "Branding Agency in Kochi",
-    navLabel: "Branding Agency Kochi",
-    title: "Branding Agency in Kochi, Kerala",
+    slug: "branding-agency-kozhikode",
+    keyword: "Branding Agency in Kozhikode",
+    navLabel: "Branding Agency Kozhikode",
+    title: "Branding Agency in Kozhikode, Kerala",
     description:
-      "Media 360 Concept is a full-service branding agency in Kochi — brand strategy, identity, logo design, packaging, and campaigns for businesses across Kerala. Free consultation.",
-    eyebrow: "Branding Agency · Kochi, Kerala",
-    h1: "A Branding Agency in Kochi That Builds Brands Kerala Remembers",
+      "Media 360 Concept is a full-service branding agency in Kozhikode — brand strategy, identity, logo design, packaging, and campaigns for businesses across Kerala. Free consultation.",
+    eyebrow: "Branding Agency · Kozhikode, Kerala",
+    h1: "A Branding Agency in Kozhikode That Builds Brands Kerala Remembers",
     intro: [
-      "Media 360 Concept is a full-service branding and creative agency headquartered in Kochi, working with businesses across Kerala — from restaurants and hospitals to builders, retailers, and startups. We handle the entire journey under one roof: research, brand strategy, identity design, packaging, print, signage, and the campaigns that carry it all to market.",
+      "Media 360 Concept is a full-service branding and creative agency headquartered at Business Park, Calicut (Kozhikode), working with businesses across Kerala — from restaurants and hospitals to builders, retailers, and startups. We handle the entire journey under one roof: research, brand strategy, identity design, packaging, print, signage, and the campaigns that carry it all to market.",
       "What makes us different is range with accountability. The same team that writes your positioning designs your logo, produces your signage, and launches your campaign — so nothing gets lost in handoffs, and the brand that reaches your customers is exactly the brand that was planned.",
     ],
     sections: [
@@ -70,7 +70,7 @@ export const SEO_PAGES: SeoPage[] = [
           },
           {
             title: "Launch & rollout",
-            text: "Website, social profiles, and advertising that introduce the new brand to Kochi, Kerala, and beyond.",
+            text: "Website, social profiles, and advertising that introduce the new brand to Kozhikode, Kerala, and beyond.",
           },
         ],
       },
@@ -78,7 +78,7 @@ export const SEO_PAGES: SeoPage[] = [
         heading: "Local insight, international discipline",
         body: [
           "Our team brings 17+ years of branding and advertising experience in Saudi Arabia, 12+ years across India, and 8+ years serving clients in the USA. That mix matters: Gulf clients demand precision and speed, Indian markets demand range and value, and both disciplines now work for businesses here in Kerala.",
-          "Being based in Kochi means we understand how Kerala customers actually decide — how a family picks a restaurant in Panampilly Nagar, how a patient chooses between hospitals, how an NRI returning from the Gulf evaluates a builder. Strategy built on that understanding beats templates imported from anywhere else.",
+          "Being based in Kozhikode means we understand how Kerala customers actually decide — how a family picks a restaurant, how a patient chooses between hospitals, how an NRI returning from the Gulf evaluates a builder. Strategy built on that understanding beats templates imported from anywhere else.",
         ],
       },
       {
@@ -106,7 +106,7 @@ export const SEO_PAGES: SeoPage[] = [
     ],
     faqs: [
       {
-        q: "How much does it cost to hire a branding agency in Kochi?",
+        q: "How much does it cost to hire a branding agency in Kozhikode?",
         a: "It depends on scope. A focused logo and identity project costs far less than a complete brand system with packaging, signage, website, and campaign rollout. Media 360 Concept scopes every project individually and gives you a clear, itemised quote after a free consultation — so you pay for exactly what your business needs.",
       },
       {
@@ -114,8 +114,8 @@ export const SEO_PAGES: SeoPage[] = [
         a: "Look for strategy before design (research and positioning, not just a logo), a portfolio spanning your industry, in-house production capability so print and signage match what was approved on screen, and a team that communicates fast. Ask how they measure success after launch — the good ones have an answer.",
       },
       {
-        q: "Do you only work with businesses in Kochi?",
-        a: "No. Kochi is our headquarters, but we work with clients across Kerala — Thrissur, Kozhikode, Thiruvananthapuram, Kottayam — plus the rest of India, Saudi Arabia, the UAE, and the USA. Most projects run smoothly over WhatsApp, video calls, and structured review rounds.",
+        q: "Do you only work with businesses in Kozhikode?",
+        a: "No. Kozhikode is our headquarters, but we work with clients across Kerala — Thrissur, Kochi, Thiruvananthapuram, Kottayam — plus the rest of India, Saudi Arabia, the UAE, and the USA. Most projects run smoothly over WhatsApp, video calls, and structured review rounds.",
       },
       {
         q: "How long does a full branding project take?",
@@ -127,14 +127,14 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "logo-design-kochi",
+      "logo-design-kozhikode",
       "brand-strategy-kerala",
       "packaging-design-kerala",
-      "graphic-design-kochi",
+      "graphic-design-kozhikode",
     ],
     serviceName: "Branding Agency Services",
     serviceDescription:
-      "Full-service branding for businesses in Kochi and across Kerala — brand strategy, identity design, logo design, packaging, print, signage, and launch campaigns, managed by one accountable team.",
+      "Full-service branding for businesses in Kozhikode and across Kerala — brand strategy, identity design, logo design, packaging, print, signage, and launch campaigns, managed by one accountable team.",
   },
   {
     slug: "advertising-agency-kerala",
@@ -142,11 +142,11 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Advertising Agency Kerala",
     title: "Advertising Agency in Kerala",
     description:
-      "Full-service advertising agency in Kerala — creative campaigns, media planning and buying across outdoor, print, broadcast, and digital. Based in Kochi. Free consultation.",
+      "Full-service advertising agency in Kerala — creative campaigns, media planning and buying across outdoor, print, broadcast, and digital. Based in Kozhikode. Free consultation.",
     eyebrow: "Advertising Agency · Kerala",
     h1: "Advertising That Kerala Notices — and Remembers",
     intro: [
-      "Media 360 Concept plans, creates, and places advertising for businesses across Kerala from our base in Kochi. One team handles the whole chain: campaign strategy, the creative idea, design and production, media buying, and the reporting that tells you what your budget actually did.",
+      "Media 360 Concept plans, creates, and places advertising for businesses across Kerala from our base at Business Park, Calicut (Kozhikode). One team handles the whole chain: campaign strategy, the creative idea, design and production, media buying, and the reporting that tells you what your budget actually did.",
       "Most wasted ad spend comes from the gap between the people who make the ad and the people who place it. We closed that gap by doing both — so the creative is built for the exact hoarding, newspaper, screen, or feed where it will run.",
     ],
     sections: [
@@ -184,7 +184,7 @@ export const SEO_PAGES: SeoPage[] = [
     faqs: [
       {
         q: "What does an advertising agency in Kerala actually do?",
-        a: "A full-service agency handles strategy (who to reach and with what message), creative (the idea, design, and copy), production (print, video, digital assets), media buying (negotiating and booking hoardings, press, broadcast, and digital placements), and reporting. Media 360 Concept covers all five under one roof in Kochi.",
+        a: "A full-service agency handles strategy (who to reach and with what message), creative (the idea, design, and copy), production (print, video, digital assets), media buying (negotiating and booking hoardings, press, broadcast, and digital placements), and reporting. Media 360 Concept covers all five under one roof in Kozhikode.",
       },
       {
         q: "How much should a business budget for advertising in Kerala?",
@@ -204,9 +204,9 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "branding-agency-kochi",
-      "digital-marketing-kochi",
-      "graphic-design-kochi",
+      "branding-agency-kozhikode",
+      "digital-marketing-kozhikode",
+      "graphic-design-kozhikode",
       "brand-strategy-kerala",
     ],
     serviceName: "Advertising & Media Buying",
@@ -214,16 +214,16 @@ export const SEO_PAGES: SeoPage[] = [
       "Creative advertising campaigns with media planning and buying across outdoor, print, broadcast, and digital channels in Kerala, India, and the Gulf — strategy, creative, placement, and reporting by one team.",
   },
   {
-    slug: "logo-design-kochi",
-    keyword: "Logo Design in Kochi",
-    navLabel: "Logo Design Kochi",
-    title: "Logo Design in Kochi, Kerala",
+    slug: "logo-design-kozhikode",
+    keyword: "Logo Design in Kozhikode",
+    navLabel: "Logo Design Kozhikode",
+    title: "Logo Design in Kozhikode, Kerala",
     description:
-      "Professional logo design in Kochi by Media 360 Concept — strategy-led logo designers creating identities Kerala businesses are proud of. Concepts, revisions, all files, brand guidelines.",
-    eyebrow: "Logo Design · Kochi, Kerala",
+      "Professional logo design in Kozhikode by Media 360 Concept — strategy-led logo designers creating identities Kerala businesses are proud of. Concepts, revisions, all files, brand guidelines.",
+    eyebrow: "Logo Design · Kozhikode, Kerala",
     h1: "Logo Design That Makes Kerala Businesses Instantly Recognisable",
     intro: [
-      "Your logo is the hardest-working asset your business owns. It sits on your shopfront, your packaging, your invoices, your WhatsApp display picture, and — if it is designed well — in your customers' memory. Media 360 Concept designs logos in Kochi for businesses across Kerala that want to be recognised at a glance and impossible to confuse with a competitor.",
+      "Your logo is the hardest-working asset your business owns. It sits on your shopfront, your packaging, your invoices, your WhatsApp display picture, and — if it is designed well — in your customers' memory. Media 360 Concept designs logos in Kozhikode for businesses across Kerala that want to be recognised at a glance and impossible to confuse with a competitor.",
       "We are logo designers who start with strategy, not clip-art. Every mark we draw comes out of research into your market, your competitors, and the story only you can tell.",
     ],
     sections: [
@@ -279,7 +279,7 @@ export const SEO_PAGES: SeoPage[] = [
     ],
     faqs: [
       {
-        q: "How much does logo design cost in Kochi?",
+        q: "How much does logo design cost in Kozhikode?",
         a: "Logo design pricing depends on the depth of research, the number of concepts, and what is bundled — a standalone mark costs less than a logo with stationery, social kit, and brand guidelines. We quote a fixed price for a defined scope after a free consultation, so there are no surprises mid-project.",
       },
       {
@@ -300,14 +300,14 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "branding-agency-kochi",
+      "branding-agency-kozhikode",
       "brand-strategy-kerala",
-      "graphic-design-kochi",
+      "graphic-design-kozhikode",
       "packaging-design-kerala",
     ],
     serviceName: "Logo Design",
     serviceDescription:
-      "Strategy-led logo design in Kochi for businesses across Kerala — original concepts, structured refinement, complete file packages, and usage guidelines from professional logo designers.",
+      "Strategy-led logo design in Kozhikode for businesses across Kerala — original concepts, structured refinement, complete file packages, and usage guidelines from professional logo designers.",
   },
   {
     slug: "packaging-design-kerala",
@@ -315,18 +315,18 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Package Design Kerala",
     title: "Package & Label Design in Kerala",
     description:
-      "Package design and label design in Kerala by Media 360 Concept, Kochi — shelf-winning packaging for food, spices, ayurveda, FMCG, and export brands. Design to print-ready production.",
+      "Package design and label design in Kerala by Media 360 Concept, Kozhikode — shelf-winning packaging for food, spices, ayurveda, FMCG, and export brands. Design to print-ready production.",
     eyebrow: "Packaging & Labels · Kerala",
     h1: "Package Design That Wins the Three Seconds on the Shelf",
     intro: [
-      "On a supermarket shelf in Kochi, your product gets about three seconds of a customer's attention. Packaging either earns the pick-up in those seconds or disappears into the row. Media 360 Concept designs packaging and labels in Kerala that win that moment — and keep the promise after the product is home.",
+      "On a supermarket shelf in Kozhikode, your product gets about three seconds of a customer's attention. Packaging either earns the pick-up in those seconds or disappears into the row. Media 360 Concept designs packaging and labels in Kerala that win that moment — and keep the promise after the product is home.",
       "We take packaging from brand strategy to print-ready artwork: structure, dieline, label layout, compliance text, and production supervision, so what ships is exactly what was approved.",
     ],
     sections: [
       {
         heading: "Packaging for the products Kerala makes",
         body: [
-          "Kerala's shelves — and its exports — have their own character, and we design for it: spices and condiments, tea and coffee, banana chips and bakery, seafood and frozen foods, ayurveda and wellness, coconut products, FMCG, and cosmetics. Export packaging gets special attention: what reads as premium in a Kochi supermarket, a Gulf hypermarket, and a US ethnic store are three different things, and your packaging can be designed to work in all three.",
+          "Kerala's shelves — and its exports — have their own character, and we design for it: spices and condiments, tea and coffee, banana chips and bakery, seafood and frozen foods, ayurveda and wellness, coconut products, FMCG, and cosmetics. Export packaging gets special attention: what reads as premium in a Kozhikode supermarket, a Gulf hypermarket, and a US ethnic store are three different things, and your packaging can be designed to work in all three.",
         ],
       },
       {
@@ -392,9 +392,9 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "branding-agency-kochi",
-      "logo-design-kochi",
-      "graphic-design-kochi",
+      "branding-agency-kozhikode",
+      "logo-design-kozhikode",
+      "graphic-design-kozhikode",
       "brand-strategy-kerala",
     ],
     serviceName: "Package & Label Design",
@@ -402,23 +402,23 @@ export const SEO_PAGES: SeoPage[] = [
       "Packaging and label design in Kerala — shelf-winning packs for food, spice, ayurveda, FMCG, and export brands, from brand strategy and dieline to compliance layout and print-ready production.",
   },
   {
-    slug: "digital-marketing-kochi",
-    keyword: "Digital Marketing in Kochi",
-    navLabel: "Digital Marketing Kochi",
-    title: "Digital Marketing & SEO Company in Kochi",
+    slug: "digital-marketing-kozhikode",
+    keyword: "Digital Marketing in Kozhikode",
+    navLabel: "Digital Marketing Kozhikode",
+    title: "Digital Marketing & SEO Company in Kozhikode",
     description:
-      "Digital marketing company in Kochi — SEO, Google Business Profile, social media, and performance ads that turn searches into enquiries for Kerala businesses. Free consultation.",
-    eyebrow: "Digital Marketing · Kochi, Kerala",
-    h1: "Digital Marketing in Kochi That Turns Searches Into Sales",
+      "Digital marketing company in Kozhikode — SEO, Google Business Profile, social media, and performance ads that turn searches into enquiries for Kerala businesses. Free consultation.",
+    eyebrow: "Digital Marketing · Kozhikode, Kerala",
+    h1: "Digital Marketing in Kozhikode That Turns Searches Into Sales",
     intro: [
-      "When someone in Kerala needs what you sell, they search, scroll, or ask — on Google, Instagram, YouTube, or WhatsApp. Media 360 Concept is a digital marketing and SEO company in Kochi that makes sure your business is what they find, and that finding you leads to an enquiry, not just a visit.",
+      "When someone in Kerala needs what you sell, they search, scroll, or ask — on Google, Instagram, YouTube, or WhatsApp. Media 360 Concept is a digital marketing and SEO company in Kozhikode that makes sure your business is what they find, and that finding you leads to an enquiry, not just a visit.",
       "We run full-funnel digital marketing: search visibility to bring people in, content and social to build trust, performance ads to accelerate, and tracking so you always know what your budget returned.",
     ],
     sections: [
       {
         heading: "SEO that wins local searches",
         body: [
-          "Most high-intent searches in Kerala are local — \"near me\", \"in Kochi\", \"in Thrissur\". As an SEO company in Kochi, we optimise for exactly those moments: technical SEO so Google can crawl and trust your site, content that answers what your customers actually ask, local SEO and Google Business Profile optimisation so you appear in the Map Pack, and clean structured data so search engines — and AI assistants — understand your business precisely.",
+          "Most high-intent searches in Kerala are local — \"near me\", \"in Kozhikode\", \"in Thrissur\". As an SEO company in Kozhikode, we optimise for exactly those moments: technical SEO so Google can crawl and trust your site, content that answers what your customers actually ask, local SEO and Google Business Profile optimisation so you appear in the Map Pack, and clean structured data so search engines — and AI assistants — understand your business precisely.",
           "SEO is a compounding investment: the rankings you earn keep sending customers without paying per click. We report positions, traffic, and enquiries monthly, in plain language.",
         ],
       },
@@ -448,7 +448,7 @@ export const SEO_PAGES: SeoPage[] = [
     ],
     faqs: [
       {
-        q: "How long does SEO take to show results in Kochi?",
+        q: "How long does SEO take to show results in Kozhikode?",
         a: "For most Kerala businesses, meaningful movement shows in three to four months, with strong results in six to twelve depending on competition. Local SEO — Map Pack visibility via Google Business Profile — often moves faster. Anyone promising page one in two weeks is describing an ad, or a trick that won't survive Google's next update.",
       },
       {
@@ -456,7 +456,7 @@ export const SEO_PAGES: SeoPage[] = [
         a: "Usually both, in different proportions over time. Ads buy immediate visibility while SEO compounds; as rankings grow, organic enquiries reduce your dependence on ad spend. We size the split around your urgency, margins, and competition — and show the numbers behind the recommendation.",
       },
       {
-        q: "What does digital marketing cost per month in Kochi?",
+        q: "What does digital marketing cost per month in Kozhikode?",
         a: "Retainers depend on scope: SEO only, social only, or a full program with content, ads, and landing pages. Ad spend is separate and goes to Google or Meta directly, in your own accounts. After a free consultation we propose a scope and fixed monthly fee — transparent, itemised, cancellable.",
       },
       {
@@ -469,26 +469,26 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "web-development-kochi",
+      "web-development-kozhikode",
       "advertising-agency-kerala",
-      "branding-agency-kochi",
-      "ui-ux-design-kochi",
+      "branding-agency-kozhikode",
+      "ui-ux-design-kozhikode",
     ],
     serviceName: "Digital Marketing & SEO",
     serviceDescription:
-      "Full-funnel digital marketing in Kochi — SEO, Google Business Profile optimisation, social media management, and performance advertising with honest, enquiry-level measurement for Kerala businesses.",
+      "Full-funnel digital marketing in Kozhikode — SEO, Google Business Profile optimisation, social media management, and performance advertising with honest, enquiry-level measurement for Kerala businesses.",
   },
   {
-    slug: "web-development-kochi",
-    keyword: "Web Development in Kochi",
-    navLabel: "Web Development Kochi",
-    title: "Web Development & Website Design in Kochi",
+    slug: "web-development-kozhikode",
+    keyword: "Web Development in Kozhikode",
+    navLabel: "Web Development Kozhikode",
+    title: "Web Development & Website Design in Kozhikode",
     description:
-      "Web development company in Kochi — fast, SEO-ready websites and web apps designed in Figma and engineered for Core Web Vitals. Website design for businesses across Kerala.",
-    eyebrow: "Web Development · Kochi, Kerala",
+      "Web development company in Kozhikode — fast, SEO-ready websites and web apps designed in Figma and engineered for Core Web Vitals. Website design for businesses across Kerala.",
+    eyebrow: "Web Development · Kozhikode, Kerala",
     h1: "Websites Built to Rank, Load, and Convert",
     intro: [
-      "Your website is the one salesperson that meets every customer. Media 360 Concept designs and develops websites in Kochi for businesses across Kerala — sites that load fast on real Kerala mobile networks, rank on Google for the searches that matter, and turn visitors into WhatsApp messages, calls, and orders.",
+      "Your website is the one salesperson that meets every customer. Media 360 Concept designs and develops websites in Kozhikode for businesses across Kerala — sites that load fast on real Kerala mobile networks, rank on Google for the searches that matter, and turn visitors into WhatsApp messages, calls, and orders.",
       "Every build follows the same discipline: designed in Figma first so you approve exactly what will be built, then engineered on modern architecture with SEO and Core Web Vitals treated as requirements, not afterthoughts.",
     ],
     sections: [
@@ -544,7 +544,7 @@ export const SEO_PAGES: SeoPage[] = [
     ],
     faqs: [
       {
-        q: "How much does a website cost in Kochi?",
+        q: "How much does a website cost in Kozhikode?",
         a: "It depends on scope: a focused landing page, a multi-page business site, an e-commerce store, and a custom web application are very different builds. After a free consultation we quote a fixed price for a defined scope — with design, development, SEO setup, and launch itemised so you can see exactly what you are paying for.",
       },
       {
@@ -565,14 +565,14 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "ui-ux-design-kochi",
-      "digital-marketing-kochi",
-      "branding-agency-kochi",
-      "logo-design-kochi",
+      "ui-ux-design-kozhikode",
+      "digital-marketing-kozhikode",
+      "branding-agency-kozhikode",
+      "logo-design-kozhikode",
     ],
     serviceName: "Web Development & Website Design",
     serviceDescription:
-      "Website design and web development in Kochi — fast, SEO-ready business sites, e-commerce, landing pages, and web applications designed in Figma and engineered for Core Web Vitals.",
+      "Website design and web development in Kozhikode — fast, SEO-ready business sites, e-commerce, landing pages, and web applications designed in Figma and engineered for Core Web Vitals.",
   },
   {
     slug: "brand-strategy-kerala",
@@ -580,12 +580,12 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Brand Strategy Kerala",
     title: "Brand Strategy Consultants in Kerala",
     description:
-      "Brand strategy in Kerala by Media 360 Concept, Kochi — research, positioning, naming, and messaging that give your brand a plan before a single pixel is designed.",
+      "Brand strategy in Kerala by Media 360 Concept, Kozhikode — research, positioning, naming, and messaging that give your brand a plan before a single pixel is designed.",
     eyebrow: "Brand Strategy · Kerala",
     h1: "Brand Strategy for Kerala Businesses That Plan to Lead",
     intro: [
       "Design without strategy is decoration. Before a logo is sketched or a campaign is written, someone has to decide what your brand stands for, who it serves, why it wins, and what it should never say. That work is brand strategy — and it is the highest-leverage money a growing Kerala business can spend on its brand.",
-      "Media 360 Concept builds brand strategy from Kochi for businesses across Kerala and the Gulf: research-backed, written down, and practical enough that every designer, marketer, and salesperson can act on it.",
+      "Media 360 Concept builds brand strategy from Kozhikode for businesses across Kerala and the Gulf: research-backed, written down, and practical enough that every designer, marketer, and salesperson can act on it.",
     ],
     sections: [
       {
@@ -661,8 +661,8 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "branding-agency-kochi",
-      "logo-design-kochi",
+      "branding-agency-kozhikode",
+      "logo-design-kozhikode",
       "advertising-agency-kerala",
       "packaging-design-kerala",
     ],
@@ -671,16 +671,16 @@ export const SEO_PAGES: SeoPage[] = [
       "Brand strategy consulting in Kerala — market research, positioning, naming, messaging, and brand architecture that give businesses a written, actionable plan before design begins.",
   },
   {
-    slug: "ui-ux-design-kochi",
-    keyword: "UI/UX Design in Kochi",
-    navLabel: "UI/UX Design Kochi",
-    title: "UI/UX Design Company in Kochi",
+    slug: "ui-ux-design-kozhikode",
+    keyword: "UI/UX Design in Kozhikode",
+    navLabel: "UI/UX Design Kozhikode",
+    title: "UI/UX Design Company in Kozhikode",
     description:
-      "UI/UX design in Kochi by Media 360 Concept — research-driven interface design in Figma for websites, apps, and SaaS products. Wireframes, prototypes, design systems, dev-ready handoff.",
-    eyebrow: "UI/UX Design · Kochi, Kerala",
+      "UI/UX design in Kozhikode by Media 360 Concept — research-driven interface design in Figma for websites, apps, and SaaS products. Wireframes, prototypes, design systems, dev-ready handoff.",
+    eyebrow: "UI/UX Design · Kozhikode, Kerala",
     h1: "UI/UX Design That Makes Digital Products Feel Effortless",
     intro: [
-      "Users do not read interfaces — they feel them. A product that feels effortless earns trust in seconds; one that feels confusing loses the customer before the first feature is seen. Media 360 Concept is a UI/UX design team in Kochi crafting websites, mobile apps, dashboards, and SaaS products that people understand instantly and enjoy using.",
+      "Users do not read interfaces — they feel them. A product that feels effortless earns trust in seconds; one that feels confusing loses the customer before the first feature is seen. Media 360 Concept is a UI/UX design team in Kozhikode crafting websites, mobile apps, dashboards, and SaaS products that people understand instantly and enjoy using.",
       "Our process is research-driven and built entirely in Figma: real user flows, wireframes, interactive prototypes, and pixel-perfect design systems your developers can build from without a single guess.",
     ],
     sections: [
@@ -741,7 +741,7 @@ export const SEO_PAGES: SeoPage[] = [
         a: "UX (user experience) is how the product works: the flows, structure, and logic that get a user from intent to done. UI (user interface) is how it looks and feels: layout, colour, typography, and interaction details. UX makes it usable; UI makes it desirable. We design both, in that order.",
       },
       {
-        q: "What does a UI/UX project cost in Kochi?",
+        q: "What does a UI/UX project cost in Kozhikode?",
         a: "It depends on the number of screens and flows, whether research and prototyping are in scope, and whether you need a full design system or a focused redesign. We scope per project after a free consultation and quote a fixed price, so design costs are known before development budgeting.",
       },
       {
@@ -758,26 +758,26 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "web-development-kochi",
+      "web-development-kozhikode",
       "brand-strategy-kerala",
-      "digital-marketing-kochi",
-      "branding-agency-kochi",
+      "digital-marketing-kozhikode",
+      "branding-agency-kozhikode",
     ],
     serviceName: "UI/UX Design",
     serviceDescription:
-      "Research-driven UI/UX design in Kochi — user flows, wireframes, interactive prototypes, and pixel-perfect Figma design systems for websites, mobile apps, dashboards, and SaaS products.",
+      "Research-driven UI/UX design in Kozhikode — user flows, wireframes, interactive prototypes, and pixel-perfect Figma design systems for websites, mobile apps, dashboards, and SaaS products.",
   },
   {
-    slug: "graphic-design-kochi",
-    keyword: "Graphic Design in Kochi",
-    navLabel: "Graphic Design Kochi",
-    title: "Graphic Design Company in Kochi, Kerala",
+    slug: "graphic-design-kozhikode",
+    keyword: "Graphic Design in Kozhikode",
+    navLabel: "Graphic Design Kozhikode",
+    title: "Graphic Design Company in Kozhikode, Kerala",
     description:
-      "Graphic design company in Kochi — brochures, catalogues, menus, signage, vehicle branding, and every print deliverable, designed and production-managed by Media 360 Concept.",
-    eyebrow: "Graphic Design · Kochi, Kerala",
+      "Graphic design company in Kozhikode — brochures, catalogues, menus, signage, vehicle branding, and every print deliverable, designed and production-managed by Media 360 Concept.",
+    eyebrow: "Graphic Design · Kozhikode, Kerala",
     h1: "Graphic Design for Print, Signage & Everything In Between",
     intro: [
-      "Long after a website is closed, print stays in the room: the brochure on the table, the menu in the customer's hands, the signboard over the street, the van carrying your name through Kochi traffic. Media 360 Concept is a graphic design company in Kochi that designs — and production-manages — every physical expression of your brand.",
+      "Long after a website is closed, print stays in the room: the brochure on the table, the menu in the customer's hands, the signboard over the street, the van carrying your name through Kozhikode traffic. Media 360 Concept is a graphic design company in Kozhikode that designs — and production-manages — every physical expression of your brand.",
       "One team, one visual standard: whether it is a business card or a building facade, the colours, type, and finish all say the same brand.",
     ],
     sections: [
@@ -813,7 +813,7 @@ export const SEO_PAGES: SeoPage[] = [
     ],
     faqs: [
       {
-        q: "What graphic design services do you offer in Kochi?",
+        q: "What graphic design services do you offer in Kozhikode?",
         a: "Everything printed or fabricated: brochures, catalogues, company profiles, booklets, flyers, posters, business cards, letterheads, menus, packaging, stickers, T-shirt and merchandise design, shopfront signage, wayfinding, exhibition stalls, hoardings, and vehicle branding — designed and production-managed by one team.",
       },
       {
@@ -834,14 +834,14 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "branding-agency-kochi",
+      "branding-agency-kozhikode",
       "packaging-design-kerala",
-      "logo-design-kochi",
+      "logo-design-kozhikode",
       "advertising-agency-kerala",
     ],
     serviceName: "Graphic Design",
     serviceDescription:
-      "Graphic design in Kochi for print, signage, and vehicle branding — brochures, catalogues, menus, shopfront signage, and large-format work, designed and production-managed under one roof.",
+      "Graphic design in Kozhikode for print, signage, and vehicle branding — brochures, catalogues, menus, shopfront signage, and large-format work, designed and production-managed under one roof.",
   },
 ];
 

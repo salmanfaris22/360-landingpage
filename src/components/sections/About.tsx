@@ -65,7 +65,7 @@ export function About() {
         aria-hidden
         className="about-ghost text-stroke pointer-events-none absolute top-10 left-[20%] font-display text-[24vw] font-bold whitespace-nowrap opacity-60 select-none"
       >
-        KOCHI — KERALA
+        KOZHIKODE — KERALA
       </span>
 
       <div className="relative mx-auto max-w-7xl px-6">
@@ -81,7 +81,7 @@ export function About() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src={IMAGES.aboutMain}
-                alt="Media 360 Concept branding agency team collaborating at the Kochi, Kerala studio"
+                alt="Media 360 Concept branding agency team collaborating at the Kozhikode, Kerala studio"
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="about-img object-cover will-change-transform"
@@ -96,7 +96,7 @@ export function About() {
           <div>
             <WordReveal
               as="p"
-              text="Media 360 Concept is a Kochi-based branding agency built by senior creatives — each with 17+ years in brand activation, branding, advertising, and creative design across Saudi Arabia, India, and the USA."
+              text="Media 360 Concept is a Kozhikode-based branding agency built by senior creatives — each with 17+ years in brand activation, branding, advertising, and creative design across Saudi Arabia, India, and the USA."
               className="font-display text-2xl leading-snug font-medium tracking-tight md:text-[2rem]"
             />
             <Reveal delay={0.1}>

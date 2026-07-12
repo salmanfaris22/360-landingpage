@@ -10,7 +10,7 @@ export function TrustedBy() {
       <Marquee duration={44} className="mb-6">
         {CLIENTS.map((client) => (
           <span key={client} className="mx-10 flex items-center gap-10">
-            <span className="font-display text-3xl font-semibold tracking-tight text-white/30 transition-colors duration-500 hover:text-white">
+            <span className="font-display text-3xl font-semibold tracking-tight text-white/50 transition-colors duration-500 hover:text-white">
               {client}
             </span>
             <span className="text-xs text-white/20" aria-hidden>

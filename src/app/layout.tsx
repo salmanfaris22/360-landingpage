@@ -7,7 +7,10 @@ import { Cursor } from "@/components/effects/Cursor";
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-grotesk",
-  display: "swap",
+  // "optional": never swaps in late, so the headline/logo (the LCP element)
+  // paints once and stays painted — a late font swap was re-triggering LCP
+  // at ~4.5s on slow connections. Preload still wins on normal networks.
+  display: "optional",
 });
 
 const inter = Inter({
@@ -19,14 +22,16 @@ const inter = Inter({
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
-  weight: ["400", "500"],
+  // Single weight: the 500 face cost a 22KB render-blocking preload and was
+  // used on one 10px badge. Browsers synthesize medium from 400 fine there.
+  weight: "400",
   display: "swap",
 });
 
 const SITE_URL = "https://www.360mediaconcepts.com";
-const TITLE = "Media 360 Concept | Branding & Creative Agency in Kochi, Kerala";
+const TITLE = "Media 360 Concept | Branding & Creative Agency in Kozhikode, Kerala";
 const DESCRIPTION =
-  "Premium branding agency in Kochi, Kerala — logo design, brand identity, packaging, advertising, digital marketing & video production. 17+ years in KSA, 12+ in India. Free consultation.";
+  "Premium branding agency in Kozhikode, Kerala — logo design, brand identity, packaging, advertising, digital marketing & video production. 17+ years in KSA, 12+ in India. Free consultation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,20 +43,22 @@ export const metadata: Metadata = {
   keywords: [
     "Media 360 Concept",
     "Media360 Concept",
-    "branding agency Kochi",
+    "branding agency Kozhikode",
+    "branding agency Calicut",
     "branding agency Kerala",
-    "creative agency Kochi",
+    "creative agency Kozhikode",
     "advertising agency Kerala",
-    "logo design Kochi",
+    "logo design Kozhikode",
+    "logo design Calicut",
     "logo designer Kerala",
     "package design Kerala",
-    "digital marketing Kochi",
-    "SEO company Kochi",
-    "web development Kochi",
+    "digital marketing Kozhikode",
+    "SEO company Kozhikode",
+    "web development Kozhikode",
     "website design Kerala",
     "brand strategy Kerala",
-    "UI UX design Kochi",
-    "graphic design Kochi",
+    "UI UX design Kozhikode",
+    "graphic design Kozhikode",
   ],
   verification: {
     google: "lYUlUgsgLU7Te8J9oyto91OiAF2Dj4e6wcM7UdF0iK4",
@@ -87,7 +94,7 @@ export const metadata: Metadata = {
   category: "Branding & Advertising",
   other: {
     "geo.region": "IN-KL",
-    "geo.placename": "Kochi, Kerala",
+    "geo.placename": "Kozhikode, Kerala",
   },
 };
 

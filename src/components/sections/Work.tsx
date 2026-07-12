@@ -76,7 +76,6 @@ export function Work() {
                   onClick={() => setActive(project)}
                   data-cursor="View"
                   className="group w-full cursor-pointer text-left"
-                  aria-label={`Open ${project.title} case study`}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line">
                     <Image

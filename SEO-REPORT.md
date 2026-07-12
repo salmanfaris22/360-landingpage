@@ -1,5 +1,22 @@
 # Media 360 Concept — SEO Transformation Report
 
+## Phase 3 addendum — Core Web Vitals + accessibility (13 July 2026)
+
+Lighthouse (mobile, slow-4G simulation): **Accessibility 87 → 100 · Performance → 85** · FCP 2.1s → 1.5s · LCP 5.1s → 4.2s · TBT 330ms → 120ms · Speed Index 5.4s → 2.3s · CLS 0.
+
+| Fix | Why |
+|---|---|
+| Hero entrance moved from GSAP to pure CSS keyframes | GSAP re-hid the H1 until JS hydrated (~5s on slow 4G), destroying LCP; CSS animates at first paint |
+| H1 reveal = fade-up, not clip-mask | Clip-masked text never registers an LCP paint; opacity-based reveals do |
+| Space Grotesk `display: "optional"` | Late font swap was re-triggering LCP at ~4.5s; optional never swaps late |
+| JetBrains Mono 500 weight dropped | 22KB render-blocking preload used on one 10px badge |
+| GalaxyScene (three.js) idle-mounted, ≥1024px only | The 3D sky no longer costs phones any JS; desktop loads it after idle |
+| `browserslist` modern targets | Removes legacy polyfill JS |
+| Stats `<dl>` → `<ul>`; star ratings `role="img"`; removed `aria-label` from elements whose role prohibits naming; marquee contrast raised to ≥3:1 (`text-stroke` 45%, wordmarks `white/50`) | All four failing Lighthouse a11y audits |
+| `public/google4197dc36318ff733.html` | HTML-file GSC verification, alongside the meta tag |
+
+Remaining lab LCP (~4.2s simulated slow-4G) is the render-blocking CSS+font chain — the realistic floor while keeping the brand fonts; field data (CrUX) on real connections will be substantially better.
+
 ## Phase 2 addendum — multi-page architecture (13 July 2026)
 
 The single-page ceiling described in §1/§6 below is now removed. This phase shipped:

@@ -48,13 +48,14 @@ export const CONTACT = {
     "https://wa.me/919061460360?text=Hi%20Media%20360%20Concept%2C%20I%27d%20like%20to%20talk%20about%20branding%20for%20my%20business.",
   site: "https://www.360mediaconcepts.com",
   siteDisplay: "www.360mediaconcepts.com",
-  city: "Kochi",
+  city: "Kozhikode (Calicut)",
   region: "Kerala, India",
+  address: "Business Park, Calicut",
 };
 
 export const CLIENTS = [
   "BRANDING", "ADVERTISING", "PACKAGING", "SIGNAGE", "PRINT", "DIGITAL",
-  "KOCHI", "KERALA", "INDIA", "KSA", "UAE", "USA",
+  "KOZHIKODE", "KERALA", "INDIA", "KSA", "UAE", "USA",
 ];
 
 export const STATS = [
@@ -70,10 +71,10 @@ export const SERVICES: Service[] = [
     index: "01",
     title: "Branding & Identity Design",
     description:
-      "Logo design, visual identity, and complete brand guidelines for businesses across Kerala and beyond. We build identity systems that make a restaurant in Kochi, a hospital in Thrissur, or a startup in Riyadh instantly recognisable — and impossible to confuse with anyone else.",
+      "Logo design, visual identity, and complete brand guidelines for businesses across Kerala and beyond. We build identity systems that make a restaurant in Kozhikode, a hospital in Thrissur, or a startup in Riyadh instantly recognisable — and impossible to confuse with anyone else.",
     tags: ["Logo Design", "Brand Identity", "Brand Guidelines", "Rebranding"],
     gradient: "from-blue/30 to-violet/10",
-    href: "/branding-agency-kochi",
+    href: "/branding-agency-kozhikode",
   },
   {
     index: "02",
@@ -108,7 +109,7 @@ export const SERVICES: Service[] = [
       "SEO, social media management, and performance marketing that turn attention into enquiries. Full-funnel campaigns for Kerala businesses that want to be found on Google, remembered on Instagram, and chosen when it's time to buy.",
     tags: ["SEO", "Social Media", "Performance Marketing", "Google Ads"],
     gradient: "from-violet/30 to-blue/10",
-    href: "/digital-marketing-kochi",
+    href: "/digital-marketing-kozhikode",
   },
   {
     index: "06",
@@ -125,7 +126,7 @@ export const SERVICES: Service[] = [
       "Fast, search-optimised websites and landing pages built on modern architecture. Every site we ship is designed in Figma, engineered for Core Web Vitals, and structured so Google — and your customers — understand exactly what you offer.",
     tags: ["Website Design", "Landing Pages", "Custom Web", "CMS"],
     gradient: "from-blue/30 to-violet/10",
-    href: "/web-development-kochi",
+    href: "/web-development-kozhikode",
   },
   {
     index: "08",
@@ -142,7 +143,7 @@ export const SERVICES: Service[] = [
       "Research-driven interface design for websites, apps, and products. Wireframes, prototypes, and pixel-perfect Figma systems with components and dev-ready specs — so what gets designed is exactly what gets built.",
     tags: ["UI/UX Design", "Figma Design", "Prototyping", "Design Systems"],
     gradient: "from-cyan/30 to-blue/10",
-    href: "/ui-ux-design-kochi",
+    href: "/ui-ux-design-kozhikode",
   },
   {
     index: "10",
@@ -631,7 +632,7 @@ export const AWARDS = [
 ];
 
 export const MILESTONES = [
-  { year: "Kerala", text: "Headquartered in Kochi — the home base where strategy, design, and production come together for businesses across Kerala." },
+  { year: "Kerala", text: "Headquartered at Business Park, Calicut — the home base where strategy, design, and production come together for businesses across Kerala." },
   { year: "KSA", text: "Over 17 years of brand activation, branding, advertising, and creative design experience across Saudi Arabia." },
   { year: "India", text: "12+ years crafting brand identities and creative strategies for businesses across India." },
   { year: "USA", text: "8+ years helping US businesses connect with their audiences and leave a lasting impression." },
@@ -687,7 +688,7 @@ export const PRICING = [
 export const FAQS = [
   {
     q: "What is Media 360 Concept?",
-    a: "Media 360 Concept is a full-service branding and creative agency headquartered in Kochi, Kerala. We combine 17+ years of experience in Saudi Arabia, 12+ years in India, and 8+ years in the USA to deliver branding, advertising, design, digital marketing, and media production for businesses of every size.",
+    a: "Media 360 Concept is a full-service branding and creative agency headquartered at Business Park, Calicut (Kozhikode), Kerala. We combine 17+ years of experience in Saudi Arabia, 12+ years in India, and 8+ years in the USA to deliver branding, advertising, design, digital marketing, and media production for businesses of every size.",
   },
   {
     q: "What services does Media 360 Concept offer?",
@@ -711,7 +712,7 @@ export const FAQS = [
   },
   {
     q: "Where is Media 360 Concept located?",
-    a: "Our headquarters is in Kochi, Kerala, India. We serve clients across Kerala and the rest of India, and internationally in Saudi Arabia (KSA), the UAE, and the United States — with 17+ years of on-ground experience in the Saudi market.",
+    a: "Our headquarters is at Business Park, Calicut (Kozhikode), Kerala, India. We serve clients across Kerala and the rest of India, and internationally in Saudi Arabia (KSA), the UAE, and the United States — with 17+ years of on-ground experience in the Saudi market.",
   },
   {
     q: "Can you handle printing, signage, and vehicle branding?",
@@ -719,7 +720,7 @@ export const FAQS = [
   },
   {
     q: "Why should I choose Media 360 Concept over other agencies in Kerala?",
-    a: "Because we combine international experience with local understanding: the discipline of 17+ years serving Saudi Arabian brands, the craft of 12+ years across India, and a Kochi-based team that answers fast, meets deadlines, and manages everything — strategy, design, production, and marketing — under one roof.",
+    a: "Because we combine international experience with local understanding: the discipline of 17+ years serving Saudi Arabian brands, the craft of 12+ years across India, and a Kozhikode-based team that answers fast, meets deadlines, and manages everything — strategy, design, production, and marketing — under one roof.",
   },
   {
     q: "How do I get started?",
@@ -759,7 +760,7 @@ export const POSTS = [
 ];
 
 export const OFFICES = [
-  { city: "Kochi", country: "Kerala, India — HQ", line: "Strategy, design & production home base", tz: "GMT+5:30" },
+  { city: "Kozhikode (Calicut)", country: "Kerala, India — HQ", line: "Business Park, Calicut — Strategy, design & production home base", tz: "GMT+5:30" },
   { city: "Saudi Arabia", country: "KSA", line: "17+ years of brand-building experience", tz: "GMT+3" },
   { city: "United States", country: "USA", line: "8+ years serving American clients", tz: "GMT-5" },
 ];

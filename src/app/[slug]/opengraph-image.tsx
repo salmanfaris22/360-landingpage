@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getSeoPage } from "@/lib/seo-pages";
 
-export const alt = "Media 360 Concept — Branding & Creative Agency, Kochi";
+export const alt = "Media 360 Concept — Branding & Creative Agency, Kozhikode";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,7 +13,7 @@ export default async function Image({
   const { slug } = await params;
   const page = getSeoPage(slug);
   const title = page?.title ?? "Branding & Creative Agency";
-  const eyebrow = page?.eyebrow ?? "Kochi, Kerala";
+  const eyebrow = page?.eyebrow ?? "Kozhikode, Kerala";
 
   return new ImageResponse(
     (

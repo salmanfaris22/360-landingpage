@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { gsap, useGSAP, prefersReducedMotion, isFinePointer } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/Button";
 const GalaxyScene = dynamic(() => import("@/components/three/GalaxyScene"), {
   ssr: false,
 });
+
+/** Style helper for the CSS entrance stagger (see globals.css). */
+const stagger = (i: number) => ({ "--stagger": i }) as React.CSSProperties;
 
 const HEADLINE = [
   { text: "WE BUILD", style: "" },
@@ -28,20 +31,25 @@ const FLOATING_STATS = [
 export function Hero() {
   const root = useRef<HTMLElement>(null);
   const inner = useRef<HTMLDivElement>(null);
+  // The three.js sky is decoration: mount it only on large screens, after the
+  // browser is idle, so it never competes with the headline for bandwidth or
+  // main-thread time. (The entrance animation itself is pure CSS.)
+  const [galaxy, setGalaxy] = useState(false);
+
+  useEffect(() => {
+    if (prefersReducedMotion() || window.innerWidth < 1024) return;
+    const start = () => setGalaxy(true);
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(start, { timeout: 3500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = setTimeout(start, 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
-
-      // Cinematic entrance
-      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-      gsap.set(".hero-line", { yPercent: 115 });
-      gsap.set(".hero-fade", { opacity: 0, y: 24 });
-      gsap.set(".hero-stat", { opacity: 0, scale: 0.85 });
-
-      tl.to(".hero-line", { yPercent: 0, duration: 1.4, stagger: 0.09, delay: 0.35 })
-        .to(".hero-fade", { opacity: 1, y: 0, duration: 1, stagger: 0.12 }, "-=0.9")
-        .to(".hero-stat", { opacity: 1, scale: 1, duration: 1, stagger: 0.15 }, "-=0.8");
 
       // Atmosphere shift on scroll: content lifts away faster than the sky
       gsap.to(inner.current, {
@@ -85,8 +93,8 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
     >
-      {/* Galaxy sky */}
-      <GalaxyScene />
+      {/* Galaxy sky — deferred so it never blocks the headline */}
+      {galaxy && <GalaxyScene />}
 
       {/* Aurora atmosphere */}
       <div
@@ -112,23 +120,28 @@ export function Hero() {
       />
 
       <div ref={inner} className="relative z-10 mx-auto w-full max-w-7xl px-6 py-32 text-center">
-        <p className="hero-fade label-mono">
-          Media 360 Concept — Branding Agency in Kochi, Kerala
+        <p className="hero-fade label-mono" style={stagger(0)}>
+          Media 360 Concept — Branding Agency in Kozhikode, Kerala
         </p>
 
         <h1 className="mt-10 font-display font-bold uppercase leading-[0.93] tracking-[-0.04em] text-[clamp(2.6rem,9.5vw,8.25rem)]">
-          {HEADLINE.map((line) => (
-            <span key={line.text} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
-              <span className={`hero-line block will-change-transform ${line.style}`}>
-                {line.text}
-              </span>
+          {HEADLINE.map((line, i) => (
+            <span
+              key={line.text}
+              className={`hero-line block will-change-transform ${line.style}`}
+              style={stagger(i)}
+            >
+              {line.text}
             </span>
           ))}
         </h1>
 
-        <p className="hero-fade mx-auto mt-10 flex max-w-2xl flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs tracking-[0.28em] text-dim uppercase">
+        <p
+          className="hero-fade mx-auto mt-10 flex max-w-2xl flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs tracking-[0.28em] text-dim uppercase"
+          style={stagger(1)}
+        >
           <span className="mb-4 w-full text-center leading-relaxed">
-            Premium branding, advertising, and creative design from Kochi — backed by 17+ years in Saudi Arabia, 12+ across India, and 8+ in the USA. Strategy, design, production, and marketing under one roof.
+            Premium branding, advertising, and creative design from Kozhikode — backed by 17+ years in Saudi Arabia, 12+ across India, and 8+ in the USA. Strategy, design, production, and marketing under one roof.
           </span>
           {DISCIPLINES.map((d, i) => (
             <span key={d} className="flex items-center gap-4">
@@ -138,7 +151,10 @@ export function Hero() {
           ))}
         </p>
 
-        <div className="hero-fade mt-12 flex flex-wrap items-center justify-center gap-5">
+        <div
+          className="hero-fade mt-12 flex flex-wrap items-center justify-center gap-5"
+          style={stagger(2)}
+        >
           <Button href="#contact">Get a Free Brand Consultation</Button>
           <Button href="#work" variant="ghost">
             See Our Work
@@ -147,10 +163,11 @@ export function Hero() {
       </div>
 
       {/* Floating statistics */}
-      {FLOATING_STATS.map((stat) => (
+      {FLOATING_STATS.map((stat, i) => (
         <div
           key={stat.label}
           className={`hero-stat absolute z-10 hidden xl:block ${stat.pos}`}
+          style={stagger(i)}
         >
           <div
             className="glass animate-float rounded-2xl px-6 py-5 text-left"
@@ -165,7 +182,10 @@ export function Hero() {
       ))}
 
       {/* Scroll cue */}
-      <div className="hero-fade absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3">
+      <div
+        className="hero-fade absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
+        style={stagger(3)}
+      >
         <span className="font-mono text-[10px] tracking-[0.4em] text-dim uppercase">Scroll</span>
         <span className="relative h-10 w-px overflow-hidden bg-white/15" aria-hidden>
           <span className="absolute inset-x-0 top-0 h-1/2 animate-float bg-gradient-to-b from-cyan to-transparent" />

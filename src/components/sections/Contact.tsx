@@ -137,7 +137,7 @@ export function Contact() {
                   name="message"
                   required
                   rows={5}
-                  placeholder="We're opening a new restaurant in Kochi and need branding…"
+                  placeholder="We're opening a new restaurant in Kozhikode and need branding…"
                   className={`${inputClass} resize-none`}
                 />
               </div>
@@ -211,7 +211,7 @@ export function Contact() {
             <Reveal delay={0.2}>
               <div
                 className="relative h-44 overflow-hidden rounded-2xl border border-line"
-                aria-label="Media 360 Concept — headquartered in Kochi, Kerala, serving KSA and the USA"
+                aria-label="Media 360 Concept — headquartered in Kozhikode, Kerala, serving KSA and the USA"
                 role="img"
               >
                 <div
@@ -225,7 +225,7 @@ export function Contact() {
                 />
                 {[
                   { pos: "top-[38%] left-[58%]", label: "KSA" },
-                  { pos: "top-[26%] left-[44%]", label: "KOCHI" },
+                  { pos: "top-[26%] left-[44%]", label: "CALICUT" },
                   { pos: "top-[55%] left-[30%]", label: "USA" },
                 ].map((pin) => (
                   <span key={pin.label} className={`absolute ${pin.pos} flex items-center gap-2`}>
@@ -265,7 +265,7 @@ export function Contact() {
                     +91 9061 460 360
                   </a>
                   <p className="font-mono text-xs tracking-[0.2em] text-white/60 uppercase">
-                    Kochi, Kerala, India
+                    Business Park, Calicut · Kozhikode, Kerala, India
                   </p>
                 </div>
                 <div className="flex gap-3">

@@ -36,7 +36,6 @@ export function Footer() {
                 scrollToSection("#hero");
               }}
               data-cursor
-              aria-label="Media 360 Concept — back to top"
               className="group inline-block cursor-pointer"
             >
               <span className="font-display text-[clamp(4rem,10vw,8rem)] leading-none font-bold tracking-[-0.04em] transition-all duration-500 group-hover:text-transparent group-hover:[-webkit-text-stroke:1px_rgb(255_255_255/60%)]">
@@ -44,7 +43,7 @@ export function Footer() {
               </span>
             </a>
             <p className="mt-6 max-w-sm leading-relaxed text-dim">
-              Media 360 Concept is a premium branding and advertising agency in Kochi, Kerala — crafting brand identities, packaging, campaigns, and digital experiences for businesses across Kerala, India, KSA, the UAE, and the USA.
+              Media 360 Concept is a premium branding and advertising agency at Business Park, Calicut (Kozhikode), Kerala — crafting brand identities, packaging, campaigns, and digital experiences for businesses across Kerala, India, KSA, the UAE, and the USA.
             </p>
           </div>
 
@@ -113,7 +112,7 @@ export function Footer() {
                   +91 9061 460 360
                 </a>
               </li>
-              <li>Kochi, Kerala, India</li>
+              <li>Business Park, Calicut · Kozhikode, Kerala, India</li>
               <li>Kerala — India — KSA — UAE — USA</li>
               <li className="pt-4">
                 <Magnetic strength={0.3}>
@@ -144,7 +143,7 @@ export function Footer() {
             © 2026 Media 360 Concept — All rights reserved
           </p>
           <p className="font-mono text-[11px] tracking-[0.2em] text-dim uppercase">
-            Branding · Advertising · Design — Kochi, Kerala
+            Branding · Advertising · Design — Kozhikode, Kerala
           </p>
         </div>
       </div>

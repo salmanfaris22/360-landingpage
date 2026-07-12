@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Media 360 Concept — Branding & Creative Agency, Kochi",
+    name: "Media 360 Concept — Branding & Creative Agency, Kozhikode",
     short_name: "Media 360",
     description:
-      "Premium branding, advertising, and creative agency in Kochi, Kerala — brand identity, logo design, packaging, digital marketing, web and app development.",
+      "Premium branding, advertising, and creative agency in Kozhikode, Kerala — brand identity, logo design, packaging, digital marketing, web and app development.",
     start_url: "/",
     display: "standalone",
     background_color: "#050505",

@@ -73,7 +73,6 @@ export function Navbar() {
             }}
             data-cursor
             className="group flex cursor-pointer items-baseline gap-2 font-display text-lg font-bold tracking-tight"
-            aria-label="Media 360 Concept — back to top"
           >
             MEDIA 360
             <span className="inline-block h-2 w-2 rounded-full bg-gradient-to-r from-blue to-cyan transition-transform duration-500 group-hover:scale-150" />

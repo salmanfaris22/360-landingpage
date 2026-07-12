@@ -17,7 +17,7 @@ export function Achievements() {
             />
             <Reveal>
               <p className="-mt-8 max-w-sm leading-relaxed text-dim lg:-mt-12">
-                From Kochi to Riyadh to the wider world — we&apos;re expanding our creative capabilities and helping businesses build meaningful, memorable, future-ready brands through innovation and strategic thinking.
+                From Kozhikode to Riyadh to the wider world — we&apos;re expanding our creative capabilities and helping businesses build meaningful, memorable, future-ready brands through innovation and strategic thinking.
               </p>
             </Reveal>
           </div>

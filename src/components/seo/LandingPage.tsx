@@ -173,7 +173,7 @@ export function LandingPage({ page }: { page: SeoPage }) {
 
           {/* CTA */}
           <section className="rounded-3xl border border-line p-10 text-center md:p-16">
-            <p className="label-mono">Free consultation · Kochi, Kerala</p>
+            <p className="label-mono">Free consultation · Kozhikode, Kerala</p>
             <h2 className="mx-auto mt-6 max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-4xl">
               Tell us what you&apos;re building — we&apos;ll reply within 24 hours.
             </h2>

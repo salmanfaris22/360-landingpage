@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Media 360 Concept — Branding & Creative Agency in Kochi, Kerala";
+  "Media 360 Concept — Branding & Creative Agency in Kozhikode, Kerala";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -56,7 +56,7 @@ export default function Image() {
             />
           </div>
           <div style={{ display: "flex", fontSize: 38, color: "#d4d4d4" }}>
-            Branding &amp; Creative Agency — Kochi, Kerala
+            Branding &amp; Creative Agency — Kozhikode, Kerala
           </div>
         </div>
 

@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { gsap, useGSAP, isFinePointer, prefersReducedMotion } from "@/lib/gsap";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Plus } from "@/components/ui/Icons";
 import { SERVICES } from "@/lib/data";
+import { getSeoPage } from "@/lib/seo-pages";
 
 /**
  * Editorial service index: rows dim their siblings on hover, a gradient
@@ -106,6 +108,15 @@ export function Services() {
                             </li>
                           ))}
                         </ul>
+                        {service.href && (
+                          <Link
+                            href={service.href}
+                            className="link-underline mt-7 inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-cyan uppercase"
+                          >
+                            Explore {getSeoPage(service.href.slice(1))?.keyword ?? service.title}
+                            <span aria-hidden>→</span>
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>

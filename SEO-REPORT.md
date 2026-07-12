@@ -1,5 +1,50 @@
 # Media 360 Concept — SEO Transformation Report
 
+## Phase 2 addendum — multi-page architecture (13 July 2026)
+
+The single-page ceiling described in §1/§6 below is now removed. This phase shipped:
+
+### Implemented in this pass
+
+| Item | Where |
+|---|---|
+| **Google Search Console verification** meta tag | `layout.tsx` → `verification.google` (renders `<meta name="google-site-verification" …>`) |
+| **9 keyword landing pages** (SSG, zero client JS in content) | `/branding-agency-kochi` · `/advertising-agency-kerala` · `/logo-design-kochi` · `/packaging-design-kerala` · `/digital-marketing-kochi` · `/web-development-kochi` · `/brand-strategy-kerala` · `/ui-ux-design-kochi` · `/graphic-design-kochi` — content in `src/lib/seo-pages.ts`, template `src/components/seo/LandingPage.tsx`, route `src/app/[slug]/page.tsx` |
+| **Per-page metadata** | Unique title/description/canonical/hreflang per page via `generateMetadata` |
+| **Dynamic OG images** | `app/opengraph-image.tsx` (site-wide) + `app/[slug]/opengraph-image.tsx` (per-page, branded 1200×630) — WhatsApp/social previews now branded everywhere |
+| **Schema graph centralised** | `src/lib/schema.ts` — Organization/ProfessionalService (+geo, contactPoint, priceRange), WebSite, ImageObject (logo), WebPage, BreadcrumbList, Service, FAQPage per page; XSS-safe injection via `JsonLd` |
+| **Sitemap** | All 10 URLs, priorities 1.0 / 0.9 |
+| **Web app manifest** | `app/manifest.ts` |
+| **Internal-link mesh** | Footer "Services" column (site-wide, keyword anchors) · homepage service rows link to matching pages · every landing page links 4 related pages + homepage |
+| **Accessibility** | Skip-to-content link; landing FAQs use native `<details>`; visible breadcrumb nav with `aria-label` |
+| **llms.txt** | Service-page URLs listed for AI crawlers |
+
+### Deliberately NOT added (don't add without real data)
+
+- **Review/AggregateRating schema** — current testimonials are self-descriptions; self-serving review markup violates Google's structured-data policy and risks a manual action. Add only with genuine third-party reviews (Google reviews via GBP are the priority anyway).
+- **SearchAction/Sitelinks-searchbox** — the site has no search page, and Google retired the sitelinks search box in 2024. Marking up a nonexistent search endpoint is invalid.
+- **Opening hours, street address, sameAs socials** — unknown/not live yet. Fabricated NAP data does more local-SEO damage than missing data. Add to `src/lib/schema.ts` the day they're real, matching GBP exactly.
+
+### Do these next (owner actions, in order)
+
+1. **Google Search Console**: the verification tag is live in the site head — deploy, then in GSC choose "URL prefix" → `https://www.360mediaconcepts.com` → verify via HTML tag. Immediately submit `https://www.360mediaconcepts.com/sitemap.xml` and request indexing for the homepage + all 9 landing pages.
+2. **Google Business Profile** (highest-impact single action, unchanged from §3): create/claim "Media 360 Concept", category *Advertising agency* (secondary: Graphic designer, Website designer, Marketing agency). Use exactly the NAP on the site: Media 360 Concept · Kochi, Kerala · +91 9061 460 360 · media360concept@gmail.com. Add the street address to GBP **and** to `schema.ts`/Contact section the same day. Upload real work photos, list the 9 services using the same names as the landing pages, and post monthly.
+3. **Reviews engine**: after every delivered project, send the GBP review link on WhatsApp. 10+ reviews unlocks meaningful Map Pack movement; once real reviews exist, revisit review schema.
+4. **Citations / NAP consistency** (same NAP string everywhere): JustDial, Sulekha, IndiaMART, Clutch, DesignRush, GoodFirms, Behance/Dribbble portfolio profiles, LinkedIn company page, Instagram business profile. Add every live profile URL to `sameAs` in `schema.ts`.
+5. **Backlink starters**: "Branding by Media 360 Concept" footer credits on client sites; Kerala business media (Dhanam, Manorama business desk); Kerala Startup Mission ecosystem listings.
+
+### Anchor-text strategy (already wired into the site)
+
+- Footer + service rows use **exact keyword anchors** ("Branding Agency Kochi", "Logo Design Kochi") — safe because they're navigation, sitewide, and match page titles.
+- In-content related-service links use natural phrases ("Logo Design in Kochi").
+- For **external** links (citations, guest posts, PR), vary: ~50% brand ("Media 360 Concept"), ~30% brand+keyword, ~20% naked URL — never sitewide exact-match anchors from third parties.
+
+### Remaining gaps (unchanged from §3)
+
+Real testimonials/team photos, wired contact form backend, live social profiles, street address, and the blog build-out (§7 topics; the 4 teased posts are still promises).
+
+---
+
 **Date:** July 2026 · **Scope:** Full homepage audit + rewrite for Kerala-first positioning
 **Method:** `seo-audit` + `ai-seo` skills (installed in `.claude/skills/`) — crawlability → technical → on-page → content quality → authority.
 

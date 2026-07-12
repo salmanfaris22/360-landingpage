@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { Marquee } from "@/components/ui/Marquee";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { scrollToSection } from "@/lib/scroll";
 import { NAV_LINKS } from "@/lib/data";
+import { SEO_PAGES } from "@/lib/seo-pages";
 
 export function Footer() {
   return (
@@ -25,7 +27,7 @@ export function Footer() {
       </Marquee>
 
       <div className="mx-auto max-w-7xl px-6 pt-20 pb-10">
-        <div className="grid gap-14 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="grid gap-14 md:grid-cols-[1.5fr_1.2fr_1fr_1fr]">
           <div>
             <a
               href="#hero"
@@ -45,6 +47,22 @@ export function Footer() {
               Media 360 Concept is a premium branding and advertising agency in Kochi, Kerala — crafting brand identities, packaging, campaigns, and digital experiences for businesses across Kerala, India, KSA, the UAE, and the USA.
             </p>
           </div>
+
+          <nav aria-label="Services">
+            <p className="label-mono mb-6">Services</p>
+            <ul className="space-y-3">
+              {SEO_PAGES.map((page) => (
+                <li key={page.slug}>
+                  <Link
+                    href={`/${page.slug}`}
+                    className="link-underline cursor-pointer text-sm text-dim transition-colors hover:text-white"
+                  >
+                    {page.navLabel}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           <nav aria-label="Sitemap">
             <p className="label-mono mb-6">Sitemap</p>

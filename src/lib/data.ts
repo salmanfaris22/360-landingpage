@@ -4,6 +4,8 @@ export type Service = {
   description: string;
   tags: string[];
   gradient: string;
+  /** Route of the matching keyword landing page, when one exists. */
+  href?: string;
 };
 
 export type Project = {
@@ -71,6 +73,7 @@ export const SERVICES: Service[] = [
       "Logo design, visual identity, and complete brand guidelines for businesses across Kerala and beyond. We build identity systems that make a restaurant in Kochi, a hospital in Thrissur, or a startup in Riyadh instantly recognisable — and impossible to confuse with anyone else.",
     tags: ["Logo Design", "Brand Identity", "Brand Guidelines", "Rebranding"],
     gradient: "from-blue/30 to-violet/10",
+    href: "/branding-agency-kochi",
   },
   {
     index: "02",
@@ -79,6 +82,7 @@ export const SERVICES: Service[] = [
       "Before we design anything, we study your market, your competitors, and your customers. Positioning, naming, messaging, and go-to-market planning — the strategic groundwork that separates brands that last from logos that get replaced in two years.",
     tags: ["Market Research", "Positioning", "Competitor Analysis", "Naming"],
     gradient: "from-violet/30 to-cyan/10",
+    href: "/brand-strategy-kerala",
   },
   {
     index: "03",
@@ -87,6 +91,7 @@ export const SERVICES: Service[] = [
       "Campaign planning and media placement across outdoor, print, broadcast, and digital channels in Kerala, wider India, and the Gulf. We negotiate, place, and monitor every rupee of ad spend so your message lands where your customers actually look.",
     tags: ["Ad Campaigns", "Media Planning", "Outdoor Advertising", "Media Buying"],
     gradient: "from-cyan/30 to-blue/10",
+    href: "/advertising-agency-kerala",
   },
   {
     index: "04",
@@ -103,6 +108,7 @@ export const SERVICES: Service[] = [
       "SEO, social media management, and performance marketing that turn attention into enquiries. Full-funnel campaigns for Kerala businesses that want to be found on Google, remembered on Instagram, and chosen when it's time to buy.",
     tags: ["SEO", "Social Media", "Performance Marketing", "Google Ads"],
     gradient: "from-violet/30 to-blue/10",
+    href: "/digital-marketing-kochi",
   },
   {
     index: "06",
@@ -119,6 +125,7 @@ export const SERVICES: Service[] = [
       "Fast, search-optimised websites and landing pages built on modern architecture. Every site we ship is designed in Figma, engineered for Core Web Vitals, and structured so Google — and your customers — understand exactly what you offer.",
     tags: ["Website Design", "Landing Pages", "Custom Web", "CMS"],
     gradient: "from-blue/30 to-violet/10",
+    href: "/web-development-kochi",
   },
   {
     index: "08",
@@ -135,6 +142,7 @@ export const SERVICES: Service[] = [
       "Research-driven interface design for websites, apps, and products. Wireframes, prototypes, and pixel-perfect Figma systems with components and dev-ready specs — so what gets designed is exactly what gets built.",
     tags: ["UI/UX Design", "Figma Design", "Prototyping", "Design Systems"],
     gradient: "from-cyan/30 to-blue/10",
+    href: "/ui-ux-design-kochi",
   },
   {
     index: "10",

@@ -36,22 +36,25 @@ export const metadata: Metadata = {
   },
   description: DESCRIPTION,
   keywords: [
-    "branding agency Kerala",
-    "creative agency Kerala",
-    "advertising agency Kerala",
-    "graphic design company Kerala",
-    "logo design Kerala",
-    "brand identity Kerala",
-    "digital marketing agency Kerala",
-    "packaging design Kerala",
-    "marketing agency Kochi",
-    "creative agency Kochi",
-    "video production Kerala",
-    "signage company Kerala",
     "Media 360 Concept",
+    "Media360 Concept",
+    "branding agency Kochi",
+    "branding agency Kerala",
+    "creative agency Kochi",
+    "advertising agency Kerala",
+    "logo design Kochi",
+    "logo designer Kerala",
+    "package design Kerala",
+    "digital marketing Kochi",
+    "SEO company Kochi",
+    "web development Kochi",
+    "website design Kerala",
+    "brand strategy Kerala",
+    "UI UX design Kochi",
+    "graphic design Kochi",
   ],
-  alternates: {
-    canonical: "/",
+  verification: {
+    google: "lYUlUgsgLU7Te8J9oyto91OiAF2Dj4e6wcM7UdF0iK4",
   },
   robots: {
     index: true,
@@ -105,6 +108,12 @@ export default function RootLayout({
       className={`${grotesk.variable} ${inter.variable} ${jetbrains.variable} antialiased`}
     >
       <body className="bg-base font-body text-white">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:rounded-full focus:bg-white focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-black"
+        >
+          Skip to content
+        </a>
         <SmoothScroll>{children}</SmoothScroll>
         <Cursor />
         <div className="noise-overlay" aria-hidden />

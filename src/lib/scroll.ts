@@ -11,7 +11,11 @@ export const getLenis = () => lenis;
 /** Smooth-scroll to an anchor; falls back to native when Lenis is inactive. */
 export const scrollToSection = (hash: string) => {
   const target = document.querySelector<HTMLElement>(hash);
-  if (!target) return;
+  if (!target) {
+    // The section lives on the homepage — landing pages navigate there.
+    window.location.assign(`/${hash}`);
+    return;
+  }
   if (lenis) {
     lenis.scrollTo(target, { duration: 1.6 });
   } else {

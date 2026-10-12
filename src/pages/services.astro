@@ -1,0 +1,47 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBlock from "@/components/CtaBlock.astro";
+import { pagesInCluster } from "@/lib/seo-pages";
+import { pageGraph } from "@/lib/schema";
+
+const title = "Services: Marketing, Web, Software, AI & Branding";
+const description =
+  "Every Media 360 Concept service: SEO, social and ads; websites and e-commerce; software, CRM, apps and AI; branding, design and video.";
+const crumbs = [{ name: "Home", path: "/" }, { name: "Services", path: "/services" }];
+const groups = [
+  { id: "marketing", label: "Digital marketing", intro: "Get found on Google, AI answers and social media — and turn that attention into enquiries.", pages: pagesInCluster("marketing") },
+  { id: "web", label: "Web development", intro: "Websites, stores and web products built for speed, search and conversion.", pages: pagesInCluster("web") },
+  { id: "software", label: "Software, apps & AI", intro: "Systems that run your operations, apps your customers use, and AI that removes repetitive work.", pages: pagesInCluster("software") },
+  { id: "branding", label: "Branding & creative", intro: "Strategy, identity, packaging, print, signage, advertising and video.", pages: pagesInCluster("branding") },
+];
+---
+
+<Base title={title} description={description} ogSlug="services" schema={pageGraph({ path: "/services", title, description, crumbs, type: "CollectionPage" })}>
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24">
+    <Breadcrumbs items={crumbs} />
+    <h1 class="max-w-4xl font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">Digital marketing, web, software, AI and branding services</h1>
+    <p class="mt-8 max-w-3xl border-l-2 border-cyan pl-5 text-lg leading-relaxed text-white/90">
+      Media 360 Concept offers four connected service lines from HiLITE Business Park, Kozhikode (Calicut): digital marketing, web development, software and AI, and branding and creative production. Most clients start with one and add others as they grow, with one team accountable for all of it.
+    </p>
+    <div class="mt-20 space-y-16">
+      {groups.map((g) => (
+        <section id={g.id} class="border-t border-line pt-12">
+          <h2 class="font-display text-3xl font-semibold tracking-tight">{g.label}</h2>
+          <p class="mt-3 max-w-2xl text-dim">{g.intro}</p>
+          <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {g.pages.map((p) => (
+              <li>
+                <a href={`/${p.slug}`} class="block h-full rounded-2xl border border-line p-6 hover:border-white/30">
+                  <h3 class="font-display text-lg font-semibold">{p.serviceName}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-dim">{p.serviceDescription}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <CtaBlock heading="Not sure where to start?" text="Tell us the problem — fewer enquiries, a slow website, manual processes — and we'll recommend the smallest useful next step." />
+    </div>
+  </main>
+</Base>

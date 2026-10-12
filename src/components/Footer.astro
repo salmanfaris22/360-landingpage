@@ -1,0 +1,63 @@
+---
+import { CONTACT } from "@/lib/data";
+import { pagesInCluster } from "@/lib/seo-pages";
+
+const columns = [
+  { label: "Digital Marketing", pages: pagesInCluster("marketing") },
+  { label: "Web Development", pages: pagesInCluster("web") },
+  { label: "Software, Apps & AI", pages: pagesInCluster("software") },
+  { label: "Branding & Creative", pages: pagesInCluster("branding") },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line">
+  <div class="mx-auto max-w-7xl px-6 pt-20 pb-10">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+      <div>
+        <a href="/" class="font-display text-5xl leading-none font-bold tracking-[-0.04em]">MEDIA 360<span class="text-gradient">.</span></a>
+        <p class="mt-6 max-w-sm text-sm leading-relaxed text-dim">
+          Media 360 Concept is a digital marketing, web development, software, AI automation and branding agency at
+          HiLITE Business Park, Kozhikode (Calicut), Kerala — serving businesses across Kerala, India, KSA, the UAE and the USA.
+        </p>
+        <address class="mt-6 space-y-2 text-sm not-italic text-dim">
+          <p>
+            <a href="/hilite-business-park-calicut" class="link-underline hover:text-white">
+              {CONTACT.postal.street}, {CONTACT.postal.locality}, {CONTACT.postal.region} {CONTACT.postal.postalCode}
+            </a>
+          </p>
+          <p><a href={`tel:${CONTACT.phone}`} class="link-underline hover:text-white">{CONTACT.phoneDisplay}</a></p>
+          <p><a href={`mailto:${CONTACT.email}`} class="link-underline hover:text-white">{CONTACT.email}</a></p>
+          <p><a href={CONTACT.whatsapp} target="_blank" rel="noopener" class="link-underline hover:text-white">WhatsApp us</a></p>
+        </address>
+      </div>
+      {
+        columns.map((col) => (
+          <nav aria-label={col.label}>
+            <p class="label-mono mb-5">{col.label}</p>
+            <ul class="space-y-3">
+              {col.pages.map((p) => (
+                <li>
+                  <a href={`/${p.slug}`} class="link-underline text-sm text-dim hover:text-white">
+                    {p.navLabel}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 font-mono text-[11px] tracking-[0.15em] text-dim uppercase">
+      <p>© {year} Media 360 Concept</p>
+      <ul class="flex flex-wrap gap-6">
+        <li><a href="/services" class="hover:text-white">All services</a></li>
+        <li><a href="/about" class="hover:text-white">About</a></li>
+        <li><a href="/contact" class="hover:text-white">Contact</a></li>
+        <li><a href="/privacy-policy" class="hover:text-white">Privacy</a></li>
+        <li><a href="/terms" class="hover:text-white">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

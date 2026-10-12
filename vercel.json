@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/branding-agency-kochi", "destination": "/branding-agency-kozhikode", "permanent": true },
+    { "source": "/logo-design-kochi", "destination": "/logo-design-kozhikode", "permanent": true },
+    { "source": "/digital-marketing-kochi", "destination": "/digital-marketing-kozhikode", "permanent": true },
+    { "source": "/web-development-kochi", "destination": "/web-development-kozhikode", "permanent": true },
+    { "source": "/ui-ux-design-kochi", "destination": "/ui-ux-design-kozhikode", "permanent": true },
+    { "source": "/graphic-design-kochi", "destination": "/graphic-design-kozhikode", "permanent": true },
+    { "source": "/opengraph-image", "destination": "/og/home.png", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/_astro/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/(.*)", "headers": [
+      { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] }
+  ]
+}

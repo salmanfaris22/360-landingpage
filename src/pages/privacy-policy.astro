@@ -1,0 +1,29 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { CONTACT } from "@/lib/data";
+import { pageGraph } from "@/lib/schema";
+
+// TODO(owner): have this reviewed by your legal adviser before relying on it.
+const updated = "12 October 2026";
+const title = "Privacy Policy";
+const description = "How Media 360 Concept collects, uses and protects personal information shared through this website, WhatsApp and email.";
+const crumbs = [{ name: "Home", path: "/" }, { name: "Privacy Policy", path: "/privacy-policy" }];
+---
+
+<Base title={title} description={description} ogSlug="home" schema={pageGraph({ path: "/privacy-policy", title, description, crumbs })}>
+  <main id="main" class="mx-auto max-w-3xl px-6 pt-16 pb-24 md:pt-24">
+    <Breadcrumbs items={crumbs} />
+    <h1 class="font-display text-5xl font-semibold tracking-tight">Privacy Policy</h1>
+    <p class="mt-4 text-sm text-dim">Last updated: {updated}</p>
+    <div class="prose-dim mt-10 space-y-8">
+      <section><h2 class="font-display text-2xl font-semibold text-white">Who we are</h2><p class="mt-3">Media 360 Concept ("we", "us") operates www.360mediaconcepts.com from {CONTACT.postal.street}, {CONTACT.postal.locality}, {CONTACT.postal.region} {CONTACT.postal.postalCode}, India. Contact: {CONTACT.email}.</p></section>
+      <section><h2 class="font-display text-2xl font-semibold text-white">Information we collect</h2><p class="mt-3">When you contact us through the enquiry form, WhatsApp, phone or email, we receive the details you choose to share — typically your name, phone number or email address, company and project details. The enquiry form does not store data on this website; it opens WhatsApp or your email app with your message, and the message is handled under those services' terms.</p><p class="mt-3">If analytics are enabled, we use Google Analytics 4 and Microsoft Clarity to understand how visitors use the site (pages viewed, device type, approximate location, interactions). These tools use cookies or similar technologies and do not give us your name or contact details.</p></section>
+      <section><h2 class="font-display text-2xl font-semibold text-white">How we use it</h2><p class="mt-3">To reply to enquiries, prepare proposals, deliver services you engage us for, and improve this website. We do not sell personal information, and we do not use it for unrelated marketing without your consent.</p></section>
+      <section><h2 class="font-display text-2xl font-semibold text-white">Sharing</h2><p class="mt-3">We share information only with service providers needed to run our business (for example email, hosting and analytics providers), or where required by law.</p></section>
+      <section><h2 class="font-display text-2xl font-semibold text-white">Retention and security</h2><p class="mt-3">We keep enquiry and client information only as long as needed for the purposes above or as required by law, and protect it with reasonable technical and organisational measures.</p></section>
+      <section><h2 class="font-display text-2xl font-semibold text-white">Your rights</h2><p class="mt-3">Under India's Digital Personal Data Protection Act, 2023 and other applicable laws, you may ask to access, correct or delete your personal data, or withdraw consent. Email {CONTACT.email} and we will respond within a reasonable time.</p></section>
+      <section><h2 class="font-display text-2xl font-semibold text-white">Changes</h2><p class="mt-3">We may update this policy; the date above shows the latest version.</p></section>
+    </div>
+  </main>
+</Base>

@@ -1,0 +1,87 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource/jetbrains-mono/400.css";
+import "@/styles/global.css";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import Analytics from "@/components/Analytics.astro";
+import { jsonLd } from "@/lib/schema";
+// Headline font (the LCP text) is preloaded; everything else loads on demand.
+import groteskLatin from "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url";
+
+interface Props {
+  /** Page title without the brand suffix (the brand is appended when it fits). */
+  title: string;
+  description: string;
+  /** Social preview image slug: /og/<ogSlug>.png */
+  ogSlug?: string;
+  noindex?: boolean;
+  schema?: object;
+  /** Use the title exactly as given (homepage). */
+  rawTitle?: boolean;
+}
+
+const BRAND = "Media 360 Concept";
+const { title, description, ogSlug = "home", noindex = false, schema, rawTitle = false } = Astro.props;
+const withBrand = `${title} | ${BRAND}`;
+const fullTitle = rawTitle || title.includes(BRAND) ? title : withBrand.length <= 65 ? withBrand : title;
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/"), site).href;
+const ogImage = new URL(`/og/${ogSlug}.png`, site).href;
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={groteskLatin} as="font" type="font/woff2" crossorigin />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en-IN" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <meta name="google-site-verification" content="lYUlUgsgLU7Te8J9oyto91OiAF2Dj4e6wcM7UdF0iK4" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="geo.region" content="IN-KL" />
+    <meta name="geo.placename" content="Kozhikode, Kerala" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={BRAND} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={fullTitle} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {schema && <script type="application/ld+json" set:html={jsonLd(schema)} />}
+    <Analytics />
+  </head>
+  <body class="bg-base font-body text-white antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:rounded-full focus:bg-white focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-black"
+      >Skip to content</a
+    >
+    <Nav />
+    <slot />
+    <Footer />
+  </body>
+</html>

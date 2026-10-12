@@ -1,0 +1,240 @@
+---
+import Base from "@/layouts/Base.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { CONTACT, STATS, SERVICES, CAPABILITIES, INDUSTRIES, PROCESS, TEAM, PRINCIPLES, MILESTONES, PRICING, FAQS, OFFICES } from "@/lib/data";
+import { pagesInCluster, getSeoPage } from "@/lib/seo-pages";
+import { homeGraph, BRAND_DESCRIPTION } from "@/lib/schema";
+
+const title = "Digital Marketing & Web Development Agency in Calicut | Media 360";
+const description =
+  "Digital marketing, SEO, websites, custom software, AI automation and branding from HiLITE Business Park, Calicut — for Kerala and Gulf businesses.";
+
+const clusters = [
+  { label: "Digital Marketing", hub: "/digital-marketing-kozhikode", blurb: "SEO, social media, Google Ads and Meta Ads that turn searches and scrolls into enquiries.", pages: pagesInCluster("marketing") },
+  { label: "Web Development", hub: "/web-development-kozhikode", blurb: "Fast, search-ready websites, e-commerce stores and Next.js builds designed in Figma.", pages: pagesInCluster("web") },
+  { label: "Software, Apps & AI", hub: "/software-development-company-kozhikode", blurb: "Custom software, CRM and ERP, mobile apps and practical AI automation.", pages: pagesInCluster("software") },
+  { label: "Branding & Creative", hub: "/branding-agency-kozhikode", blurb: "Strategy, identity, packaging, print, signage, video and advertising.", pages: pagesInCluster("branding") },
+];
+const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "Branding", "Production"];
+---
+
+<Base title={title} rawTitle description={description} schema={homeGraph(title, description, FAQS)}>
+  <main id="main">
+    <!-- Hero: the H1 states the entity, the service and the place. -->
+    <section id="hero" class="relative overflow-hidden">
+      <div aria-hidden="true" class="pointer-events-none absolute -top-[20%] -left-[15%] h-[70vh] w-[70vw] rounded-full blur-3xl" style="background:radial-gradient(circle, rgb(77 124 255 / 20%), transparent 62%)"></div>
+      <div aria-hidden="true" class="pointer-events-none absolute top-[10%] -right-[15%] h-[60vh] w-[55vw] rounded-full blur-3xl" style="background:radial-gradient(circle, rgb(139 92 246 / 18%), transparent 60%)"></div>
+      <div class="relative mx-auto max-w-7xl px-6 pt-20 pb-24 text-center md:pt-28 md:pb-32">
+        <p class="label-mono">Media 360 Concept · HiLITE Business Park, Calicut</p>
+        <h1 class="mt-8 font-display font-bold tracking-[-0.04em]">
+          <span class="block text-[clamp(2.6rem,9vw,7.5rem)] leading-[0.95] uppercase">We build brands</span>
+          <span class="text-stroke block text-[clamp(2.6rem,9vw,7.5rem)] leading-[0.95] uppercase">Kerala</span>
+          <span class="text-gradient block text-[clamp(2.6rem,9vw,7.5rem)] leading-[0.95] uppercase">can't forget.</span>
+          <span class="mx-auto mt-8 block max-w-3xl text-[clamp(1.15rem,2.2vw,1.6rem)] leading-snug font-semibold tracking-tight normal-case">
+            Digital marketing, web development, software &amp; branding agency in Kozhikode (Calicut)
+          </span>
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-dim" data-speakable>
+          {BRAND_DESCRIPTION}
+        </p>
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <a href={CONTACT.whatsapp} target="_blank" rel="noopener" class="inline-flex min-h-[52px] items-center rounded-full bg-white px-8 py-3.5 font-display text-sm font-medium text-black hover:opacity-85">Get a free consultation</a>
+          <a href="/services" class="inline-flex min-h-[52px] items-center rounded-full border border-white/25 px-8 py-3.5 font-display text-sm hover:border-white/60">Explore our services</a>
+        </div>
+        <ul class="mx-auto mt-12 flex max-w-3xl flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs tracking-[0.25em] text-dim uppercase">
+          {disciplines.map((d, i) => <li class="flex items-center gap-4">{i > 0 && <span class="text-cyan" aria-hidden="true">◆</span>}{d}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="border-y border-line" aria-label="Experience">
+      <ul class="mx-auto grid max-w-7xl grid-cols-2 gap-px px-6 md:grid-cols-5">
+        {STATS.map((s) => (
+          <li class="py-10 text-center">
+            <span class="block font-display text-4xl font-bold md:text-5xl">{s.value}{s.suffix}</span>
+            <span class="mt-2 block font-mono text-[10px] tracking-[0.2em] text-dim uppercase">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+      <SectionHead index="01" label="About us" title="The story behind Media 360 Concept." />
+      <div class="grid gap-14 lg:grid-cols-2">
+        <div class="space-y-6 text-lg leading-relaxed text-dim">
+          <p class="text-white">Media 360 Concept is a Kozhikode-based agency built by senior creatives and engineers — with 17+ years in brand activation, branding, advertising and creative design across Saudi Arabia, plus 12+ years in India and 8+ with US clients.</p>
+          <p>That experience changes how we work. We don't start with a logo or a website; we start with your market — then build the identity, website, software, campaigns and marketing that make your business the obvious choice. One team at HiLITE Business Park handles strategy, design, development, production and growth, so nothing gets lost between agencies.</p>
+          <p><a href="/about" class="link-underline text-white">More about Media 360 Concept →</a></p>
+        </div>
+        <ol class="space-y-8 border-l border-line pl-8">
+          {MILESTONES.map((m) => (
+            <li>
+              <p class="font-display text-2xl font-semibold">{m.year}</p>
+              <p class="mt-2 leading-relaxed text-dim">{m.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Services: every cluster links to its hub and each service page -->
+    <section id="services" class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+        <SectionHead index="02" label="What we do" title="Marketing, websites, software & branding — under one roof." blurb="Four service lines, one accountable team. Pick a starting point, or tell us the problem and we'll recommend the mix." />
+        <div class="grid gap-6 md:grid-cols-2">
+          {clusters.map((c) => (
+            <article class="rounded-3xl border border-line p-8 md:p-10">
+              <h3 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">
+                <a href={c.hub} class="hover:text-cyan">{c.label}</a>
+              </h3>
+              <p class="mt-3 leading-relaxed text-dim">{c.blurb}</p>
+              <ul class="mt-6 flex flex-wrap gap-2">
+                {c.pages.map((p) => (
+                  <li><a href={`/${p.slug}`} class="inline-block rounded-full border border-line px-4 py-2 text-sm text-white/80 hover:border-white/40 hover:text-white">{p.navLabel}</a></li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <h3 class="mt-20 font-display text-2xl font-semibold tracking-tight">All services in detail</h3>
+        <div class="mt-6 border-t border-line">
+          {SERVICES.map((s) => (
+            <details class="group border-b border-line">
+              <summary class="grid cursor-pointer grid-cols-[3rem_1fr_2.5rem] items-center gap-4 py-7 md:grid-cols-[5rem_1fr_18rem_3rem]">
+                <span class="font-mono text-sm text-dim">{s.index}</span>
+                <span class="font-display text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">{s.title}</span>
+                <span class="hidden font-mono text-[11px] tracking-[0.15em] text-dim uppercase md:block">{s.tags.slice(0, 2).join(" / ")}</span>
+                <span aria-hidden="true" class="flex h-10 w-10 items-center justify-center justify-self-end rounded-full border border-white/15 group-open:rotate-45">+</span>
+              </summary>
+              <div class="grid gap-6 pb-8 md:grid-cols-[5rem_1fr]">
+                <span aria-hidden="true"></span>
+                <div>
+                  <p class="max-w-2xl leading-relaxed text-dim">{s.description}</p>
+                  <ul class="mt-5 flex flex-wrap gap-2">
+                    {s.tags.map((t) => <li class="rounded-full border border-line px-4 py-1.5 font-mono text-[11px] tracking-[0.15em] text-white/70 uppercase">{t}</li>)}
+                  </ul>
+                  {s.href && (
+                    <a href={s.href} class="link-underline mt-6 inline-flex font-mono text-[11px] tracking-[0.2em] text-cyan uppercase">
+                      Explore {getSeoPage(s.href.slice(1))?.keyword ?? s.title} →
+                    </a>
+                  )}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries & capabilities -->
+    <section class="border-t border-line">
+      <div class="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:py-36 lg:grid-cols-2">
+        <div>
+          <SectionHead index="03" label="Industries" title="Fluent in twelve industries." blurb="A restaurant is won at the table, a hospital on trust, a school on reputation. We design for how each one's customers actually decide." />
+          <ul class="flex flex-wrap gap-3">{INDUSTRIES.map((i) => <li class="rounded-full border border-line px-5 py-2.5 text-sm">{i}</li>)}</ul>
+        </div>
+        <div>
+          <SectionHead index="04" label="Capabilities" title="Every discipline your brand needs." blurb="The complete creative, digital and technology toolkit, without juggling five vendors." />
+          <ul class="flex flex-wrap gap-3">{CAPABILITIES.map((c) => <li class="rounded-full border border-line px-5 py-2.5 text-sm">{c}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+        <SectionHead index="05" label="How we work" title="From first call to lasting brand." blurb="A nine-step process from research and strategy through design, production, launch and growth — with you in the loop at every stage." />
+        <ol class="grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          {PROCESS.map((p) => (
+            <li class="bg-base p-8">
+              <span class="font-mono text-sm text-cyan">{p.step}</span>
+              <h3 class="mt-4 font-display text-xl font-semibold">{p.title}</h3>
+              <p class="mt-2 leading-relaxed text-dim">{p.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Team roles & principles -->
+    <section class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+        <SectionHead index="06" label="The team" title="The people behind the work." blurb="Senior strategists, designers, engineers and producers — the same people who scope your project deliver it." />
+        <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {TEAM.map((t) => (
+            <li class="rounded-2xl border border-line p-6">
+              <p class="font-display text-lg font-semibold">{t.title}</p>
+              <p class="mt-1 font-mono text-[11px] tracking-[0.15em] text-dim uppercase">{t.role}</p>
+            </li>
+          ))}
+        </ul>
+
+        <h3 class="mt-20 font-display text-2xl font-semibold tracking-tight">How we work with clients</h3>
+        <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {PRINCIPLES.map((p) => (
+            <li class="rounded-2xl border border-line p-7">
+              <p class="label-mono">{p.label}</p>
+              <p class="mt-4 leading-relaxed text-white/85">{p.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Engagement models -->
+    <section id="pricing" class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+        <SectionHead index="07" label="Engagement" title="Three ways to work with us." blurb="Every engagement is scoped to your goals and budget, with a clear, itemised quote before work begins." />
+        <div class="grid gap-6 lg:grid-cols-3">
+          {PRICING.map((p) => (
+            <article class:list={["rounded-3xl border p-8", p.featured ? "border-cyan/50" : "border-line"]}>
+              <h3 class="font-display text-2xl font-semibold">{p.name}</h3>
+              <p class="mt-2 font-mono text-[11px] tracking-[0.15em] text-dim uppercase">{p.price} · {p.per}</p>
+              <p class="mt-5 leading-relaxed text-dim">{p.blurb}</p>
+              <ul class="mt-6 space-y-2 text-sm">{p.features.map((f) => <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">✓</span>{f}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="border-t border-line">
+      <div class="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:py-36 lg:grid-cols-[1fr_1.6fr]">
+        <SectionHead index="08" label="Questions" title="Asked, answered." />
+        <div class="divide-y divide-line border-y border-line">
+          {FAQS.map((f, i) => (
+            <details class="group py-6" open={i === 0}>
+              <summary class="flex cursor-pointer items-baseline justify-between gap-6 font-display text-lg font-medium md:text-xl">
+                <h3>{f.q}</h3><span aria-hidden="true" class="text-cyan group-open:rotate-45">+</span>
+              </summary>
+              <p class="mt-4 max-w-2xl leading-relaxed text-dim">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+        <SectionHead index="09" label="Contact" title="Let's build something." blurb={`Tell us what you're launching, fixing or planning — we reply within 24 hours. Prefer to talk now? WhatsApp ${CONTACT.phoneDisplay}.`} />
+        <div class="grid gap-16 lg:grid-cols-[1.4fr_1fr]">
+          <ContactForm />
+          <ul class="space-y-5">
+            {OFFICES.map((o) => (
+              <li class="rounded-2xl border border-line p-6">
+                <p class="flex items-baseline justify-between font-display text-xl font-semibold">{o.city}<span class="font-mono text-[10px] tracking-[0.2em] text-cyan uppercase">{o.tz}</span></p>
+                <p class="mt-2 text-sm text-dim">{o.country} — {o.line}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

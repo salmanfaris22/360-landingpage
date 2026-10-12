@@ -1,0 +1,78 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBlock from "@/components/CtaBlock.astro";
+import { CONTACT, MILESTONES, INDUSTRIES } from "@/lib/data";
+import { pageGraph, BRAND_DESCRIPTION } from "@/lib/schema";
+
+const title = "About Media 360 Concept — Facts, Team & Approach";
+const description =
+  "Who Media 360 Concept is: a digital marketing, web, software, AI and branding agency at HiLITE Business Park, Calicut. Key facts and approach.";
+const crumbs = [{ name: "Home", path: "/" }, { name: "About", path: "/about" }];
+
+// Fact sheet: plain, verifiable statements for people and AI assistants alike.
+// TODO(owner): add founding year, legal name, team size and notable clients once confirmed.
+const facts: [string, string][] = [
+  ["Name", "Media 360 Concept"],
+  ["What we are", "Digital marketing, web development, software, AI automation and branding agency"],
+  ["Office", `${CONTACT.postal.street}, ${CONTACT.postal.locality}, ${CONTACT.postal.region} ${CONTACT.postal.postalCode}, India`],
+  ["Markets served", "Kerala, rest of India, Saudi Arabia, UAE, United States"],
+  ["Experience", "17+ years in Saudi Arabia, 12+ years across India, 8+ years with US clients"],
+  ["Service lines", "Digital marketing · Web development · Software, apps & AI · Branding & creative"],
+  ["Technology", "Next.js, React, TypeScript, Node.js, Go, PostgreSQL, Flutter, React Native, AWS"],
+  ["Languages", "English, Malayalam"],
+  ["Contact", `${CONTACT.phoneDisplay} · ${CONTACT.email}`],
+];
+const faqs = [
+  { q: "Who owns Media 360 Concept?", a: "Media 360 Concept is an independent agency run by its founding team of senior creatives and engineers, based at HiLITE Business Park, Kozhikode (Calicut), Kerala." },
+  { q: "Is Media 360 Concept a branding agency or a tech company?", a: "Both. It began in branding and advertising, and now delivers digital marketing, web development, custom software, apps and AI automation alongside creative work — so one team can handle a client's brand, technology and marketing." },
+];
+---
+
+<Base title={title} description={description} ogSlug="about" schema={pageGraph({ path: "/about", title, description, crumbs, type: "AboutPage", faqs })}>
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24">
+    <Breadcrumbs items={crumbs} />
+    <h1 class="max-w-4xl font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">About Media 360 Concept</h1>
+    <p class="mt-8 max-w-3xl border-l-2 border-cyan pl-5 text-lg leading-relaxed text-white/90" data-speakable>{BRAND_DESCRIPTION}</p>
+
+    <section class="mt-20 border-t border-line pt-12" aria-labelledby="facts">
+      <h2 id="facts" class="font-display text-3xl font-semibold tracking-tight">Media 360 Concept at a glance</h2>
+      <table class="data mt-8 max-w-4xl">
+        <tbody>{facts.map(([k, v]) => <tr><th scope="row" class="w-48">{k}</th><td>{v}</td></tr>)}</tbody>
+      </table>
+    </section>
+
+    <section class="mt-16 border-t border-line pt-12">
+      <h2 class="font-display text-3xl font-semibold tracking-tight">Our story</h2>
+      <div class="prose-dim mt-6 max-w-3xl space-y-5 text-lg">
+        <p>Media 360 Concept was built by senior creatives with long careers in brand activation, branding, advertising and creative design in Saudi Arabia, India and the United States. Gulf clients taught the team precision and speed; Indian markets taught range and value.</p>
+        <p>Back home in Kerala, the team saw businesses juggling separate vendors for the logo, the website, the software and the ads — and paying for the gaps between them. So the agency grew to cover all of it: brand strategy and design, digital marketing, web and software development, and AI automation, delivered from one office at HiLITE Business Park in Kozhikode.</p>
+      </div>
+      <ol class="mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+        {MILESTONES.map((m) => <li class="rounded-2xl border border-line p-6"><p class="font-display text-xl font-semibold">{m.year}</p><p class="mt-2 text-dim">{m.text}</p></li>)}
+      </ol>
+    </section>
+
+    <section class="mt-16 border-t border-line pt-12">
+      <h2 class="font-display text-3xl font-semibold tracking-tight">How we work</h2>
+      <ul class="mt-6 max-w-3xl space-y-4 text-lg text-dim">
+        <li><strong class="text-white">One accountable team.</strong> The people who scope your project deliver it — no hand-offs to subcontractors.</li>
+        <li><strong class="text-white">Strategy before execution.</strong> Research and a written plan come before design, code or ad spend.</li>
+        <li><strong class="text-white">Honest measurement.</strong> We report enquiries and sales, not vanity metrics, and we don't promise rankings no one can guarantee.</li>
+        <li><strong class="text-white">You own everything.</strong> Ad accounts, code, designs and data stay in your name.</li>
+      </ul>
+    </section>
+
+    <section class="mt-16 border-t border-line pt-12">
+      <h2 class="font-display text-3xl font-semibold tracking-tight">Industries we serve</h2>
+      <ul class="mt-6 flex max-w-4xl flex-wrap gap-3">{INDUSTRIES.map((i) => <li class="rounded-full border border-line px-5 py-2.5 text-sm">{i}</li>)}</ul>
+    </section>
+
+    <section class="mt-16 border-t border-line pt-12">
+      <h2 class="font-display text-3xl font-semibold tracking-tight">Common questions</h2>
+      <div class="mt-6 max-w-3xl space-y-6">{faqs.map((f) => <div><h3 class="font-display text-lg font-semibold">{f.q}</h3><p class="mt-2 text-dim">{f.a}</p></div>)}</div>
+    </section>
+
+    <div class="mt-20"><CtaBlock /></div>
+  </main>
+</Base>

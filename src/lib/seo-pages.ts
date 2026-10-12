@@ -1,4 +1,8 @@
 import type { Faq } from "./schema";
+import { MARKETING_PAGES } from "./pages/marketing";
+import { WEB_PAGES } from "./pages/web";
+import { SOFTWARE_PAGES } from "./pages/software";
+import { LOCAL_PAGES } from "./pages/local";
 
 /**
  * Keyword-targeted landing pages, one per search-intent cluster.
@@ -15,8 +19,18 @@ export type PageSection = {
   bullets?: { title: string; text: string }[];
 };
 
+export type Cluster = "branding" | "marketing" | "web" | "software" | "local";
+
 export type SeoPage = {
   slug: string;
+  /** Service cluster: drives hub grouping, footer columns and breadcrumbs. */
+  cluster?: Cluster;
+  /** 40–60-word answer-first block (AEO): what it is, who, where. */
+  answer?: string;
+  /** Numbered process, rendered as an ordered list + HowTo schema. */
+  steps?: { title: string; text: string }[];
+  /** Comparison / decision table for snippet + AI extraction. */
+  table?: { caption: string; head: string[]; rows: string[][] };
   /** Primary keyword — used as internal anchor text. */
   keyword: string;
   /** Short label for footer navigation. */
@@ -35,18 +49,20 @@ export type SeoPage = {
   serviceDescription: string;
 };
 
-export const SEO_PAGES: SeoPage[] = [
+const BRANDING_PAGES: SeoPage[] = [
   {
     slug: "branding-agency-kozhikode",
     keyword: "Branding Agency in Kozhikode",
     navLabel: "Branding Agency Kozhikode",
     title: "Branding Agency in Kozhikode, Kerala",
     description:
-      "Media 360 Concept is a full-service branding agency in Kozhikode — brand strategy, identity, logo design, packaging, and campaigns for businesses across Kerala. Free consultation.",
+      "Branding agency in Kozhikode (Calicut) — brand strategy, logo and identity, packaging, signage and launch campaigns for Kerala businesses.",
     eyebrow: "Branding Agency · Kozhikode, Kerala",
+    answer:
+      "Media 360 Concept is a full-service branding agency at HiLITE Business Park, Kozhikode (Calicut). We handle brand strategy, logo and identity design, brand guidelines, packaging, print, signage and launch campaigns for Kerala businesses — one accountable team from research to rollout, backed by 17+ years of Gulf and 12+ years of Indian branding experience.",
     h1: "A Branding Agency in Kozhikode That Builds Brands Kerala Remembers",
     intro: [
-      "Media 360 Concept is a full-service branding and creative agency headquartered at Business Park, Calicut (Kozhikode), working with businesses across Kerala — from restaurants and hospitals to builders, retailers, and startups. We handle the entire journey under one roof: research, brand strategy, identity design, packaging, print, signage, and the campaigns that carry it all to market.",
+      "Media 360 Concept is a full-service branding and creative agency headquartered at HiLITE Business Park, Calicut (Kozhikode), working with businesses across Kerala — from restaurants and hospitals to builders, retailers, and startups. We handle the entire journey under one roof: research, brand strategy, identity design, packaging, print, signage, and the campaigns that carry it all to market.",
       "What makes us different is range with accountability. The same team that writes your positioning designs your logo, produces your signage, and launches your campaign — so nothing gets lost in handoffs, and the brand that reaches your customers is exactly the brand that was planned.",
     ],
     sections: [
@@ -142,11 +158,13 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Advertising Agency Kerala",
     title: "Advertising Agency in Kerala",
     description:
-      "Full-service advertising agency in Kerala — creative campaigns, media planning and buying across outdoor, print, broadcast, and digital. Based in Kozhikode. Free consultation.",
+      "Advertising agency in Kerala — campaign creative and media buying across outdoor, print, broadcast, digital and Gulf media. Based in Kozhikode.",
     eyebrow: "Advertising Agency · Kerala",
+    answer:
+      "Media 360 Concept is an advertising agency in Kerala, based in Kozhikode, that plans campaigns, creates the ads and buys the media. We work across outdoor hoardings, Malayalam press, radio, broadcast, digital and Gulf media, and report what each channel delivered — strategy, creative, placement and measurement by one team.",
     h1: "Advertising That Kerala Notices — and Remembers",
     intro: [
-      "Media 360 Concept plans, creates, and places advertising for businesses across Kerala from our base at Business Park, Calicut (Kozhikode). One team handles the whole chain: campaign strategy, the creative idea, design and production, media buying, and the reporting that tells you what your budget actually did.",
+      "Media 360 Concept plans, creates, and places advertising for businesses across Kerala from our base at HiLITE Business Park, Calicut (Kozhikode). One team handles the whole chain: campaign strategy, the creative idea, design and production, media buying, and the reporting that tells you what your budget actually did.",
       "Most wasted ad spend comes from the gap between the people who make the ad and the people who place it. We closed that gap by doing both — so the creative is built for the exact hoarding, newspaper, screen, or feed where it will run.",
     ],
     sections: [
@@ -219,8 +237,10 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Logo Design Kozhikode",
     title: "Logo Design in Kozhikode, Kerala",
     description:
-      "Professional logo design in Kozhikode by Media 360 Concept — strategy-led logo designers creating identities Kerala businesses are proud of. Concepts, revisions, all files, brand guidelines.",
+      "Professional logo design in Kozhikode — research-led concepts, refinement rounds, every file format and usage guidelines. You own the logo.",
     eyebrow: "Logo Design · Kozhikode, Kerala",
+    answer:
+      "Media 360 Concept designs logos in Kozhikode (Calicut) for businesses across Kerala. Every project starts with research into your market and competitors, then presents distinct concepts, refines the chosen direction and delivers vector, print and digital files with usage guidelines. You own the final logo and source files.",
     h1: "Logo Design That Makes Kerala Businesses Instantly Recognisable",
     intro: [
       "Your logo is the hardest-working asset your business owns. It sits on your shopfront, your packaging, your invoices, your WhatsApp display picture, and — if it is designed well — in your customers' memory. Media 360 Concept designs logos in Kozhikode for businesses across Kerala that want to be recognised at a glance and impossible to confuse with a competitor.",
@@ -315,8 +335,10 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Package Design Kerala",
     title: "Package & Label Design in Kerala",
     description:
-      "Package design and label design in Kerala by Media 360 Concept, Kozhikode — shelf-winning packaging for food, spices, ayurveda, FMCG, and export brands. Design to print-ready production.",
+      "Packaging and label design in Kerala — structure, shelf-ready graphics, 3D mockups and print supervision for food, FMCG, Ayurveda and export brands.",
     eyebrow: "Packaging & Labels · Kerala",
+    answer:
+      "Media 360 Concept designs product packaging and labels in Kerala from Kozhikode. We create structure and dieline, shelf-ready graphics, compliant label copy layouts and 3D mockups, then supervise printing so colours match the approved design — for food, FMCG, cosmetics, Ayurveda and export brands.",
     h1: "Package Design That Wins the Three Seconds on the Shelf",
     intro: [
       "On a supermarket shelf in Kozhikode, your product gets about three seconds of a customer's attention. Packaging either earns the pick-up in those seconds or disappears into the row. Media 360 Concept designs packaging and labels in Kerala that win that moment — and keep the promise after the product is home.",
@@ -403,12 +425,15 @@ export const SEO_PAGES: SeoPage[] = [
   },
   {
     slug: "digital-marketing-kozhikode",
-    keyword: "Digital Marketing in Kozhikode",
+    cluster: "marketing",
+    keyword: "Digital Marketing Agency in Kozhikode",
     navLabel: "Digital Marketing Kozhikode",
-    title: "Digital Marketing & SEO Company in Kozhikode",
+    title: "Digital Marketing Agency in Kozhikode (Calicut)",
     description:
-      "Digital marketing company in Kozhikode — SEO, Google Business Profile, social media, and performance ads that turn searches into enquiries for Kerala businesses. Free consultation.",
+      "Digital marketing agency in Calicut — SEO, Google Business Profile, social media, Google & Meta ads, tracked to real enquiries. Free audit.",
     eyebrow: "Digital Marketing · Kozhikode, Kerala",
+    answer:
+      "Media 360 Concept is a digital marketing agency at HiLITE Business Park, Kozhikode (Calicut). We run SEO, Google Business Profile, social media, Google Ads and Meta Ads, content and landing pages for Kerala businesses, with tracking that connects every rupee spent to calls, WhatsApp messages and enquiries.",
     h1: "Digital Marketing in Kozhikode That Turns Searches Into Sales",
     intro: [
       "When someone in Kerala needs what you sell, they search, scroll, or ask — on Google, Instagram, YouTube, or WhatsApp. Media 360 Concept is a digital marketing and SEO company in Kozhikode that makes sure your business is what they find, and that finding you leads to an enquiry, not just a visit.",
@@ -469,10 +494,10 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
+      "seo-services-kozhikode",
+      "social-media-marketing-kozhikode",
+      "performance-marketing-agency-kerala",
       "web-development-kozhikode",
-      "advertising-agency-kerala",
-      "branding-agency-kozhikode",
-      "ui-ux-design-kozhikode",
     ],
     serviceName: "Digital Marketing & SEO",
     serviceDescription:
@@ -480,12 +505,15 @@ export const SEO_PAGES: SeoPage[] = [
   },
   {
     slug: "web-development-kozhikode",
-    keyword: "Web Development in Kozhikode",
+    cluster: "web",
+    keyword: "Web Development Company in Kozhikode",
     navLabel: "Web Development Kozhikode",
-    title: "Web Development & Website Design in Kozhikode",
+    title: "Web Development Company in Kozhikode (Calicut)",
     description:
-      "Web development company in Kozhikode — fast, SEO-ready websites and web apps designed in Figma and engineered for Core Web Vitals. Website design for businesses across Kerala.",
+      "Web development company in Calicut — fast, SEO-ready websites, landing pages, e-commerce and web apps designed in Figma. HiLITE Business Park.",
     eyebrow: "Web Development · Kozhikode, Kerala",
+    answer:
+      "Media 360 Concept is a web development company at HiLITE Business Park, Kozhikode (Calicut). We design websites in Figma and build fast, SEO-ready business sites, landing pages, e-commerce stores and web applications on modern stacks such as Next.js — then host, maintain and market them for businesses across Kerala and the Gulf.",
     h1: "Websites Built to Rank, Load, and Convert",
     intro: [
       "Your website is the one salesperson that meets every customer. Media 360 Concept designs and develops websites in Kozhikode for businesses across Kerala — sites that load fast on real Kerala mobile networks, rank on Google for the searches that matter, and turn visitors into WhatsApp messages, calls, and orders.",
@@ -565,10 +593,10 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
     related: [
-      "ui-ux-design-kozhikode",
-      "digital-marketing-kozhikode",
-      "branding-agency-kozhikode",
-      "logo-design-kozhikode",
+      "ecommerce-website-development-kerala",
+      "nextjs-react-development-kerala",
+      "website-redesign-kozhikode",
+      "software-development-company-kozhikode",
     ],
     serviceName: "Web Development & Website Design",
     serviceDescription:
@@ -580,8 +608,10 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Brand Strategy Kerala",
     title: "Brand Strategy Consultants in Kerala",
     description:
-      "Brand strategy in Kerala by Media 360 Concept, Kozhikode — research, positioning, naming, and messaging that give your brand a plan before a single pixel is designed.",
+      "Brand strategy consultants in Kerala — market research, positioning, naming, brand architecture and messaging that guide every design decision.",
     eyebrow: "Brand Strategy · Kerala",
+    answer:
+      "Media 360 Concept provides brand strategy consulting in Kerala from Kozhikode. We research your market, customers and competitors, then define positioning, brand architecture, naming and messaging — the decisions that guide every design, campaign and website that follows.",
     h1: "Brand Strategy for Kerala Businesses That Plan to Lead",
     intro: [
       "Design without strategy is decoration. Before a logo is sketched or a campaign is written, someone has to decide what your brand stands for, who it serves, why it wins, and what it should never say. That work is brand strategy — and it is the highest-leverage money a growing Kerala business can spend on its brand.",
@@ -672,12 +702,15 @@ export const SEO_PAGES: SeoPage[] = [
   },
   {
     slug: "ui-ux-design-kozhikode",
+    cluster: "web",
     keyword: "UI/UX Design in Kozhikode",
     navLabel: "UI/UX Design Kozhikode",
     title: "UI/UX Design Company in Kozhikode",
     description:
-      "UI/UX design in Kozhikode by Media 360 Concept — research-driven interface design in Figma for websites, apps, and SaaS products. Wireframes, prototypes, design systems, dev-ready handoff.",
+      "UI/UX and Figma design in Kozhikode — user research, wireframes, prototypes and design systems with dev-ready specs for websites, apps and SaaS.",
     eyebrow: "UI/UX Design · Kozhikode, Kerala",
+    answer:
+      "Media 360 Concept is a UI/UX and Figma design studio in Kozhikode (Calicut). We research users, map journeys, create wireframes and interactive prototypes, and deliver design systems with developer-ready specifications for websites, mobile apps, SaaS products and dashboards.",
     h1: "UI/UX Design That Makes Digital Products Feel Effortless",
     intro: [
       "Users do not read interfaces — they feel them. A product that feels effortless earns trust in seconds; one that feels confusing loses the customer before the first feature is seen. Media 360 Concept is a UI/UX design team in Kozhikode crafting websites, mobile apps, dashboards, and SaaS products that people understand instantly and enjoy using.",
@@ -773,8 +806,10 @@ export const SEO_PAGES: SeoPage[] = [
     navLabel: "Graphic Design Kozhikode",
     title: "Graphic Design Company in Kozhikode, Kerala",
     description:
-      "Graphic design company in Kozhikode — brochures, catalogues, menus, signage, vehicle branding, and every print deliverable, designed and production-managed by Media 360 Concept.",
+      "Graphic design in Kozhikode — brochures, catalogues, menus, flyers, signage and vehicle branding, designed and production-managed in-house.",
     eyebrow: "Graphic Design · Kozhikode, Kerala",
+    answer:
+      "Media 360 Concept provides graphic design in Kozhikode (Calicut) for print, signage and vehicle branding. We design brochures, catalogues, menus, flyers, banners, shopfront signage and vehicle graphics, and manage production so the printed result matches the approved design.",
     h1: "Graphic Design for Print, Signage & Everything In Between",
     intro: [
       "Long after a website is closed, print stays in the room: the brochure on the table, the menu in the customer's hands, the signboard over the street, the van carrying your name through Kozhikode traffic. Media 360 Concept is a graphic design company in Kozhikode that designs — and production-manages — every physical expression of your brand.",
@@ -845,5 +880,16 @@ export const SEO_PAGES: SeoPage[] = [
   },
 ];
 
+export const SEO_PAGES: SeoPage[] = [
+  ...BRANDING_PAGES,
+  ...MARKETING_PAGES,
+  ...WEB_PAGES,
+  ...SOFTWARE_PAGES,
+  ...LOCAL_PAGES,
+];
+
 export const getSeoPage = (slug: string) =>
   SEO_PAGES.find((page) => page.slug === slug);
+
+export const pagesInCluster = (cluster: Cluster) =>
+  SEO_PAGES.filter((page) => (page.cluster ?? "branding") === cluster);

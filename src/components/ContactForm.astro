@@ -1,0 +1,92 @@
+---
+import { CONTACT } from "@/lib/data";
+const phone = CONTACT.phone.replace(/\D/g, "");
+const input =
+  "w-full rounded-xl border border-line bg-white/[0.03] px-4 py-3.5 text-base text-white placeholder:text-white/35 focus:border-cyan focus:outline-none";
+---
+
+<!--
+  No backend yet: the form composes the enquiry and opens WhatsApp (falls back
+  to email). TODO(owner): to store enquiries, point `action` at a form service
+  or API route and remove the script's preventDefault.
+-->
+<form id="enquiry" class="space-y-6" data-phone={phone} data-email={CONTACT.email}>
+  <div class="grid gap-6 sm:grid-cols-2">
+    <div>
+      <label for="name" class="label-mono mb-3 block">Your name</label>
+      <input id="name" name="name" required autocomplete="name" class={input} placeholder="Your name" />
+    </div>
+    <div>
+      <label for="contact" class="label-mono mb-3 block">Phone or email</label>
+      <input id="contact" name="contact" required autocomplete="email" class={input} placeholder="+91… or you@company.com" />
+    </div>
+  </div>
+  <div class="grid gap-6 sm:grid-cols-2">
+    <div>
+      <label for="service" class="label-mono mb-3 block">What do you need?</label>
+      <select id="service" name="service" class={input}>
+        <option>Digital marketing / SEO</option>
+        <option>Website or e-commerce</option>
+        <option>Custom software / CRM / app</option>
+        <option>AI automation</option>
+        <option>Branding & design</option>
+        <option>Video production</option>
+        <option>Not sure yet</option>
+      </select>
+    </div>
+    <div>
+      <label for="budget" class="label-mono mb-3 block">Budget (optional)</label>
+      <select id="budget" name="budget" class={input}>
+        <option value="">Prefer to discuss</option>
+        <option>Under ₹1 lakh</option>
+        <option>₹1–5 lakh</option>
+        <option>₹5 lakh+</option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <label for="message" class="label-mono mb-3 block">Tell us about the project</label>
+    <textarea id="message" name="message" rows="5" required class={`${input} resize-y`} placeholder="What are you launching, fixing or planning?"></textarea>
+  </div>
+  <div class="flex flex-wrap items-center gap-5">
+    <button type="submit" class="inline-flex min-h-[52px] cursor-pointer items-center rounded-full bg-white px-9 py-4 font-display text-sm font-medium text-black hover:opacity-85">
+      Send enquiry on WhatsApp
+    </button>
+    <a id="enquiry-email" href={`mailto:${CONTACT.email}`} class="link-underline text-sm text-dim hover:text-white">or send by email</a>
+  </div>
+  <p id="enquiry-status" aria-live="polite" class="text-sm text-dim"></p>
+</form>
+
+<script>
+  const form = document.getElementById("enquiry") as HTMLFormElement | null;
+  const emailLink = document.getElementById("enquiry-email") as HTMLAnchorElement | null;
+  const status = document.getElementById("enquiry-status");
+
+  const compose = () => {
+    const d = new FormData(form!);
+    const lines = [
+      "Hi Media 360 Concept, I'd like to discuss a project.",
+      `Name: ${d.get("name") ?? ""}`,
+      `Contact: ${d.get("contact") ?? ""}`,
+      `Service: ${d.get("service") ?? ""}`,
+      d.get("budget") ? `Budget: ${d.get("budget")}` : "",
+      `Details: ${d.get("message") ?? ""}`,
+    ].filter(Boolean);
+    return { text: lines.join("\n"), service: String(d.get("service") ?? "") };
+  };
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const { text, service } = compose();
+    document.dispatchEvent(new CustomEvent("lead", { detail: { method: "whatsapp_form", service } }));
+    window.open(`https://wa.me/${form.dataset.phone}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+    if (status) status.textContent = "WhatsApp opened with your message — press send there. No WhatsApp? Use the email link.";
+  });
+
+  emailLink?.addEventListener("click", () => {
+    if (!form?.checkValidity()) return;
+    const { text, service } = compose();
+    emailLink.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent("Project enquiry")}&body=${encodeURIComponent(text)}`;
+    document.dispatchEvent(new CustomEvent("lead", { detail: { method: "email_form", service } }));
+  });
+</script>

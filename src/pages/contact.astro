@@ -1,0 +1,44 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { CONTACT } from "@/lib/data";
+import { pageGraph } from "@/lib/schema";
+
+const title = "Contact Media 360 Concept — HiLITE Business Park, Calicut";
+const description =
+  "Contact Media 360 Concept at HiLITE Business Park, Calicut: WhatsApp or call +91 9061 460 360, email us, or send your project details.";
+const crumbs = [{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }];
+---
+
+<Base title={title} description={description} ogSlug="contact" schema={pageGraph({ path: "/contact", title, description, crumbs, type: "ContactPage" })}>
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24">
+    <Breadcrumbs items={crumbs} />
+    <h1 class="max-w-4xl font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">Contact Media 360 Concept</h1>
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-dim">Tell us what you're building. We reply within 24 hours on working days — usually much sooner on WhatsApp.</p>
+
+    <div class="mt-16 grid gap-16 lg:grid-cols-[1.4fr_1fr]">
+      <section aria-labelledby="form-heading">
+        <h2 id="form-heading" class="mb-8 font-display text-2xl font-semibold">Send your project details</h2>
+        <ContactForm />
+      </section>
+      <section aria-labelledby="nap-heading" class="space-y-6">
+        <h2 id="nap-heading" class="font-display text-2xl font-semibold">Office &amp; contact details</h2>
+        <address class="rounded-2xl border border-line p-6 not-italic leading-relaxed">
+          <strong class="font-display text-lg">Media 360 Concept</strong><br />
+          {CONTACT.postal.street}<br />
+          {CONTACT.postal.locality} (Calicut), {CONTACT.postal.region} {CONTACT.postal.postalCode}<br />
+          India
+        </address>
+        <ul class="space-y-3 text-dim">
+          <li>WhatsApp / phone: <a href={`tel:${CONTACT.phone}`} class="link-underline text-white">{CONTACT.phoneDisplay}</a></li>
+          <li>Email: <a href={`mailto:${CONTACT.email}`} class="link-underline text-white">{CONTACT.email}</a></li>
+          <li>Hours: {CONTACT.hours}</li>
+          <li><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="link-underline text-white">Open in Google Maps →</a></li>
+          <li><a href="/hilite-business-park-calicut" class="link-underline text-white">Directions to HiLITE Business Park →</a></li>
+        </ul>
+        <a href={CONTACT.whatsapp} target="_blank" rel="noopener" class="inline-flex min-h-[48px] items-center rounded-full bg-white px-7 py-3 text-sm font-medium text-black hover:opacity-85">Chat on WhatsApp</a>
+      </section>
+    </div>
+  </main>
+</Base>

@@ -71,12 +71,16 @@ const organizationNode: Node = {
     containedInPlace: { "@type": "Place", name: "HiLITE City, Kozhikode (Calicut)" },
   },
   hasMap: CONTACT.mapUrl,
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    opens: "09:30",
-    closes: "18:30",
-  },
+  ...(CONTACT.hours
+    ? {
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: CONTACT.hours.days,
+          opens: CONTACT.hours.opens,
+          closes: CONTACT.hours.closes,
+        },
+      }
+    : {}),
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "sales",

@@ -33,7 +33,7 @@ const crumbs = [{ name: "Home", path: "/" }, { name: "Contact", path: "/contact"
         <ul class="space-y-3 text-dim">
           <li>WhatsApp / phone: <a href={`tel:${CONTACT.phone}`} class="link-underline text-white">{CONTACT.phoneDisplay}</a></li>
           <li>Email: <a href={`mailto:${CONTACT.email}`} class="link-underline text-white">{CONTACT.email}</a></li>
-          <li>Hours: {CONTACT.hours}</li>
+          {CONTACT.hours && <li>Hours: {CONTACT.hours.label}</li>}
           <li><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="link-underline text-white">Open in Google Maps →</a></li>
           <li><a href="/hilite-business-park-calicut" class="link-underline text-white">Directions to HiLITE Business Park →</a></li>
         </ul>

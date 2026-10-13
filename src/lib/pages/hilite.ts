@@ -1,4 +1,5 @@
 import type { SeoPage } from "../seo-pages";
+import { CONTACT } from "../data";
 
 /**
  * "Best agency" pages for HiLITE Business Park, Calicut and Kerala.
@@ -133,6 +134,20 @@ export const HILITE_PAGES: SeoPage[] = [
     ],
     sections: [
       {
+        heading: "What to look for in a digital marketing agency in HiLITE Business Park",
+        body: [
+          "Pick the agency that can prove where your enquiries come from. Use these six checks with any agency in the park, including us.",
+        ],
+        bullets: [
+          { title: "An office you can visit", text: "Meet the people who will run your campaigns. Our team works from the park itself." },
+          { title: "Tracking before ad spend", text: "Calls, WhatsApp chats and form leads should be measurable before the first rupee goes to Google or Meta." },
+          { title: "Reports in enquiries, not likes", text: "Every month: leads, cost per lead, rankings and what changes next." },
+          { title: "Accounts in your name", text: "Ad accounts, pages, analytics and your Google Business Profile stay yours if you ever switch agencies." },
+          { title: "Content and ads under one roof", text: "Design, video and copy in English and Malayalam, made by the same team that runs the ads." },
+          { title: "Work you can verify", text: "Ask for live campaigns, websites and client references you can call before you sign." },
+        ],
+      },
+      {
         heading: "Channels we manage",
         body: [],
         bullets: [
@@ -206,6 +221,26 @@ export const HILITE_PAGES: SeoPage[] = [
       {
         q: "Will I own my ad accounts and pages?",
         a: "Yes. Ad accounts, pages, analytics and Google Business Profile stay in your business's name; we are added as managers.",
+      },
+      {
+        q: "Is Media 360 Concept inside HiLITE Business Park?",
+        a: `Yes. Our office is at ${CONTACT.postal.street}, ${CONTACT.postal.locality} (Calicut) ${CONTACT.postal.postalCode}. Message us on WhatsApp before you visit so the right person is free to meet you.`,
+      },
+      {
+        q: "Do you also build websites and landing pages?",
+        a: "Yes. Our web team designs and builds websites and landing pages in-house, so campaign pages, tracking and SEO are planned together instead of being passed between agencies.",
+      },
+      {
+        q: "What is the difference between SEO and Google Ads?",
+        a: "Google Ads can put you at the top of results from the day a campaign starts, but the traffic stops when the budget stops. SEO earns unpaid rankings over months and keeps bringing visitors after the work is done. Many businesses run ads for leads now while SEO builds lower-cost leads for later.",
+      },
+      {
+        q: "Do you work with businesses across Calicut and Kerala?",
+        a: "Yes. Businesses in and around the park can meet us face to face, and we also work with clients across Calicut, Kerala and the Gulf.",
+      },
+      {
+        q: "How do I request a consultation?",
+        a: `Send a WhatsApp message or call ${CONTACT.phoneDisplay}, email ${CONTACT.email}, or use the contact form. Tell us about your business and your goal, and we will reply within 24 hours with a suggested first step.`,
       },
     ],
     related: [

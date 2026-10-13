@@ -33,7 +33,12 @@ export const CONTACT = {
   // TODO(owner): replace with the exact pin from Google Maps (right-click the office → copy coordinates).
   geo: { lat: 11.2487, lng: 75.8337 },
   mapUrl: "https://www.google.com/maps/search/?api=1&query=HiLITE+Business+Park+Kozhikode",
-  hours: "Mon–Sat, 9:30 AM – 6:30 PM IST", // TODO(owner): confirm real opening hours
+  /**
+   * TODO(owner): confirm real opening hours, then fill this in, e.g.
+   * { label: "Mon–Sat, 9:30 AM – 6:30 PM IST", days: ["Monday", …, "Saturday"], opens: "09:30", closes: "18:30" }.
+   * Empty on purpose: unconfirmed hours are neither shown on /contact nor published in schema.
+   */
+  hours: undefined as undefined | { label: string; days: string[]; opens: string; closes: string },
   /** Official profiles only — every URL here goes into schema sameAs. TODO(owner): add live profile URLs. */
   sameAs: [] as string[],
 };

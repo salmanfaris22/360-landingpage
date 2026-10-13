@@ -6,3 +6,4 @@
 - No heavy JS/animation libraries — performance and SEO come first. Public content must be static HTML.
 - After changes: `npm run build && npm run seo:verify` must report 0 errors.
 - URLs have no trailing slash (Vercel cleanUrls); keep existing slugs stable or add 301s in vercel.json.
+- After a deploy finishes: `npm run indexnow` sends the live sitemap URLs to Bing/Yandex (key file in public/).

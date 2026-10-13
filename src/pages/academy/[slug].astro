@@ -2,8 +2,9 @@
 import Base from "@/layouts/Base.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Button from "@/components/Button.astro";
+import Icon3D from "@/components/Icon3D.astro";
 import { CONTACT } from "@/lib/data";
-import { ACADEMY, COURSES, getCourse, CAREER_SUPPORT, type Course } from "@/lib/academy";
+import { ACADEMY, COURSES, getCourse, tintOf, CAREER_SUPPORT, type Course } from "@/lib/academy";
 import { courseGraph, type Crumb } from "@/lib/schema";
 
 export function getStaticPaths() {
@@ -21,6 +22,7 @@ const related = course.related.map(getCourse).filter((c): c is Course => Boolean
 const schema = courseGraph({ course, title: course.title, description: course.description, academyDescription: ACADEMY.description, faqs: course.faqs, crumbs });
 const glance = [
   { k: "Track", v: course.track },
+  { k: "Level", v: course.level },
   { k: "Mode", v: "Offline in Calicut · Online" },
   { k: "Where", v: "HiLITE Business Park, Kozhikode" },
   { k: "Duration & fees", v: course.duration ?? "Shared at counselling" },
@@ -31,17 +33,29 @@ const glance = [
   <main id="main" class="mx-auto max-w-7xl px-6 pt-14 md:pt-20">
     <Breadcrumbs items={crumbs} />
 
-    <header class="max-w-4xl">
-      <span class={`tag-ink track-${course.track}`}>{course.track}</span>
+    <header class="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto]">
+      <div class="max-w-4xl">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="lg:hidden"><Icon3D {...course.icon} size="3.5rem" float /></span>
+        <span class={`tag-ink track-${course.track}`}>{course.track}</span>
+        <span class="tag-ink bg-[var(--color-surface)]">{course.level}</span>
+      </div>
       <h1 class="mt-6 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.02] font-bold tracking-[-0.035em]">{course.h1}</h1>
       <p class="mt-8 max-w-3xl text-lg leading-relaxed text-white/90" data-speakable>{course.answer}</p>
       <div class="mt-10 flex flex-wrap justify-center gap-4 sm:justify-start">
         <Button href={CONTACT.whatsappAcademy} external size="sm">Free counselling on WhatsApp</Button>
         <Button href="#syllabus" variant="ghost" size="sm">See the syllabus</Button>
       </div>
+      </div>
+      <!-- 3D course mark: one big tile with a glow and an orbit -->
+      <div class="course-art hidden lg:grid" aria-hidden="true" style={`--tint:${tintOf(course.icon)}`}>
+        <span class="course-art-glow"></span>
+        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 280 280" fill="none"><ellipse cx="140" cy="170" rx="128" ry="40" stroke="rgb(18 18 18 / 26%)" stroke-width="1.2" stroke-dasharray="4 6"></ellipse></svg>
+        <span class="relative"><Icon3D {...course.icon} size="9rem" float /></span>
+      </div>
     </header>
 
-    <dl class="card-ink mt-14 grid gap-px overflow-hidden bg-[var(--color-ink)] p-0 sm:grid-cols-2 lg:grid-cols-4">
+    <dl class="card-ink mt-14 grid gap-px overflow-hidden bg-[var(--color-ink)] p-0 sm:grid-cols-2 lg:grid-cols-5">
       {glance.map((g) => (
         <div class="bg-[var(--color-surface)] p-6">
           <dt class="font-mono text-[11px] text-dim">{g.k}</dt>
@@ -129,7 +143,10 @@ const glance = [
           {related.map((r) => (
             <li class="h-full">
               <a href={`/academy/${r.slug}`} class="card-ink flex h-full flex-col p-6">
-                <span class={`tag-ink self-start track-${r.track}`}>{r.track}</span>
+                <div class="flex items-start justify-between gap-3">
+                  <span class={`tag-ink track-${r.track}`}>{r.track}</span>
+                  <Icon3D {...r.icon} size="3rem" />
+                </div>
                 <span class="mt-4 font-display text-lg font-bold">{r.keyword}</span>
                 <span class="mt-auto pt-4 text-sm font-semibold">View →</span>
               </a>

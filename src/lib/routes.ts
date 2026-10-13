@@ -11,7 +11,7 @@ export const STATIC_ROUTES: RouteInfo[] = [
   { path: "/about", og: "about", heading: "About Media 360 Concept", eyebrow: "Facts · Team · Approach", priority: 0.7, chips: ["Kozhikode", "Saudi Arabia", "India", "USA", "One team"] },
   { path: "/contact", og: "contact", heading: "Talk to Media 360 Concept", eyebrow: "WhatsApp +91 9061 460 360", priority: 0.7, chips: ["WhatsApp", "Call", "Email", "Visit HiLITE"] },
   { path: "/faq", og: "faq", heading: "Questions About Media 360 Concept", eyebrow: "FAQ · HiLITE Business Park, Calicut", priority: 0.7, chips: ["Services", "Pricing", "Timelines", "Location", "AI & SEO"] },
-  { path: "/academy", og: "academy", heading: "Media 360 Academy — AI-First Tech & Creative Courses", eyebrow: "Academy · HiLITE Business Park, Calicut", priority: 0.9, chips: ["MERN Stack", "Python Full Stack", "Golang", "AI Developer", "Vibe Coding", "AI Video Editing"], theme: "academy" },
+  { path: "/academy", og: "academy", heading: "Media 360 Academy — AI-First Tech & Creative Courses", eyebrow: "Academy · HiLITE Business Park, Calicut", priority: 0.9, chips: ["MERN Stack", "Python", "AI Developer", "Generative AI", "Premiere Pro", "After Effects"], theme: "academy" },
   { path: "/privacy-policy", og: "", heading: "", eyebrow: "", priority: 0.2 },
   { path: "/terms", og: "", heading: "", eyebrow: "", priority: 0.2 },
 ];

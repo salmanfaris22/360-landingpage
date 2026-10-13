@@ -1,4 +1,5 @@
 import type { Faq } from "./schema";
+import { BRANDS, type BrandKey } from "./brands";
 
 /**
  * Media 360 Academy — the learning side of Media 360 Concept.
@@ -11,6 +12,12 @@ import type { Faq } from "./schema";
  * per course, then fill `duration` (rendered + added to Course schema).
  */
 
+/** Glossy 3D tile drawn in CSS/SVG by Icon3D.astro. */
+export type IconKind = "stack" | "python" | "server" | "browser" | "globe" | "spark" | "rocket" | "play" | "film" | "motion" | "wheel" | "wand" | "megaphone" | "code" | "pen" | "chart";
+/** Light tones for the academy; blue/violet/cyan/magenta read best on the dark agency side. */
+export type IconTone = "tangerine" | "yellow" | "sky" | "lilac" | "mint" | "pink" | "blue" | "violet" | "cyan" | "magenta";
+export type Level = "Beginner" | "Intermediate" | "Advanced";
+
 export type Course = {
   slug: string;
   /** Primary keyword — used as internal anchor text. */
@@ -18,6 +25,10 @@ export type Course = {
   name: string;
   short: string;
   track: "Development" | "AI" | "Creative";
+  /** Starting level, from each course's "who it's for" copy. */
+  level: Level;
+  /** A real product logo (`brand`) or, where none fits, a symbol (`kind` + `tone`). */
+  icon: { brand?: BrandKey; kind?: IconKind; tone?: IconTone };
   title: string;
   description: string;
   h1: string;
@@ -38,7 +49,12 @@ export const ACADEMY = {
   path: "/academy",
   tagline: "Learn to build with AI — from the people who build for clients.",
   description:
-    "Media 360 Academy is the AI-first training arm of Media 360 Concept at HiLITE Business Park, Kozhikode (Calicut). It teaches MERN stack, Python full stack, Golang, frontend, AI development, vibe coding, forward deployed engineering and AI video editing through real client-style projects, offline in Calicut and online.",
+    "Media 360 Academy is the AI-first training arm of Media 360 Concept at HiLITE Business Park, Kozhikode (Calicut). It teaches MERN stack, Python full stack, Golang, frontend, AI development, vibe coding, forward deployed engineering, generative AI, AI video editing, Premiere Pro, After Effects and DaVinci Resolve through real client-style projects, offline in Calicut and online.",
+};
+
+const AI_FAQ_CREATIVE: Faq = {
+  q: "Is AI really used in every module?",
+  a: "Yes. You use AI tools from the first week — for captions, clean-up, assets and first drafts — and you are judged on taste and finish: whether the final piece is on-brief, on-brand and properly licensed.",
 };
 
 const AI_FAQ: Faq = {
@@ -49,6 +65,8 @@ const AI_FAQ: Faq = {
 export const COURSES: Course[] = [
   {
     slug: "mern-stack-course-kozhikode",
+    level: "Beginner",
+    icon: { brand: "mongodb" },
     keyword: "MERN Stack Course in Kozhikode",
     name: "MERN Stack Development",
     short: "MongoDB, Express, React, Node — full stack JavaScript with AI pair-programming.",
@@ -84,6 +102,8 @@ export const COURSES: Course[] = [
   },
   {
     slug: "python-full-stack-course-kozhikode",
+    level: "Beginner",
+    icon: { brand: "python" },
     keyword: "Python Full Stack Course in Kozhikode",
     name: "Python Full Stack Development",
     short: "Python, Django, FastAPI and React — plus the AI and data skills Python is known for.",
@@ -119,6 +139,8 @@ export const COURSES: Course[] = [
   },
   {
     slug: "golang-backend-course-kozhikode",
+    level: "Advanced",
+    icon: { brand: "go" },
     keyword: "Golang Course in Kozhikode",
     name: "Golang Backend Development",
     short: "Go, microservices, PostgreSQL, gRPC and cloud — backend engineering that scales.",
@@ -154,6 +176,8 @@ export const COURSES: Course[] = [
   },
   {
     slug: "frontend-development-course-kozhikode",
+    level: "Beginner",
+    icon: { brand: "react" },
     keyword: "Frontend Development Course in Kozhikode",
     name: "Frontend Development",
     short: "React, Next.js, TypeScript and Figma-to-code — interfaces that are fast and found on Google.",
@@ -189,6 +213,8 @@ export const COURSES: Course[] = [
   },
   {
     slug: "ai-web-development-course-kozhikode",
+    level: "Beginner",
+    icon: { brand: "nextjs" },
     keyword: "AI Web Development Course in Kozhikode",
     name: "AI Web Development",
     short: "Build and launch websites and web apps with AI — prompts, Next.js, CMS, SEO and deployment.",
@@ -224,6 +250,8 @@ export const COURSES: Course[] = [
   },
   {
     slug: "ai-developer-vibe-coding-course-kozhikode",
+    level: "Intermediate",
+    icon: { brand: "claude" },
     keyword: "AI Developer & Vibe Coding Course",
     name: "AI Developer & Vibe Coding",
     short: "LLMs, agents, RAG and vibe coding — ship AI products fast, then make them reliable.",
@@ -259,6 +287,8 @@ export const COURSES: Course[] = [
   },
   {
     slug: "forward-deployed-engineer-course-kerala",
+    level: "Advanced",
+    icon: { brand: "postgresql" },
     keyword: "Forward Deployed Engineer Course",
     name: "Forward Deployed Engineer (AI)",
     short: "Engineer + consultant: deploy AI systems inside real businesses and make them work.",
@@ -293,6 +323,8 @@ export const COURSES: Course[] = [
   },
   {
     slug: "ai-video-editing-course-kozhikode",
+    level: "Beginner",
+    icon: { kind: "play", tone: "tangerine" },
     keyword: "AI Video Editing Course in Kozhikode",
     name: "AI Video Editing",
     short: "Premiere Pro, After Effects, DaVinci Resolve and AI video tools — edit like a studio.",
@@ -322,15 +354,172 @@ export const COURSES: Course[] = [
     faqs: [
       { q: "Which software is taught in the video editing course?", a: "Adobe Premiere Pro, After Effects and DaVinci Resolve, plus CapCut and current AI tools for captions, voice and generative footage." },
       { q: "Do I need my own camera or a powerful laptop?", a: "A camera is not required; a phone is enough for practice footage. Editing needs a reasonably capable laptop, and we advise on specifications during counselling." },
-      AI_FAQ,
+      AI_FAQ_CREATIVE,
     ],
-    related: ["ai-web-development-course-kozhikode", "ai-developer-vibe-coding-course-kozhikode", "frontend-development-course-kozhikode"],
+    related: ["premiere-pro-course-kozhikode", "after-effects-course-kozhikode", "davinci-resolve-course-kozhikode"],
+  },
+  {
+    slug: "premiere-pro-course-kozhikode",
+    level: "Beginner",
+    icon: { brand: "premiere" },
+    keyword: "Premiere Pro Course in Kozhikode",
+    name: "Premiere Pro Video Editing",
+    short: "Edit reels, ads and YouTube videos in Adobe Premiere Pro — with AI for captions, clean-up and speed.",
+    track: "Creative",
+    title: "Premiere Pro Course in Kozhikode (AI Editing)",
+    description:
+      "Adobe Premiere Pro course in Kozhikode (Calicut): editing, audio, colour, captions and AI tools for reels, ads and YouTube. Offline at HiLITE + online.",
+    h1: "Adobe Premiere Pro Course in Kozhikode, with AI Editing",
+    answer:
+      "Media 360 Academy's Premiere Pro course teaches professional video editing in Adobe Premiere Pro — cutting, audio, colour, titles and export — plus the AI features that speed up captions, clean-up and rough cuts. Classes run at HiLITE Business Park, Calicut and online.",
+    forWho: ["Beginners who want a first editing job or freelance work", "YouTubers and content creators", "Marketing teams producing their own video"],
+    tools: ["Adobe Premiere Pro", "Speech to Text", "Enhance Speech", "Lumetri Color", "Essential Graphics", "AI captioning"],
+    modules: [
+      { title: "Premiere Pro foundations", topics: ["Workspace, projects and media management", "Cutting, trimming and the timeline", "Keyboard-first editing"] },
+      { title: "Story & pacing", topics: ["Building a narrative", "J-cuts, L-cuts and rhythm", "Editing interviews and talking heads"] },
+      { title: "Audio", topics: ["Cleaning dialogue with Enhance Speech", "Music, sound effects and mixing", "Loudness for social and YouTube"] },
+      { title: "Colour & titles", topics: ["Lumetri colour correction", "Titles, lower thirds and captions", "Essential Graphics templates"] },
+      { title: "AI-assisted editing", topics: ["Speech to Text and text-based editing", "AI captions, translation and voice", "Generative tools and rights"] },
+      { title: "Delivery", topics: ["Export settings per platform", "Client review and revisions", "Building a showreel"] },
+    ],
+    projects: [
+      { title: "Reel series", text: "A set of vertical videos cut for hooks and retention." },
+      { title: "YouTube episode", text: "A long-form video with chapters, captions and clean audio." },
+      { title: "Brand ad", text: "A 30-second ad edited to a client-style brief." },
+    ],
+    careers: ["Video Editor", "YouTube Editor", "Social Media Video Editor", "Post-Production Assistant"],
+    faqs: [
+      { q: "Do I need a powerful laptop for Premiere Pro?", a: "Premiere Pro runs best on a recent laptop with a dedicated graphics card and 16 GB of memory or more. We advise on specifications during counselling." },
+      { q: "Premiere Pro or DaVinci Resolve — which should I learn?", a: "Premiere Pro is the most common editor in agencies and media teams and works closely with After Effects. DaVinci Resolve has a free version and is the industry standard for colour. Many editors learn Premiere first and add Resolve later; we help you choose." },
+      AI_FAQ_CREATIVE,
+    ],
+    related: ["after-effects-course-kozhikode", "davinci-resolve-course-kozhikode", "ai-video-editing-course-kozhikode"],
+  },
+  {
+    slug: "after-effects-course-kozhikode",
+    level: "Intermediate",
+    icon: { brand: "aftereffects" },
+    keyword: "After Effects Course in Kozhikode",
+    name: "After Effects & Motion Graphics",
+    short: "Motion graphics, kinetic type, logo animation and VFX basics in Adobe After Effects — sped up with AI.",
+    track: "Creative",
+    title: "After Effects Course in Kozhikode (Motion Graphics)",
+    description:
+      "Adobe After Effects course in Calicut: motion graphics, kinetic typography, logo animation, VFX basics and AI tools. Offline at HiLITE Business Park + online.",
+    h1: "After Effects & Motion Graphics Course in Kozhikode",
+    answer:
+      "The After Effects course at Media 360 Academy teaches motion graphics in Adobe After Effects — keyframes, kinetic typography, shape animation, logo reveals, tracking and compositing — with AI tools for rotoscoping, clean-up and generating assets. Learn offline at HiLITE Business Park, Calicut, or online.",
+    forWho: ["Video editors who want to add motion graphics", "Graphic designers moving into animation", "Content creators who want branded, animated videos"],
+    tools: ["Adobe After Effects", "Adobe Illustrator", "Roto Brush", "Motion tracking", "Expressions", "AI asset tools"],
+    modules: [
+      { title: "Animation fundamentals", topics: ["Keyframes, easing and the graph editor", "Timing and spacing", "Pre-compositions"] },
+      { title: "Kinetic typography", topics: ["Text animators", "Lyric and quote videos", "Captions with style"] },
+      { title: "Shape & logo animation", topics: ["Shape layers and paths", "Animating Illustrator files", "Logo reveals"] },
+      { title: "Compositing & VFX basics", topics: ["Masks, mattes and blending", "Motion tracking", "Roto Brush and clean-up"] },
+      { title: "AI in motion design", topics: ["AI-generated textures and backgrounds", "AI rotoscoping and object removal", "Using AI responsibly with client assets"] },
+      { title: "Production", topics: ["Templates and Essential Graphics", "Rendering and delivery", "Motion showreel"] },
+    ],
+    projects: [
+      { title: "Logo animation", text: "A brand logo reveal with sound design." },
+      { title: "Animated explainer", text: "A 30-second explainer with kinetic type and shape animation." },
+      { title: "Motion showreel", text: "Your best motion work cut into a reel for studios and clients." },
+    ],
+    careers: ["Motion Graphics Designer", "After Effects Animator", "Video Editor & Motion Designer", "Social Media Content Designer"],
+    faqs: [
+      { q: "Do I need to know video editing before After Effects?", a: "It helps but is not required. If you are new to video, the Premiere Pro course is a good first step, and many students take both." },
+      { q: "Is After Effects used for VFX?", a: "After Effects handles motion graphics, compositing and lighter visual effects. Heavy 3D and film VFX use other tools, but After Effects is the standard for motion design in agencies and social media." },
+      AI_FAQ_CREATIVE,
+    ],
+    related: ["premiere-pro-course-kozhikode", "generative-ai-video-design-course-kozhikode", "ai-video-editing-course-kozhikode"],
+  },
+  {
+    slug: "davinci-resolve-course-kozhikode",
+    level: "Beginner",
+    icon: { brand: "davinci" },
+    keyword: "DaVinci Resolve Course in Kozhikode",
+    name: "DaVinci Resolve Editing & Colour",
+    short: "Edit, colour grade and finish in DaVinci Resolve — the studio-grade editor with a free version and AI tools.",
+    track: "Creative",
+    title: "DaVinci Resolve Course in Kozhikode (Colour Grading)",
+    description:
+      "DaVinci Resolve course in Kozhikode: editing, colour grading, Fairlight audio and AI-powered Neural Engine tools. Offline at HiLITE Business Park + online.",
+    h1: "DaVinci Resolve Editing & Colour Grading Course in Kozhikode",
+    answer:
+      "Media 360 Academy's DaVinci Resolve course covers editing, colour correction and grading, Fairlight audio and delivery in DaVinci Resolve, including its AI-powered Neural Engine tools such as Magic Mask and voice isolation. Classes run at HiLITE Business Park, Calicut and online.",
+    forWho: ["Editors who want professional colour skills", "Filmmakers and wedding videographers", "Beginners who want a free, professional editor"],
+    tools: ["DaVinci Resolve", "Color page & nodes", "Fairlight audio", "Magic Mask", "Voice isolation", "LUTs"],
+    modules: [
+      { title: "Resolve basics", topics: ["Media, cut and edit pages", "Timelines and trimming", "Project management"] },
+      { title: "Colour correction", topics: ["Scopes and exposure", "White balance and skin tones", "Matching shots"] },
+      { title: "Colour grading", topics: ["Node-based grading", "Looks, LUTs and film emulation", "Power windows and tracking"] },
+      { title: "Audio with Fairlight", topics: ["Dialogue clean-up", "Voice isolation", "Mixing and loudness"] },
+      { title: "AI tools", topics: ["Magic Mask and object isolation", "Speed Warp and Smart Reframe", "AI-assisted workflows"] },
+      { title: "Delivery", topics: ["Render settings", "Client review", "Grading showreel"] },
+    ],
+    projects: [
+      { title: "Short film grade", text: "Correct and grade a short film to one consistent look." },
+      { title: "Event highlight film", text: "Edit and colour a wedding or event highlight with clean audio." },
+      { title: "Before/after reel", text: "A colour showreel that shows your grading range." },
+    ],
+    careers: ["Colourist", "Video Editor", "Post-Production Editor", "Wedding & Event Filmmaker"],
+    faqs: [
+      { q: "Is DaVinci Resolve really free?", a: "Yes, DaVinci Resolve has a free version that covers most editing and colour work. Some AI and advanced features need the paid Studio version; we cover both and tell you when Studio is required." },
+      { q: "Do I need Premiere Pro as well?", a: "No. Resolve is a complete editor on its own. Many agencies use Premiere Pro, so some students learn both — we help you decide during counselling." },
+      AI_FAQ_CREATIVE,
+    ],
+    related: ["premiere-pro-course-kozhikode", "ai-video-editing-course-kozhikode", "after-effects-course-kozhikode"],
+  },
+  {
+    slug: "generative-ai-video-design-course-kozhikode",
+    level: "Beginner",
+    icon: { brand: "openai" },
+    keyword: "Generative AI Course in Kozhikode",
+    name: "Generative AI for Video & Design",
+    short: "Create images, video, voice and ads with generative AI — then finish them like a professional.",
+    track: "AI",
+    title: "Generative AI Course in Kozhikode (Video & Design)",
+    description:
+      "Generative AI course in Calicut: create images, video, voice and ads with AI tools, then edit and finish them professionally. Offline at HiLITE + online.",
+    h1: "Generative AI Course in Kozhikode for Video, Images & Ads",
+    answer:
+      "The generative AI course at Media 360 Academy teaches you to create images, video, voice and ad creatives with current AI tools — prompting, consistency, editing and rights — and to finish the results in professional software so they are ready for clients and social media.",
+    forWho: ["Content creators and social media managers", "Designers and editors adding AI to their work", "Marketers who want to produce creatives in-house"],
+    tools: ["AI image generators", "AI video generators", "AI voice & music", "Adobe Firefly", "Photoshop", "Premiere Pro"],
+    modules: [
+      { title: "How generative AI works", topics: ["Models, prompts and limits", "Choosing tools for each job", "Costs and workflows"] },
+      { title: "AI images", topics: ["Prompting for style and consistency", "Editing and upscaling", "Brand-safe visuals"] },
+      { title: "AI video", topics: ["Text- and image-to-video", "Shot planning for AI video", "Consistency across scenes"] },
+      { title: "Voice & sound", topics: ["AI voiceover and dubbing", "Music and sound design", "Lip-sync basics"] },
+      { title: "Finishing", topics: ["Editing AI footage in Premiere Pro", "Photoshop clean-up", "Captions and formats"] },
+      { title: "Ethics & rights", topics: ["Copyright and licences", "Disclosure and platform rules", "Client approvals"] },
+    ],
+    projects: [
+      { title: "AI ad campaign", text: "AI-generated product visuals and a short video ad for one brand." },
+      { title: "AI explainer", text: "A narrated explainer built from AI images, video and voice." },
+      { title: "Brand content kit", text: "A month of social posts produced with AI and finished by hand." },
+    ],
+    careers: ["AI Content Creator", "Generative AI Designer", "Social Media Creative", "AI Video Producer"],
+    faqs: [
+      { q: "Do I need design or editing experience for the generative AI course?", a: "No. The course starts with the basics of each tool. Experience in design or editing helps you finish the results faster." },
+      { q: "Is AI-generated content safe to use for clients?", a: "It can be, if you follow licences, platform rules and client approvals. A full module covers copyright, disclosure and brand safety." },
+      AI_FAQ_CREATIVE,
+    ],
+    related: ["after-effects-course-kozhikode", "ai-video-editing-course-kozhikode", "ai-developer-vibe-coding-course-kozhikode"],
   },
 ];
+
+const TONE_TINT: Record<IconTone, string> = {
+  tangerine: "rgb(255 122 69 / 22%)", yellow: "rgb(255 210 63 / 34%)", sky: "rgb(90 169 255 / 22%)", lilac: "rgb(161 127 240 / 22%)",
+  mint: "rgb(52 201 142 / 22%)", pink: "rgb(244 114 182 / 22%)", blue: "rgb(77 124 255 / 22%)", violet: "rgb(139 92 246 / 22%)",
+  cyan: "rgb(34 211 238 / 22%)", magenta: "rgb(236 72 153 / 22%)",
+};
+/** Soft card/glow tint that matches a course's tile. */
+export const tintOf = (icon: Course["icon"]) => (icon.brand ? BRANDS[icon.brand].tint : TONE_TINT[icon.tone ?? "violet"]);
 
 export const getCourse = (slug: string) => COURSES.find((c) => c.slug === slug);
 
 export const TRACKS = ["Development", "AI", "Creative"] as const;
+export const LEVELS: Level[] = ["Beginner", "Intermediate", "Advanced"];
 
 /** How the academy teaches — statements about method, not outcomes. */
 export const ACADEMY_METHOD = [
@@ -352,7 +541,7 @@ export const CAREER_SUPPORT = [
 export const ACADEMY_FAQS: Faq[] = [
   { q: "What is Media 360 Academy?", a: ACADEMY.description },
   { q: "Where are classes held?", a: "Offline classes are at HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), Kerala 673014. Every course is also available online with live sessions." },
-  { q: "Which course should I choose?", a: "Beginners usually start with MERN stack, Python full stack or frontend. Developers who already code move to Golang, AI developer & vibe coding or forward deployed engineering. Creatives take AI video editing. Book a free counselling session and we will recommend one." },
+  { q: "Which course should I choose?", a: "Beginners usually start with MERN stack, Python full stack or frontend. Developers who already code move to Golang, AI developer & vibe coding or forward deployed engineering. Creatives take AI video editing, Premiere Pro, After Effects, DaVinci Resolve or generative AI. Book a free counselling session and we will recommend one." },
   { q: "What are the fees and duration?", a: "Fees, duration and batch timings depend on the course and mode. Message us on WhatsApp for the current schedule — we reply within 24 hours." },
   // TODO(owner): confirm certificate wording.
   { q: "Do I get a certificate?", a: "Yes, you receive a Media 360 Academy course certificate, but your portfolio of deployed projects is what employers and clients will look at." },

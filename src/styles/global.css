@@ -338,6 +338,71 @@ a.card-ink:hover, .card-ink:has(a:hover) { transform: translate(-3px, -3px); box
 .term .caret { display: inline-block; width: 0.55em; height: 1.1em; vertical-align: -0.2em; background: var(--color-hl); animation: caret 1s steps(1) infinite; }
 @keyframes caret { 50% { opacity: 0; } }
 
+/* Course page header art: one big floating tile on a dashed orbit */
+.course-art { position: relative; place-items: center; width: 17.5rem; height: 17.5rem; } /* display comes from the hidden/lg:grid utilities */
+.course-art-glow { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(circle, var(--tint) 0%, transparent 70%); filter: blur(18px); transform: scale(1.6); }
+
+/* Big floating tile in the corner of a 2x2 course card */
+.feature-art { position: absolute; right: 1.25rem; bottom: 1rem; width: 13rem; height: 13rem; place-items: center; pointer-events: none; }
+
+/* Terminal lines type in one after another */
+.term-line { animation: term-in 0.5s var(--ease-expo) both; animation-delay: calc(0.7s + var(--i, 0) * 0.6s); }
+@keyframes term-in { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .term-line { animation: none; } }
+
+/* Course grid: mixed tile sizes, packed densely; tiles animate in when filtered */
+.bento { display: grid; gap: 1.5rem; }
+@media (min-width: 640px) {
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: dense; }
+  .bento-feature, .bento-wide { grid-column: span 2; }
+}
+@media (min-width: 1024px) {
+  .bento { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(15rem, auto); }
+  .bento-feature { grid-row: span 2; }
+  .bento-tall { grid-row: span 2; }
+}
+.bento > li { animation: card-in 0.6s var(--ease-expo) both; }
+@keyframes card-in { from { opacity: 0; transform: translateY(18px) scale(0.98); } }
+/* soft corner tint from each course's icon colour */
+.bento-card { background: radial-gradient(120% 90% at 100% 0%, var(--tint) 0%, transparent 55%), var(--color-surface); }
+.bento-card:hover .ico3d:not(.ico3d-float) { transform: translateY(-4px) scale(1.06); }
+.level-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.5rem 1.1rem; border-radius: 999px;
+  border: 1.5px solid var(--color-ink); background: var(--color-surface); font-weight: 600; font-size: 0.9375rem; cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-expo);
+}
+.level-chip span { font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.6; }
+.level-chip:hover { transform: translateY(-2px); }
+.level-chip[aria-pressed="true"] { background: var(--color-ink); color: var(--color-base); }
+
+/* ── Logo tiles (Icon3D.astro) ───────────────────────────────────────
+   Flat and simple: a solid rounded square in the brand colour, the logo
+   centred, one soft shadow. No gloss, bevel or tilt. */
+.ico3d {
+  --s: 4rem;
+  position: relative; display: inline-grid; place-items: center; flex-shrink: 0;
+  width: var(--s); height: var(--s); border-radius: 26%; color: #fff;
+  background: var(--mid);
+  box-shadow: 0 calc(var(--s) * 0.18) calc(var(--s) * 0.36) calc(var(--s) * -0.16) var(--cast), inset 0 0 0 1px var(--ring, transparent);
+  transition: transform 0.5s var(--ease-expo);
+}
+.ico3d svg { position: relative; width: 50%; height: 50%; }
+.ico3d-float { animation: ico-float 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes ico-float { 50% { transform: translateY(-10px); } }
+.ico3d svg.ico-brand { width: 56%; height: 56%; }
+.ico3d svg.ico-figma { width: 38%; height: 58%; }
+.ico-letters { position: relative; font-family: var(--font-display); font-weight: 700; font-size: calc(var(--s) * 0.4); line-height: 1; letter-spacing: -0.03em; }
+.tone-tangerine { --hi: #ffc2a1; --mid: #ff7a45; --lo: #d9480f; --edge: #a8380c; --cast: rgb(217 72 15 / 45%); }
+.tone-yellow { --hi: #fff3b8; --mid: #ffd23f; --lo: #e0a800; --edge: #b38600; --cast: rgb(224 168 0 / 45%); color: #5c4300; }
+.tone-sky { --hi: #d2e8ff; --mid: #5aa9ff; --lo: #1d6fe0; --edge: #1655ad; --cast: rgb(29 111 224 / 45%); }
+.tone-lilac { --hi: #e8dfff; --mid: #a17ff0; --lo: #6b3fd4; --edge: #5230a6; --cast: rgb(107 63 212 / 45%); }
+.tone-mint { --hi: #cbf8e3; --mid: #34c98e; --lo: #0f8a5f; --edge: #0b6a49; --cast: rgb(15 138 95 / 45%); }
+.tone-pink { --hi: #ffd6e6; --mid: #f472b6; --lo: #c2367f; --edge: #992a64; --cast: rgb(194 54 127 / 45%); }
+.tone-blue { --hi: #b9ccff; --mid: #4d7cff; --lo: #2346c9; --edge: #1a3596; --cast: rgb(77 124 255 / 55%); }
+.tone-violet { --hi: #dccbff; --mid: #8b5cf6; --lo: #5b2fd0; --edge: #4322a0; --cast: rgb(139 92 246 / 55%); }
+.tone-cyan { --hi: #c9f8ff; --mid: #22d3ee; --lo: #0e7490; --edge: #0a5a70; --cast: rgb(34 211 238 / 45%); }
+.tone-magenta { --hi: #ffc4e1; --mid: #ec4899; --lo: #9d174d; --edge: #7a123c; --cast: rgb(236 72 153 / 50%); }
+
 /* Agency | Academy switch in the nav */
 .side-switch { display: inline-flex; padding: 3px; border-radius: 999px; border: 1px solid var(--color-line); }
 .side-switch a { border-radius: 999px; padding: 0.4rem 0.65rem; font-size: 0.8125rem; color: var(--color-dim); transition: color 0.3s, background 0.3s; }

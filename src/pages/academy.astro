@@ -1,21 +1,35 @@
 ---
 import Base from "@/layouts/Base.astro";
 import Button from "@/components/Button.astro";
+import Icon3D from "@/components/Icon3D.astro";
 import { CONTACT } from "@/lib/data";
-import { ACADEMY, COURSES, TRACKS, ACADEMY_METHOD, CAREER_SUPPORT, ACADEMY_FAQS } from "@/lib/academy";
+import { ACADEMY, COURSES, LEVELS, ACADEMY_METHOD, CAREER_SUPPORT, ACADEMY_FAQS, getCourse, tintOf, type Course } from "@/lib/academy";
 import { academyGraph } from "@/lib/schema";
 
 const title = "AI-First Coding & Video Editing Courses in Calicut";
 const description =
-  "Media 360 Academy, Calicut: MERN, Python full stack, Golang, frontend, AI developer, vibe coding, FDE and AI video editing courses. Offline at HiLITE + online.";
+  "Media 360 Academy, Calicut: MERN, Python, Golang, frontend, AI developer, generative AI, Premiere Pro, After Effects and DaVinci courses. Offline + online.";
 const crumbs = [{ name: "Home", path: "/" }, { name: "Academy", path: "/academy" }];
 const schema = academyGraph({ title, description, academyDescription: ACADEMY.description, courses: COURSES, faqs: ACADEMY_FAQS, crumbs });
 
-const trackBlurb: Record<(typeof TRACKS)[number], string> = {
-  Development: "Full stack, backend and frontend — the core developer careers.",
-  AI: "Build, ship and deploy AI products and agents.",
-  Creative: "Edit video like a studio, with AI in the timeline.",
-};
+// Course grid: tile size per course (mixed sizes, packed densely) in display order.
+const BENTO: [string, "feature" | "wide" | "tall" | "normal"][] = [
+  ["mern-stack-course-kozhikode", "feature"],
+  ["python-full-stack-course-kozhikode", "normal"],
+  ["ai-developer-vibe-coding-course-kozhikode", "tall"],
+  ["frontend-development-course-kozhikode", "normal"],
+  ["ai-video-editing-course-kozhikode", "wide"],
+  ["premiere-pro-course-kozhikode", "normal"],
+  ["after-effects-course-kozhikode", "tall"],
+  ["generative-ai-video-design-course-kozhikode", "feature"],
+  ["golang-backend-course-kozhikode", "wide"],
+  ["ai-web-development-course-kozhikode", "wide"],
+  ["davinci-resolve-course-kozhikode", "normal"],
+  ["forward-deployed-engineer-course-kerala", "wide"],
+];
+const bento = BENTO.map(([slug, size]) => ({ course: getCourse(slug) as Course, size }));
+const NUM: Record<number, string> = { 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve", 13: "Thirteen", 14: "Fourteen" };
+const levelCount = (l: string) => COURSES.filter((c) => c.level === l).length;
 const roles = [...new Set(COURSES.flatMap((c) => c.careers))];
 const projects = COURSES.map((c) => ({ ...c.projects[0], course: c }));
 const students = [
@@ -44,46 +58,90 @@ const students = [
         </div>
       </div>
 
-      <div aria-hidden="true" class="term hero-fade p-6 font-mono text-[13px] leading-relaxed md:p-8" style="--stagger:3">
+      <div class="hero-fade relative" style="--stagger:3">
+        <span class="absolute -top-14 left-24 z-10 sm:left-28"><Icon3D brand="claude" size="5rem" float /></span>
+        <span class="absolute -top-11 right-10 z-10"><Icon3D brand="mongodb" size="3.75rem" float delay="-3.5s" /></span>
+        <span class="absolute -bottom-12 left-12 z-10"><Icon3D brand="aftereffects" size="4.25rem" float delay="-2s" /></span>
+        <span class="absolute -right-2 -bottom-9 z-10 hidden sm:block"><Icon3D brand="python" size="3.25rem" float delay="-1.2s" /></span>
+      <div aria-hidden="true" class="term p-6 font-mono text-[13px] leading-relaxed md:p-8">
         <div class="mb-5 flex gap-2"><span class="h-3 w-3 rounded-full bg-[#ff6a3d]"></span><span class="h-3 w-3 rounded-full bg-[#ffd23f]"></span><span class="h-3 w-3 rounded-full bg-[#6ee7b7]"></span></div>
-        <p><span class="text-[#ffd23f]">you ›</span> build a clinic booking app, MERN, with auth</p>
-        <p class="mt-3 text-[#f6f3ec]/60">ai › scaffolding routes, models, React pages…</p>
-        <p class="mt-1 text-[#f6f3ec]/60">ai › 14 files written · 3 tests failing</p>
-        <p class="mt-3"><span class="text-[#ffd23f]">you ›</span> why is the slot overlap test failing?</p>
-        <p class="mt-3 text-[#6ee7b7]">✓ fixed the date comparison · 28/28 passing</p>
-        <p class="mt-1 text-[#6ee7b7]">✓ deployed → clinic-demo.vercel.app</p>
-        <p class="mt-3"><span class="text-[#ffd23f]">you ›</span> <span class="caret"></span></p>
+          <p style="--i:0" class="term-line"><span class="text-[#ffd23f]">you ›</span> build a clinic booking app, MERN, with auth</p>
+          <p style="--i:1" class="term-line mt-3 text-[#f6f3ec]/60">ai › scaffolding routes, models, React pages…</p>
+          <p style="--i:2" class="term-line mt-1 text-[#f6f3ec]/60">ai › 14 files written · 3 tests failing</p>
+          <p style="--i:3" class="term-line mt-3"><span class="text-[#ffd23f]">you ›</span> why is the slot overlap test failing?</p>
+          <p style="--i:4" class="term-line mt-3 text-[#6ee7b7]">✓ fixed the date comparison · 28/28 passing</p>
+          <p style="--i:5" class="term-line mt-1 text-[#6ee7b7]">✓ deployed → clinic-demo.vercel.app</p>
+          <p style="--i:6" class="term-line mt-3"><span class="text-[#ffd23f]">you ›</span> <span class="caret"></span></p>
+      </div>
       </div>
     </section>
 
-    <!-- Courses -->
+    <!-- Moving ribbon of every course -->
+    <div class="overflow-hidden border-y-2 border-[var(--color-ink)] bg-[var(--color-surface)] py-5" aria-hidden="true">
+      <div class="animate-marquee flex w-max items-center" style="animation-duration:70s">
+        {[0, 1].map(() => COURSES.map((c) => (
+          <span class="flex items-center gap-4 pr-12 font-display text-xl font-bold tracking-tight whitespace-nowrap md:text-2xl">
+            <Icon3D {...c.icon} size="2.6rem" />{c.name}
+          </span>
+        )))}
+      </div>
+    </div>
+
+    <!-- Courses: level filter + mixed-size grid -->
     <section id="courses" class="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 md:py-28">
-      <h2 data-words class="max-w-4xl font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Eight courses. <span class="hl">AI in every one.</span></h2>
-      {
-        TRACKS.map((track) => (
-          <div class="mt-16">
-            <div class="flex flex-wrap items-baseline gap-4 border-b-2 border-[var(--color-ink)] pb-4">
-              <h3 class="font-display text-2xl font-bold tracking-tight md:text-3xl">{track}</h3>
-              <p class="text-dim">{trackBlurb[track]}</p>
-            </div>
-            <ul class="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-              {COURSES.filter((c) => c.track === track).map((c, i) => (
-                <li data-reveal data-delay={(i % 3) * 0.08} class="h-full">
-                  <a href={`/academy/${c.slug}`} class="card-ink flex h-full flex-col p-7">
-                    <span class={`tag-ink self-start track-${c.track}`}>{c.track}</span>
-                    <h4 class="mt-5 font-display text-2xl font-bold tracking-tight">{c.name}</h4>
-                    <p class="mt-3 leading-relaxed text-dim">{c.short}</p>
+      <h2 data-reveal class="mx-auto max-w-4xl text-center font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">{NUM[COURSES.length] ?? COURSES.length} courses. <br class="hidden sm:inline" /><span class="hl">AI in every one.</span></h2>
+      <div data-level-filter hidden class="mt-10 flex flex-wrap justify-center gap-2.5" role="group" aria-label="Filter courses by level">
+        <button type="button" data-level="all" aria-pressed="true" class="level-chip">All courses <span>{COURSES.length}</span></button>
+        {LEVELS.map((l) => <button type="button" data-level={l} aria-pressed="false" class="level-chip">{l} <span>{levelCount(l)}</span></button>)}
+      </div>
+      <ul data-course-grid class="bento mt-10">
+        {
+          bento.map(({ course: c, size }) => {
+            const big = size === "feature";
+            return (
+              <li data-level={c.level} class={`bento-${size}`}>
+                <a href={`/academy/${c.slug}`} class="card-ink bento-card relative flex h-full flex-col p-6 md:p-7" style={`--tint:${tintOf(c.icon)}`}>
+                  {big && (
+                    <div class="feature-art hidden lg:grid" aria-hidden="true">
+                      <span class="course-art-glow"></span>
+                      <svg class="absolute inset-0 h-full w-full" viewBox="0 0 208 208" fill="none"><ellipse cx="104" cy="128" rx="96" ry="30" stroke="rgb(18 18 18 / 24%)" stroke-width="1.2" stroke-dasharray="4 6"></ellipse></svg>
+                      <span class="relative"><Icon3D {...c.icon} size="7.5rem" float delay="-1.5s" /></span>
+                    </div>
+                  )}
+                  <div class="flex items-start justify-between gap-4">
+                    <span class:list={[big && "lg:hidden"]}><Icon3D {...c.icon} size={big ? "6.5rem" : size === "normal" ? "3.5rem" : "4.5rem"} float={big} delay={big ? "-1.5s" : "0s"} /></span>
+                    <div class="flex flex-wrap justify-end gap-1.5">
+                      <span class={`tag-ink track-${c.track}`}>{c.track}</span>
+                      <span class="tag-ink bg-[var(--color-surface)]">{c.level}</span>
+                    </div>
+                  </div>
+                  <h3 class:list={["mt-6 font-display font-bold tracking-tight", big ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"]}>{c.name}</h3>
+                  <p class="mt-3 leading-relaxed text-dim">{c.short}</p>
+                  {size !== "normal" && (
                     <ul class="mt-5 flex flex-wrap gap-1.5">
-                      {c.tools.slice(0, 5).map((t) => <li class="rounded-md bg-[var(--color-elevated)] px-2 py-1 font-mono text-[11px]">{t}</li>)}
+                      {c.tools.slice(0, big ? 6 : 4).map((t) => <li class="rounded-md bg-[var(--color-elevated)] px-2 py-1 font-mono text-[11px]">{t}</li>)}
                     </ul>
-                    <span class="mt-auto pt-6 font-display font-semibold">View syllabus →</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+                  )}
+                  {big && (
+                    <div class="hidden pt-8 lg:mt-auto lg:block">
+                      <p class="font-display text-sm font-semibold">What you'll build</p>
+                      <ul class="mt-3 space-y-2">
+                        {c.projects.map((p) => <li class="flex items-center gap-3"><span class="h-2 w-2 shrink-0 rounded-full bg-[var(--color-ink)]" aria-hidden="true"></span>{p.title}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                  {size === "tall" && (
+                    <ol class="hidden space-y-1.5 pt-8 text-sm lg:mt-auto lg:block">
+                      {c.modules.slice(0, 5).map((m, i) => <li class="flex gap-3"><span class="font-mono text-dim">{String(i + 1).padStart(2, "0")}</span>{m.title}</li>)}
+                    </ol>
+                  )}
+                  <span class:list={["mt-auto pt-6 font-display font-semibold", (big || size === "tall") && "lg:mt-0"]}>View syllabus →</span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
     </section>
 
     <!-- Method -->
@@ -104,7 +162,7 @@ const students = [
 
     <!-- Projects -->
     <section id="projects" class="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 md:py-28">
-      <h2 data-words class="max-w-4xl font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Projects you'll <span class="hl">actually ship.</span></h2>
+      <h2 data-reveal class="max-w-4xl font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Projects you'll <span class="hl">actually ship.</span></h2>
       <ul class="mt-14 grid gap-px overflow-hidden rounded-[1.25rem] border-2 border-[var(--color-ink)] bg-[var(--color-ink)] sm:grid-cols-2 lg:grid-cols-4">
         {projects.map((p) => (
           <li class="bg-[var(--color-surface)] p-7">
@@ -165,7 +223,9 @@ const students = [
 
     <!-- CTA -->
     <section class="mx-auto max-w-7xl px-6 pb-24">
-      <div class="term p-10 text-center md:p-16">
+      <div class="term relative p-10 text-center md:p-16">
+        <span class="absolute -top-8 left-6 hidden sm:block md:left-12"><Icon3D brand="openai" size="4rem" float /></span>
+        <span class="absolute -right-3 -bottom-8 hidden sm:block md:right-10"><Icon3D brand="premiere" size="3.5rem" float delay="-2.5s" /></span>
         <h2 class="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-5xl">Not sure which course fits? <span class="text-[#ffd23f]">Ask us.</span></h2>
         <p class="mx-auto mt-5 max-w-xl text-[#f6f3ec]/70">Free counselling on WhatsApp, or visit us at HiLITE Business Park, Kozhikode.</p>
         <a href={CONTACT.whatsappAcademy} target="_blank" rel="noopener" class="glow mt-8 inline-flex min-h-[52px] items-center rounded-full bg-[#ffd23f] px-8 font-display font-semibold text-[#121212] hover:bg-[#ff6a3d]">WhatsApp {CONTACT.phoneDisplay}</a>
@@ -173,3 +233,20 @@ const students = [
     </section>
   </main>
 </Base>
+
+<script>
+  const bar = document.querySelector<HTMLElement>("[data-level-filter]");
+  const grid = document.querySelector<HTMLElement>("[data-course-grid]");
+  if (bar && grid) {
+    bar.hidden = false;
+    bar.addEventListener("click", (e) => {
+      const btn = (e.target as Element).closest<HTMLButtonElement>("button[data-level]");
+      if (!btn) return;
+      const level = btn.dataset.level;
+      bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      grid.querySelectorAll<HTMLElement>(":scope > li").forEach((li) => {
+        li.hidden = level !== "all" && li.dataset.level !== level;
+      });
+    });
+  }
+</script>

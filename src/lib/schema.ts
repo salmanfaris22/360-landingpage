@@ -296,7 +296,7 @@ const academyNode = (description: string): Node => ({
   logo: { "@id": LOGO_ID },
 });
 
-type CourseLite = { slug: string; name: string; description: string; tools: string[]; careers: string[]; duration?: string };
+type CourseLite = { slug: string; name: string; description: string; tools: string[]; careers: string[]; level: string; duration?: string };
 
 const courseNode = (c: CourseLite): Node => {
   const u = url(`/academy/${c.slug}`);
@@ -309,7 +309,7 @@ const courseNode = (c: CourseLite): Node => {
     provider: { "@id": ACADEMY_ID },
     inLanguage: "en",
     teaches: c.tools,
-    educationalLevel: "Beginner to professional",
+    educationalLevel: c.level,
     hasCourseInstance: [
       {
         "@type": "CourseInstance",

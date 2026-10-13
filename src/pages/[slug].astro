@@ -2,6 +2,7 @@
 import Base from "@/layouts/Base.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import CtaBlock from "@/components/CtaBlock.astro";
+import Button from "@/components/Button.astro";
 import { CONTACT } from "@/lib/data";
 import { SEO_PAGES, getSeoPage, type SeoPage, type Cluster } from "@/lib/seo-pages";
 import { servicePageGraph, type Crumb } from "@/lib/schema";
@@ -47,19 +48,15 @@ const schema = servicePageGraph({ ...page, crumbs });
       }
       {page.intro.map((p) => <p class="mt-6 max-w-3xl text-lg leading-relaxed text-dim">{p}</p>)}
       <div class="mt-10 flex flex-wrap gap-4">
-        <a href={CONTACT.whatsapp} target="_blank" rel="noopener" class="inline-flex min-h-[48px] items-center rounded-full bg-white px-7 py-3 text-sm font-medium text-black hover:opacity-85">
-          Get a free consultation on WhatsApp
-        </a>
-        <a href="/contact" class="inline-flex min-h-[48px] items-center rounded-full border border-white/25 px-7 py-3 text-sm hover:border-white/60">
-          Get a project estimate
-        </a>
+        <Button href={CONTACT.whatsapp} external size="sm">Get a free consultation on WhatsApp</Button>
+        <Button href="/contact" variant="ghost" size="sm">Get a project estimate</Button>
       </div>
     </header>
 
     <div class="mt-20 space-y-16 md:mt-28">
       {
         page.sections.map((section) => (
-          <section class="border-t border-line pt-12">
+          <section data-reveal class="border-t border-line pt-12">
             <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
               <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">{section.heading}</h2>
               <div class="prose-dim">
@@ -67,7 +64,7 @@ const schema = servicePageGraph({ ...page, crumbs });
                 {section.bullets && (
                   <dl class="mt-2 grid gap-5 sm:grid-cols-2">
                     {section.bullets.map((b) => (
-                      <div class="rounded-2xl border border-line p-6">
+                      <div data-tilt="5" class="rounded-2xl border border-line p-6 transition-colors hover:border-white/20">
                         <dt class="font-display text-base font-semibold">{b.title}</dt>
                         <dd class="mt-2 text-sm leading-relaxed text-dim">{b.text}</dd>
                       </div>
@@ -82,7 +79,7 @@ const schema = servicePageGraph({ ...page, crumbs });
 
       {
         page.steps && (
-          <section class="border-t border-line pt-12" aria-labelledby="process-heading">
+          <section data-reveal class="border-t border-line pt-12" aria-labelledby="process-heading">
             <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
               <h2 id="process-heading" class="font-display text-2xl font-semibold tracking-tight md:text-3xl">
                 How it works
@@ -105,7 +102,7 @@ const schema = servicePageGraph({ ...page, crumbs });
 
       {
         page.table && (
-          <section class="border-t border-line pt-12">
+          <section data-reveal class="border-t border-line pt-12">
             <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
               <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">{page.table.caption}</h2>
               <div class="overflow-x-auto">
@@ -128,7 +125,7 @@ const schema = servicePageGraph({ ...page, crumbs });
         )
       }
 
-      <section class="border-t border-line pt-12">
+      <section data-reveal class="border-t border-line pt-12">
         <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
           <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">What we deliver</h2>
           <ul class="flex flex-wrap gap-3">
@@ -137,7 +134,7 @@ const schema = servicePageGraph({ ...page, crumbs });
         </div>
       </section>
 
-      <section class="border-t border-line pt-12" aria-labelledby="faq-heading">
+      <section data-reveal class="border-t border-line pt-12" aria-labelledby="faq-heading">
         <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
           <h2 id="faq-heading" class="font-display text-2xl font-semibold tracking-tight md:text-3xl">Frequently asked questions</h2>
           <div class="divide-y divide-line border-y border-line">
@@ -156,7 +153,7 @@ const schema = servicePageGraph({ ...page, crumbs });
         </div>
       </section>
 
-      <section class="border-t border-line pt-12">
+      <section data-reveal class="border-t border-line pt-12">
         <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
           <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">Related services</h2>
           <ul class="grid gap-4 sm:grid-cols-2">

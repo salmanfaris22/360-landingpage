@@ -1,5 +1,6 @@
 ---
 import { CONTACT } from "@/lib/data";
+import Button from "@/components/Button.astro";
 interface Props { heading?: string; text?: string }
 const {
   heading = "Tell us what you're building — we'll reply within 24 hours.",
@@ -7,16 +8,12 @@ const {
 } = Astro.props;
 ---
 
-<section class="rounded-3xl border border-line p-8 text-center md:p-16">
+<section data-reveal class="rounded-3xl border border-line p-8 text-center md:p-16">
   <p class="label-mono">Free consultation · HiLITE Business Park, Calicut</p>
   <h2 class="mx-auto mt-6 max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-4xl">{heading}</h2>
   <p class="mx-auto mt-4 max-w-xl leading-relaxed text-dim">{text}</p>
   <div class="mt-8 flex flex-wrap justify-center gap-4">
-    <a href={CONTACT.whatsapp} target="_blank" rel="noopener" class="inline-flex min-h-[48px] items-center rounded-full bg-white px-7 py-3 text-sm font-medium text-black hover:opacity-85">
-      WhatsApp {CONTACT.phoneDisplay}
-    </a>
-    <a href="/contact" class="inline-flex min-h-[48px] items-center rounded-full border border-white/25 px-7 py-3 text-sm hover:border-white/60">
-      Discuss your project
-    </a>
+    <Button href={CONTACT.whatsapp} external size="sm">WhatsApp {CONTACT.phoneDisplay}</Button>
+    <Button href="/contact" variant="ghost" size="sm">Discuss your project</Button>
   </div>
 </section>

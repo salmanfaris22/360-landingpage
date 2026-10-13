@@ -13,7 +13,25 @@
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
+  --animate-marquee: marquee 36s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-aurora: aurora 16s ease-in-out infinite alternate;
+  --animate-ping-slow: ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
 
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes aurora {
+    0% { transform: translate(-6%, -4%) scale(1) rotate(0deg); opacity: 0.45; }
+    100% { transform: translate(7%, 6%) scale(1.18) rotate(10deg); opacity: 0.75; }
+  }
+  @keyframes ping-slow {
+    75%, 100% { transform: scale(2.4); opacity: 0; }
+  }
 }
 
 @theme inline {
@@ -92,6 +110,74 @@ body {
 }
 
 
+/* Hero entrance — pure CSS so the headline (the LCP element) animates in at
+   first paint instead of waiting for JS. Fade-up, not a clip mask: text at
+   opacity 0 still registers its paint for LCP. */
+.hero-line {
+  animation: hero-rise 1.3s var(--ease-expo) both;
+  animation-delay: calc(0.15s + var(--stagger, 0) * 90ms);
+}
+.hero-fade {
+  animation: hero-fade-up 1s var(--ease-expo) both;
+  animation-delay: calc(0.5s + var(--stagger, 0) * 120ms);
+}
+.hero-stat {
+  animation: hero-pop 1s var(--ease-expo) both;
+  animation-delay: calc(0.9s + var(--stagger, 0) * 150ms);
+}
+@keyframes hero-rise { from { opacity: 0; transform: translateY(28px); } }
+@keyframes hero-fade-up { from { opacity: 0; transform: translateY(24px); } }
+@keyframes hero-pop { from { opacity: 0; transform: scale(0.85); } }
+
+/* three.js galaxy canvas fades in once mounted */
+[data-galaxy] { opacity: 0; transition: opacity 1.5s ease-out; }
+[data-galaxy].is-ready { opacity: 1; }
+[data-galaxy] canvas { width: 100%; height: 100%; display: block; }
+
+/* Film-grain overlay, sits above everything, never intercepts input */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* Word-mask heading reveal (split by motion.ts) */
+.wr-slot { display: inline-block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; vertical-align: top; }
+.wr-word { display: inline-block; white-space: pre; will-change: transform; }
+
+/* Custom cursor (fine pointers, added by motion.ts) */
+.cursor-layer { position: fixed; inset: 0; z-index: 120; pointer-events: none; }
+.cursor-layer > div { position: absolute; top: 0; left: 0; opacity: 0; border-radius: 9999px; }
+.cursor-glow { width: 20rem; height: 20rem; margin: -10rem 0 0 -10rem; background: radial-gradient(circle, rgb(139 92 246 / 14%) 0%, rgb(77 124 255 / 7%) 40%, transparent 70%); }
+.cursor-ring { width: 2.5rem; height: 2.5rem; margin: -1.25rem 0 0 -1.25rem; border: 1px solid rgb(255 255 255 / 40%); display: flex; align-items: center; justify-content: center; }
+.cursor-ring span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
+.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--color-cyan); }
+
+/* Pill button with a sliding gradient fill */
+.btn { position: relative; overflow: hidden; isolation: isolate; transition: color 0.3s; }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; transform: translateY(102%); transition: transform 0.5s var(--ease-expo); }
+.btn:hover::before { transform: translateY(0); }
+.btn-solid { background: #fff; color: #000; }
+.btn-solid::before { background: linear-gradient(90deg, var(--color-blue), var(--color-violet), var(--color-cyan)); }
+.btn-solid:hover { color: #fff; }
+.btn-ghost { border: 1px solid rgb(255 255 255 / 25%); color: #fff; }
+.btn-ghost::before { background: #fff; }
+.btn-ghost:hover { color: #000; }
+.btn svg { transition: transform 0.5s var(--ease-expo); }
+.btn:hover svg { transform: translate(4px, -4px); }
+
+/* Editorial service index: hovered row slides, siblings dim */
+[data-service-list] details { transition: opacity 0.5s; }
+[data-service-list].is-hovering details:not(.is-active):not([open]) { opacity: 0.3; }
+[data-service-list] summary .svc-title { transition: transform 0.5s var(--ease-expo); }
+@media (min-width: 768px) { [data-service-list] details.is-active summary .svc-title { transform: translateX(0.75rem); } }
+[data-service-list] .svc-plus { transition: transform 0.5s var(--ease-expo), background 0.3s, color 0.3s; }
+[data-service-list] details[open] .svc-plus { transform: rotate(45deg); background: #fff; color: #000; }
+[data-service-chip] { transition: opacity 0.3s; }
 
 /* Animated link underline */
 .link-underline {
@@ -124,6 +210,7 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .hero-line, .hero-fade, .hero-stat { animation: none; }
 }
 
 /* Long-form copy on service pages */
@@ -141,3 +228,8 @@ table.data th, table.data td { text-align: left; padding: 0.875rem 1rem; border-
 table.data thead th { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-dim); font-weight: 400; }
 table.data tbody th { color: #fff; font-weight: 500; }
 table.data td { color: var(--color-dim); }
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }

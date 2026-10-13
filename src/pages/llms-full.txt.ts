@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { SEO_PAGES } from "@/lib/seo-pages";
 import { FAQS } from "@/lib/data";
 import { BRAND_DESCRIPTION } from "@/lib/schema";
+import { ACADEMY, COURSES } from "@/lib/academy";
 
 // Plain-text mirror of the service pages (identical to what visitors see).
 export const GET: APIRoute = ({ site }) => {
@@ -18,6 +19,15 @@ export const GET: APIRoute = ({ site }) => {
     if (p.steps) out.push("### Process", ...p.steps.map((s, i) => `${i + 1}. ${s.title}: ${s.text}`), "");
     if (p.table) out.push(`### ${p.table.caption}`, `| ${p.table.head.join(" | ")} |`, `|${p.table.head.map(() => "---").join("|")}|`, ...p.table.rows.map((r) => `| ${r.join(" | ")} |`), "");
     out.push("### FAQ", ...p.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
+  }
+  out.push("## Media 360 Academy", `URL: ${new URL("/academy", site).href}`, "", ACADEMY.description, "");
+  for (const c of COURSES) {
+    out.push(`## ${c.h1}`, `URL: ${new URL(`/academy/${c.slug}`, site).href}`, "", c.answer, "");
+    out.push("### Who it is for", ...c.forWho.map((w) => `- ${w}`), "");
+    out.push("### Syllabus", ...c.modules.map((m, i) => `${i + 1}. ${m.title}: ${m.topics.join("; ")}`), "");
+    out.push("### Projects", ...c.projects.map((p) => `- ${p.title}: ${p.text}`), "");
+    out.push(`### Tools\n${c.tools.join(", ")}`, "", `### Careers\n${c.careers.join(", ")}`, "");
+    out.push("### FAQ", ...c.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
   }
   return new Response(out.join("\n"), { headers: { "Content-Type": "text/plain; charset=utf-8" } });
 };

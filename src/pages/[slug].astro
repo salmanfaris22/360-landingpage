@@ -39,8 +39,7 @@ const schema = servicePageGraph({ ...page, crumbs, image: image.src });
     <Breadcrumbs items={crumbs} />
 
     <header class="max-w-4xl">
-      <p class="label-mono">{page.eyebrow}</p>
-      <h1 class="mt-6 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">{page.h1}</h1>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">{page.h1}</h1>
       {
         page.answer && (
           <p class="mt-8 max-w-3xl border-l-2 border-cyan pl-5 text-lg leading-relaxed text-white/90" data-speakable>
@@ -49,7 +48,7 @@ const schema = servicePageGraph({ ...page, crumbs, image: image.src });
         )
       }
       {page.intro.map((p) => <p class="mt-6 max-w-3xl text-lg leading-relaxed text-dim">{p}</p>)}
-      <div class="mt-10 flex flex-wrap gap-4">
+      <div class="mt-10 flex flex-wrap justify-center gap-4 sm:justify-start">
         <Button href={CONTACT.whatsapp} external size="sm">Get a free consultation on WhatsApp</Button>
         <Button href="/contact" variant="ghost" size="sm">Get a project estimate</Button>
       </div>

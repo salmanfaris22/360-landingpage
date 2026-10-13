@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { CONTACT } from "@/lib/data";
 import { pagesInCluster, type Cluster } from "@/lib/seo-pages";
 import { BRAND_DESCRIPTION } from "@/lib/schema";
+import { ACADEMY, COURSES } from "@/lib/academy";
 
 // llmstxt.org summary: same facts as the visible site, never anything extra.
 export const GET: APIRoute = ({ site }) => {
@@ -18,7 +19,12 @@ export const GET: APIRoute = ({ site }) => {
     ...section("Software, apps & AI", "software"),
     ...section("Branding & creative", "branding"),
     ...section("HiLITE Business Park, Calicut & Kerala", "local"),
+    "## Media 360 Academy (courses)",
+    `- [Media 360 Academy](${u("/academy")}): ${ACADEMY.description}`,
+    ...COURSES.map((c) => `- [${c.name}](${u(`/academy/${c.slug}`)}): ${c.short}`),
+    "",
     "## Company",
+    `- [Agency home](${u("/agency")})`,
     `- [About & key facts](${u("/about")})`,
     `- [All services](${u("/services")})`,
     `- [Office at HiLITE Business Park, Calicut](${u("/hilite-business-park-calicut")})`,

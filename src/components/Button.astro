@@ -1,12 +1,13 @@
 ---
 /** Magnetic pill button with a sliding-fill hover (motion in motion.ts). */
-interface Props { href: string; variant?: "solid" | "ghost"; external?: boolean; size?: "md" | "sm" }
-const { href, variant = "solid", external = false, size = "md" } = Astro.props;
+interface Props { href: string; variant?: "solid" | "ghost"; external?: boolean; size?: "md" | "sm"; side?: "agency" | "academy" }
+const { href, variant = "solid", external = false, size = "md", side } = Astro.props;
 ---
 
 <span data-magnetic class="inline-block">
   <a
     href={href}
+    data-side-link={side}
     {...(external ? { target: "_blank", rel: "noopener" } : {})}
     class:list={[
       "btn inline-flex items-center gap-3 rounded-full font-display font-medium tracking-wide",

@@ -189,13 +189,13 @@ function webPageNode(opts: {
 const graph = (nodes: Node[]) => ({ "@context": "https://schema.org", "@graph": nodes });
 
 /** Homepage graph. */
-export function homeGraph(title: string, description: string, faqs: Faq[]) {
+export function homeGraph(title: string, description: string, faqs: Faq[], path = "/") {
   return graph([
     organizationNode,
     websiteNode,
     logoNode,
-    webPageNode({ path: "/", title, description, hasBreadcrumb: false }),
-    faqNode("/", faqs),
+    webPageNode({ path, title, description, hasBreadcrumb: false }),
+    faqNode(path, faqs),
   ]);
 }
 
@@ -278,3 +278,93 @@ export function servicePageGraph(page: {
 
 /** Serialise JSON-LD safely: `<` escaped so copy can never close the script tag. */
 export const jsonLd = (data: object) => JSON.stringify(data).replace(/</g, "\\u003c");
+
+/* ── Media 360 Academy ──────────────────────────────────────────────── */
+
+const ACADEMY_ID = `${SITE_URL}/academy#academy`;
+
+const academyNode = (description: string): Node => ({
+  "@type": "EducationalOrganization",
+  "@id": ACADEMY_ID,
+  name: "Media 360 Academy",
+  description,
+  url: url("/academy"),
+  parentOrganization: { "@id": ORG_ID },
+  address: organizationNode.address,
+  telephone: CONTACT.phone,
+  email: CONTACT.email,
+  logo: { "@id": LOGO_ID },
+});
+
+type CourseLite = { slug: string; name: string; description: string; tools: string[]; careers: string[]; duration?: string };
+
+const courseNode = (c: CourseLite): Node => {
+  const u = url(`/academy/${c.slug}`);
+  return {
+    "@type": "Course",
+    "@id": `${u}#course`,
+    name: c.name,
+    description: c.description,
+    url: u,
+    provider: { "@id": ACADEMY_ID },
+    inLanguage: "en",
+    teaches: c.tools,
+    educationalLevel: "Beginner to professional",
+    hasCourseInstance: [
+      {
+        "@type": "CourseInstance",
+        courseMode: "Onsite",
+        location: { "@type": "Place", name: "HiLITE Business Park, Kozhikode", address: organizationNode.address },
+        ...(c.duration ? { courseWorkload: c.duration } : {}),
+      },
+      { "@type": "CourseInstance", courseMode: "Online", ...(c.duration ? { courseWorkload: c.duration } : {}) },
+    ],
+  };
+};
+
+/** Academy hub: the academy entity + an ItemList of every course. */
+export function academyGraph(opts: { title: string; description: string; academyDescription: string; courses: CourseLite[]; faqs: Faq[]; crumbs: Crumb[] }) {
+  const path = "/academy";
+  return graph([
+    organizationNode,
+    websiteNode,
+    logoNode,
+    academyNode(opts.academyDescription),
+    webPageNode({ path, title: opts.title, description: opts.description, type: "CollectionPage", about: ACADEMY_ID, hasBreadcrumb: true }),
+    breadcrumbNode(path, opts.crumbs),
+    {
+      "@type": "ItemList",
+      "@id": `${url(path)}#courses`,
+      name: "Media 360 Academy courses",
+      itemListElement: opts.courses.map((c, i) => ({ "@type": "ListItem", position: i + 1, item: courseNode(c) })),
+    },
+    faqNode(path, opts.faqs),
+  ]);
+}
+
+/** Gateway at / : the brand with its two sides, the agency and the academy. */
+export function gatewayGraph(title: string, description: string, academyDescription: string) {
+  return graph([
+    organizationNode,
+    websiteNode,
+    logoNode,
+    academyNode(academyDescription),
+    webPageNode({ path: "/", title, description, hasBreadcrumb: false }),
+  ]);
+}
+
+/** Single course page. */
+export function courseGraph(opts: { course: CourseLite; title: string; description: string; academyDescription: string; faqs: Faq[]; crumbs: Crumb[] }) {
+  const path = `/academy/${opts.course.slug}`;
+  const node = courseNode(opts.course);
+  return graph([
+    organizationNode,
+    websiteNode,
+    logoNode,
+    academyNode(opts.academyDescription),
+    node,
+    webPageNode({ path, title: opts.title, description: opts.description, about: node["@id"] as string, hasBreadcrumb: true }),
+    breadcrumbNode(path, opts.crumbs),
+    faqNode(path, opts.faqs),
+  ]);
+}

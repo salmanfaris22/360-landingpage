@@ -1,0 +1,151 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Button from "@/components/Button.astro";
+import { CONTACT } from "@/lib/data";
+import { ACADEMY, COURSES, getCourse, CAREER_SUPPORT, type Course } from "@/lib/academy";
+import { courseGraph, type Crumb } from "@/lib/schema";
+
+export function getStaticPaths() {
+  return COURSES.map((course) => ({ params: { slug: course.slug }, props: { course } }));
+}
+
+const { course } = Astro.props as { course: Course };
+const path = `/academy/${course.slug}`;
+const crumbs: Crumb[] = [
+  { name: "Home", path: "/" },
+  { name: "Academy", path: "/academy" },
+  { name: course.name, path },
+];
+const related = course.related.map(getCourse).filter((c): c is Course => Boolean(c));
+const schema = courseGraph({ course, title: course.title, description: course.description, academyDescription: ACADEMY.description, faqs: course.faqs, crumbs });
+const glance = [
+  { k: "Track", v: course.track },
+  { k: "Mode", v: "Offline in Calicut · Online" },
+  { k: "Where", v: "HiLITE Business Park, Kozhikode" },
+  { k: "Duration & fees", v: course.duration ?? "Shared at counselling" },
+];
+---
+
+<Base title={course.title} description={course.description} ogSlug={`academy-${course.slug}`} schema={schema} side="academy">
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-14 md:pt-20">
+    <Breadcrumbs items={crumbs} />
+
+    <header class="max-w-4xl">
+      <span class={`tag-ink track-${course.track}`}>{course.track}</span>
+      <h1 class="mt-6 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.02] font-bold tracking-[-0.035em]">{course.h1}</h1>
+      <p class="mt-8 max-w-3xl text-lg leading-relaxed text-white/90" data-speakable>{course.answer}</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4 sm:justify-start">
+        <Button href={CONTACT.whatsappAcademy} external size="sm">Free counselling on WhatsApp</Button>
+        <Button href="#syllabus" variant="ghost" size="sm">See the syllabus</Button>
+      </div>
+    </header>
+
+    <dl class="card-ink mt-14 grid gap-px overflow-hidden bg-[var(--color-ink)] p-0 sm:grid-cols-2 lg:grid-cols-4">
+      {glance.map((g) => (
+        <div class="bg-[var(--color-surface)] p-6">
+          <dt class="font-mono text-[11px] text-dim">{g.k}</dt>
+          <dd class="mt-1 font-display text-lg font-semibold">{g.v}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <div class="mt-20 space-y-20 md:mt-28 md:space-y-28">
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Who this course is for</h2>
+        <ul class="grid gap-4 sm:grid-cols-3">
+          {course.forWho.map((w) => <li class="card-ink p-5 leading-relaxed">{w}</li>)}
+        </ul>
+      </section>
+
+      <section id="syllabus" class="scroll-mt-24 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Syllabus</h2>
+        <ol class="divide-y-2 divide-[var(--color-ink)] border-y-2 border-[var(--color-ink)]">
+          {course.modules.map((m, i) => (
+            <li class="grid grid-cols-[3.5rem_1fr] gap-4 py-6">
+              <span class="font-display text-3xl font-bold text-cyan">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 class="font-display text-xl font-semibold">{m.title}</h3>
+                <ul class="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-dim">
+                  {m.topics.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Projects you'll build</h2>
+        <ul class="grid gap-6 sm:grid-cols-3">
+          {course.projects.map((p) => (
+            <li data-reveal class="card-ink p-6">
+              <h3 class="font-display text-lg font-bold"><span class="hl">{p.title}</span></h3>
+              <p class="mt-3 text-sm leading-relaxed text-dim">{p.text}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Tools you'll use</h2>
+        <ul class="flex flex-wrap gap-2.5">
+          {course.tools.map((t) => <li class="tag-ink bg-[var(--color-surface)] text-[0.8125rem]">{t}</li>)}
+        </ul>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Careers after this course</h2>
+        <div class="grid gap-6 sm:grid-cols-2">
+          <ul class="space-y-3">
+            {course.careers.map((c) => <li class="font-display text-xl font-semibold">{c}</li>)}
+          </ul>
+          <div class="card-ink p-6">
+            <h3 class="font-display text-lg font-bold">Career support</h3>
+            <ul class="mt-4 space-y-2 text-sm">
+              {CAREER_SUPPORT.map((c) => <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">✓</span>{c}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" class="font-display text-3xl font-bold tracking-tight">Frequently asked questions</h2>
+        <div class="divide-y-2 divide-[var(--color-ink)] border-y-2 border-[var(--color-ink)]">
+          {course.faqs.map((f, i) => (
+            <details class="group py-5" open={i === 0}>
+              <summary class="flex cursor-pointer items-baseline justify-between gap-6 font-display text-lg font-medium">
+                <h3>{f.q}</h3><span aria-hidden="true" class="text-cyan group-open:rotate-45">+</span>
+              </summary>
+              <p class="mt-4 max-w-2xl leading-relaxed text-dim">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Related courses</h2>
+        <ul class="grid gap-5 sm:grid-cols-3">
+          {related.map((r) => (
+            <li class="h-full">
+              <a href={`/academy/${r.slug}`} class="card-ink flex h-full flex-col p-6">
+                <span class={`tag-ink self-start track-${r.track}`}>{r.track}</span>
+                <span class="mt-4 font-display text-lg font-bold">{r.keyword}</span>
+                <span class="mt-auto pt-4 text-sm font-semibold">View →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="term mb-24 p-10 text-center md:p-16">
+        <h2 class="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-4xl">Ready to start {course.name}?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-[#f6f3ec]/70">Ask about the next batch, fees and whether this is the right course for you.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href={CONTACT.whatsappAcademy} target="_blank" rel="noopener" class="glow inline-flex min-h-[48px] items-center rounded-full bg-[#ffd23f] px-7 font-display font-semibold text-[#121212] hover:bg-[#ff6a3d]">WhatsApp {CONTACT.phoneDisplay}</a>
+          <a href="/academy#courses" class="inline-flex min-h-[48px] items-center rounded-full border border-[#f6f3ec]/30 px-7 font-display font-semibold text-[#f6f3ec] hover:bg-[#f6f3ec] hover:text-[#121212]">All courses</a>
+        </div>
+      </section>
+    </div>
+  </main>
+</Base>

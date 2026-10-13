@@ -1,70 +1,97 @@
 ---
 import { CONTACT } from "@/lib/data";
-import { pagesInCluster } from "@/lib/seo-pages";
 
-const columns = [
-  { label: "Digital Marketing", pages: pagesInCluster("marketing") },
-  { label: "Web Development", pages: pagesInCluster("web") },
-  { label: "Software, Apps & AI", pages: pagesInCluster("software") },
-  { label: "Branding & Creative", pages: pagesInCluster("branding") },
-];
-const local = pagesInCluster("local");
+/**
+ * Compact footer: brand, NAP and the main headings only — each heading links
+ * to its hub page, where the full list of service / course pages lives.
+ * agency + gateway: agency hubs (+ the academy) · academy: academy sections (+ the agency).
+ */
+interface Props { side?: "agency" | "academy" | "gateway" }
+const { side = "agency" } = Astro.props;
+const academy = side === "academy";
+
+type Heading = { label: string; href: string; side?: "agency" | "academy" };
+const headings: Heading[] = academy
+  ? [
+      { label: "Courses", href: "/academy#courses" },
+      { label: "Projects", href: "/academy#projects" },
+      { label: "Students", href: "/academy#students" },
+      { label: "Careers", href: "/academy#careers" },
+      { label: "Questions", href: "/academy#faq" },
+      { label: "Media 360 Agency", href: "/agency", side: "agency" },
+    ]
+  : [
+      { label: "Digital Marketing", href: "/digital-marketing-kozhikode" },
+      { label: "Web Development", href: "/web-development-kozhikode" },
+      { label: "Software, Apps & AI", href: "/software-development-company-kozhikode" },
+      { label: "Branding & Creative", href: "/branding-agency-kozhikode" },
+      { label: "HiLITE Business Park & Calicut", href: "/hilite-business-park-calicut" },
+      { label: "Media 360 Academy", href: "/academy", side: "academy" },
+    ];
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-line">
-  <div class="mx-auto max-w-7xl px-6 pt-20 pb-10">
-    <div class="grid gap-12 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+  <div class="mx-auto max-w-7xl px-6 pt-16 pb-10">
+    <div class="grid gap-12 lg:grid-cols-[1fr_2fr]">
       <div>
-        <a href="/" class="font-display text-5xl leading-none font-bold tracking-[-0.04em]">MEDIA 360<span class="text-gradient">.</span></a>
-        <p class="mt-6 max-w-sm text-sm leading-relaxed text-dim">
-          Media 360 Concept is a digital marketing, web development, software, AI automation and branding agency at
-          HiLITE Business Park, Kozhikode (Calicut), Kerala — serving businesses across Kerala, India, KSA, the UAE and the USA.
-        </p>
-        <address class="mt-6 space-y-2 text-sm not-italic text-dim">
+        {
+          academy ? (
+            <a href="/academy" class="font-display text-4xl leading-none font-bold tracking-[-0.04em] md:text-5xl">
+              MEDIA 360 <span class="hl">ACADEMY</span>
+            </a>
+          ) : (
+            <a href={side === "gateway" ? "/" : "/agency"} class="font-display text-4xl leading-none font-bold tracking-[-0.04em] md:text-5xl">
+              MEDIA 360<span class="text-gradient">.</span>
+            </a>
+          )
+        }
+        <address class="mt-6 space-y-1.5 text-sm not-italic text-dim">
           <p>
             <a href="/hilite-business-park-calicut" class="link-underline hover:text-white">
               {CONTACT.postal.street}, {CONTACT.postal.locality}, {CONTACT.postal.region} {CONTACT.postal.postalCode}
             </a>
           </p>
-          <p><a href={`tel:${CONTACT.phone}`} class="link-underline hover:text-white">{CONTACT.phoneDisplay}</a></p>
-          <p><a href={`mailto:${CONTACT.email}`} class="link-underline hover:text-white">{CONTACT.email}</a></p>
-          <p><a href={CONTACT.whatsapp} target="_blank" rel="noopener" class="link-underline hover:text-white">WhatsApp us</a></p>
+          <p>
+            <a href={`tel:${CONTACT.phone}`} class="link-underline hover:text-white">{CONTACT.phoneDisplay}</a>
+            <span aria-hidden="true"> · </span>
+            <a href={`mailto:${CONTACT.email}`} class="link-underline hover:text-white">{CONTACT.email}</a>
+          </p>
         </address>
       </div>
-      {
-        columns.map((col) => (
-          <nav aria-label={col.label}>
-            <p class="label-mono mb-5">{col.label}</p>
-            <ul class="space-y-3">
-              {col.pages.map((p) => (
-                <li>
-                  <a href={`/${p.slug}`} class="link-underline text-sm text-dim hover:text-white">
-                    {p.navLabel}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))
-      }
+
+      <nav aria-label="Footer">
+        <ul class="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            headings.map((h) => (
+              <li>
+                <a
+                  href={h.href}
+                  data-side-link={h.side}
+                  class="group flex items-center justify-between gap-4 border-b border-line py-4 font-display text-lg font-semibold tracking-tight transition-colors hover:text-cyan"
+                >
+                  {h.label}
+                  <span aria-hidden="true" class="text-dim transition-transform group-hover:translate-x-1 group-hover:text-cyan">→</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </div>
 
-    <nav aria-label="HiLITE Business Park & Calicut" class="mt-14 border-t border-line pt-10">
-      <p class="label-mono mb-5">HiLITE Business Park &amp; Calicut</p>
-      <ul class="flex flex-wrap gap-x-6 gap-y-3">
-        {local.map((p) => (
-          <li><a href={`/${p.slug}`} class="link-underline text-sm text-dim hover:text-white">{p.navLabel}</a></li>
-        ))}
-      </ul>
-    </nav>
-
-    <div class="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 font-mono text-[11px] tracking-[0.15em] text-dim uppercase">
+    <div class="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 font-mono text-[11px] tracking-[0.15em] text-dim uppercase">
       <p>© {year} Media 360 Concept</p>
       <ul class="flex flex-wrap gap-6">
-        <li><a href="/services" class="hover:text-white">All services</a></li>
-        <li><a href="/about" class="hover:text-white">About</a></li>
-        <li><a href="/faq" class="hover:text-white">FAQ</a></li>
+        {
+          !academy && (
+            <>
+              <li><a href="/services" class="hover:text-white">All services</a></li>
+              <li><a href="/about" class="hover:text-white">About</a></li>
+              <li><a href="/faq" class="hover:text-white">FAQ</a></li>
+            </>
+          )
+        }
         <li><a href="/contact" class="hover:text-white">Contact</a></li>
         <li><a href="/privacy-policy" class="hover:text-white">Privacy</a></li>
         <li><a href="/terms" class="hover:text-white">Terms</a></li>

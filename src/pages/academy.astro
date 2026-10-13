@@ -1,0 +1,175 @@
+---
+import Base from "@/layouts/Base.astro";
+import Button from "@/components/Button.astro";
+import { CONTACT } from "@/lib/data";
+import { ACADEMY, COURSES, TRACKS, ACADEMY_METHOD, CAREER_SUPPORT, ACADEMY_FAQS } from "@/lib/academy";
+import { academyGraph } from "@/lib/schema";
+
+const title = "AI-First Coding & Video Editing Courses in Calicut";
+const description =
+  "Media 360 Academy, Calicut: MERN, Python full stack, Golang, frontend, AI developer, vibe coding, FDE and AI video editing courses. Offline at HiLITE + online.";
+const crumbs = [{ name: "Home", path: "/" }, { name: "Academy", path: "/academy" }];
+const schema = academyGraph({ title, description, academyDescription: ACADEMY.description, courses: COURSES, faqs: ACADEMY_FAQS, crumbs });
+
+const trackBlurb: Record<(typeof TRACKS)[number], string> = {
+  Development: "Full stack, backend and frontend — the core developer careers.",
+  AI: "Build, ship and deploy AI products and agents.",
+  Creative: "Edit video like a studio, with AI in the timeline.",
+};
+const roles = [...new Set(COURSES.flatMap((c) => c.careers))];
+const projects = COURSES.map((c) => ({ ...c.projects[0], course: c }));
+const students = [
+  { who: "Freshers & students", text: "Start from zero and graduate with deployed projects, not just notes.", go: "mern-stack-course-kozhikode" },
+  { who: "Career switchers", text: "Move from non-IT work into development with a guided, project-first path.", go: "python-full-stack-course-kozhikode" },
+  { who: "Working developers", text: "Add AI engineering, Go or forward deployed skills to what you already know.", go: "ai-developer-vibe-coding-course-kozhikode" },
+  { who: "Creators & marketers", text: "Produce reels, ads and brand films with Premiere, After Effects, DaVinci and AI.", go: "ai-video-editing-course-kozhikode" },
+];
+---
+
+<Base title={title} description={description} ogSlug="academy" schema={schema} side="academy">
+  <main id="main">
+    <!-- Hero -->
+    <section class="mx-auto grid max-w-7xl items-center gap-14 px-6 pt-16 pb-20 md:pt-24 lg:grid-cols-[1.25fr_1fr] lg:pb-28">
+      <div class="text-center lg:text-left">
+        <h1 class="font-display font-bold tracking-[-0.04em]">
+          <span class="hero-line block text-[clamp(2.8rem,8vw,6.5rem)] leading-[0.95]" style="--stagger:0">Learn to <span class="hl">build</span></span>
+          <span class="hero-line block text-[clamp(2.8rem,8vw,6.5rem)] leading-[0.95]" style="--stagger:1">with AI.</span>
+          <span class="hero-line mt-6 block text-[clamp(1.25rem,2.4vw,1.75rem)] leading-snug font-semibold tracking-tight" style="--stagger:2">
+            Coding &amp; video editing courses in Calicut
+          </span>
+        </h1>
+        <div class="hero-fade mt-10 flex flex-wrap justify-center gap-4 lg:justify-start" style="--stagger:2">
+          <Button href={CONTACT.whatsappAcademy} external>Free course counselling</Button>
+          <Button href="#courses" variant="ghost">See all courses</Button>
+        </div>
+      </div>
+
+      <div aria-hidden="true" class="term hero-fade p-6 font-mono text-[13px] leading-relaxed md:p-8" style="--stagger:3">
+        <div class="mb-5 flex gap-2"><span class="h-3 w-3 rounded-full bg-[#ff6a3d]"></span><span class="h-3 w-3 rounded-full bg-[#ffd23f]"></span><span class="h-3 w-3 rounded-full bg-[#6ee7b7]"></span></div>
+        <p><span class="text-[#ffd23f]">you ›</span> build a clinic booking app, MERN, with auth</p>
+        <p class="mt-3 text-[#f6f3ec]/60">ai › scaffolding routes, models, React pages…</p>
+        <p class="mt-1 text-[#f6f3ec]/60">ai › 14 files written · 3 tests failing</p>
+        <p class="mt-3"><span class="text-[#ffd23f]">you ›</span> why is the slot overlap test failing?</p>
+        <p class="mt-3 text-[#6ee7b7]">✓ fixed the date comparison · 28/28 passing</p>
+        <p class="mt-1 text-[#6ee7b7]">✓ deployed → clinic-demo.vercel.app</p>
+        <p class="mt-3"><span class="text-[#ffd23f]">you ›</span> <span class="caret"></span></p>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses" class="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 md:py-28">
+      <h2 data-words class="max-w-4xl font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Eight courses. <span class="hl">AI in every one.</span></h2>
+      {
+        TRACKS.map((track) => (
+          <div class="mt-16">
+            <div class="flex flex-wrap items-baseline gap-4 border-b-2 border-[var(--color-ink)] pb-4">
+              <h3 class="font-display text-2xl font-bold tracking-tight md:text-3xl">{track}</h3>
+              <p class="text-dim">{trackBlurb[track]}</p>
+            </div>
+            <ul class="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+              {COURSES.filter((c) => c.track === track).map((c, i) => (
+                <li data-reveal data-delay={(i % 3) * 0.08} class="h-full">
+                  <a href={`/academy/${c.slug}`} class="card-ink flex h-full flex-col p-7">
+                    <span class={`tag-ink self-start track-${c.track}`}>{c.track}</span>
+                    <h4 class="mt-5 font-display text-2xl font-bold tracking-tight">{c.name}</h4>
+                    <p class="mt-3 leading-relaxed text-dim">{c.short}</p>
+                    <ul class="mt-5 flex flex-wrap gap-1.5">
+                      {c.tools.slice(0, 5).map((t) => <li class="rounded-md bg-[var(--color-elevated)] px-2 py-1 font-mono text-[11px]">{t}</li>)}
+                    </ul>
+                    <span class="mt-auto pt-6 font-display font-semibold">View syllabus →</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <!-- Method -->
+    <section class="border-y-2 border-[var(--color-ink)] bg-[var(--color-ink)] text-[#f6f3ec]">
+      <div class="mx-auto max-w-7xl px-6 py-20 md:py-28">
+        <h2 data-words class="max-w-4xl font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Taught by an agency, not a classroom.</h2>
+        <ol class="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          {ACADEMY_METHOD.map((m, i) => (
+            <li data-reveal data-delay={i * 0.08}>
+              <span class="font-display text-6xl font-bold text-[#ffd23f]">{String(i + 1).padStart(2, "0")}</span>
+              <h3 class="mt-4 font-display text-xl font-semibold">{m.title}</h3>
+              <p class="mt-2 leading-relaxed text-[#f6f3ec]/70">{m.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 md:py-28">
+      <h2 data-words class="max-w-4xl font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Projects you'll <span class="hl">actually ship.</span></h2>
+      <ul class="mt-14 grid gap-px overflow-hidden rounded-[1.25rem] border-2 border-[var(--color-ink)] bg-[var(--color-ink)] sm:grid-cols-2 lg:grid-cols-4">
+        {projects.map((p) => (
+          <li class="bg-[var(--color-surface)] p-7">
+            <h3 class="font-display text-lg font-bold">{p.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-dim">{p.text}</p>
+            <a href={`/academy/${p.course.slug}`} class="link-underline mt-4 inline-block font-mono text-[11px] text-cyan">{p.course.name} →</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Students -->
+    <section id="students" class="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 md:py-28">
+      <h2 data-words class="max-w-4xl font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Who joins the academy.</h2>
+      <ul class="mt-14 grid gap-7 md:grid-cols-2">
+        {students.map((s, i) => (
+          <li data-reveal data-delay={(i % 2) * 0.08} class="card-ink flex flex-col p-8">
+            <h3 class="font-display text-2xl font-bold tracking-tight">{s.who}</h3>
+            <p class="mt-3 leading-relaxed text-dim">{s.text}</p>
+            <a href={`/academy/${s.go}`} class="link-underline mt-5 self-start font-display font-semibold">Suggested start →</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Careers -->
+    <section id="careers" class="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 md:py-28">
+      <div class="grid gap-14 lg:grid-cols-2">
+        <div>
+          <h2 data-words class="font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Careers these courses lead to.</h2>
+          <ul class="mt-10 flex flex-wrap gap-2.5">
+            {roles.map((r) => <li class="tag-ink bg-[var(--color-surface)] text-[0.8125rem]">{r}</li>)}
+          </ul>
+        </div>
+        <div class="card-ink p-8 md:p-10">
+          <h3 class="font-display text-2xl font-bold">Career support</h3>
+          <ul class="mt-6 space-y-4">
+            {CAREER_SUPPORT.map((c) => <li class="flex gap-3 text-lg"><span class="text-cyan" aria-hidden="true">✓</span>{c}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-[1fr_1.6fr]">
+      <h2 class="font-display text-[clamp(2.2rem,5vw,4.25rem)] leading-[1] font-semibold tracking-[-0.03em]">Asked, answered.</h2>
+      <div class="divide-y-2 divide-[var(--color-ink)] border-y-2 border-[var(--color-ink)]">
+        {ACADEMY_FAQS.map((f, i) => (
+          <details class="group py-6" open={i === 0}>
+            <summary class="flex cursor-pointer items-baseline justify-between gap-6 font-display text-lg font-medium md:text-xl">
+              <h3>{f.q}</h3><span aria-hidden="true" class="text-cyan group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-4 max-w-2xl leading-relaxed text-dim">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mx-auto max-w-7xl px-6 pb-24">
+      <div class="term p-10 text-center md:p-16">
+        <h2 class="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-5xl">Not sure which course fits? <span class="text-[#ffd23f]">Ask us.</span></h2>
+        <p class="mx-auto mt-5 max-w-xl text-[#f6f3ec]/70">Free counselling on WhatsApp, or visit us at HiLITE Business Park, Kozhikode.</p>
+        <a href={CONTACT.whatsappAcademy} target="_blank" rel="noopener" class="glow mt-8 inline-flex min-h-[52px] items-center rounded-full bg-[#ffd23f] px-8 font-display font-semibold text-[#121212] hover:bg-[#ff6a3d]">WhatsApp {CONTACT.phoneDisplay}</a>
+      </div>
+    </section>
+  </main>
+</Base>

@@ -42,6 +42,7 @@ const THEMES: Record<string, [string, string]> = {
   branding: ["#f472b6", "#8b5cf6"],
   local: ["#4d7cff", "#8b5cf6"],
   home: ["#8b5cf6", "#22d3ee"],
+  academy: ["#ff6a3d", "#ffd23f"],
 };
 
 /**

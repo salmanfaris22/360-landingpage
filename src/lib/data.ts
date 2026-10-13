@@ -14,6 +14,8 @@ export const CONTACT = {
   phoneDisplay: "+91 9061 460 360",
   whatsapp:
     "https://wa.me/919061460360?text=Hi%20Media%20360%20Concept%2C%20I%27d%20like%20to%20talk%20about%20branding%20for%20my%20business.",
+  whatsappAcademy:
+    "https://wa.me/919061460360?text=Hi%20Media%20360%20Academy%2C%20I%27d%20like%20free%20course%20counselling.",
   site: "https://www.media360concept.com",
   siteDisplay: "www.media360concept.com",
   city: "Kozhikode (Calicut)",
@@ -50,7 +52,7 @@ export const SERVICES: Service[] = [
     title: "Branding & Identity Design",
     description:
       "Logo design, visual identity, and complete brand guidelines for businesses across Kerala and beyond. We build identity systems that make a restaurant in Kozhikode, a hospital in Thrissur, or a startup in Riyadh instantly recognisable — and impossible to confuse with anyone else.",
-    tags: ["Logo Design", "Brand Identity", "Brand Guidelines", "Rebranding"],
+    tags: ["Logo Design", "Graphic Design", "Brand Identity", "Brand Guidelines"],
     gradient: "from-blue/30 to-violet/10",
     href: "/branding-agency-kozhikode",
   },
@@ -74,10 +76,10 @@ export const SERVICES: Service[] = [
   },
   {
     index: "04",
-    title: "Media Production",
+    title: "Video Production & Editing",
     description:
       "Video production, motion graphics, and 3D visualisation from script to final cut. Brand films, product videos, and social content produced with cinematic care — because in a feed full of noise, production quality is what earns the pause.",
-    tags: ["Video Production", "Motion Graphics", "3D Design", "Brand Films"],
+    tags: ["Video Production", "Video Editing", "Motion Graphics", "Brand Films"],
     gradient: "from-blue/30 to-cyan/10",
     href: "/video-production-kozhikode",
   },
@@ -146,9 +148,9 @@ export const SERVICES: Service[] = [
 ];
 
 export const CAPABILITIES = [
-  "Branding", "Logo Design", "Packaging Design", "Print Design",
+  "Branding", "Logo Design", "Graphic Design", "Packaging Design", "Print Design",
   "Signage", "Vehicle Branding", "Digital Marketing", "SEO",
-  "Video Production", "Web Development", "App Development", "UI/UX Design",
+  "Video Production", "Video Editing", "AI Automation", "Web Development", "App Development", "UI/UX Design",
 ];
 
 export const INDUSTRIES = [
@@ -292,6 +294,5 @@ export const NAV_LINKS = [
   { label: "Web Development", href: "/web-development-kozhikode" },
   { label: "Software & AI", href: "/software-development-company-kozhikode" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ];
 

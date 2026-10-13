@@ -20,10 +20,12 @@ interface Props {
   schema?: object;
   /** Use the title exactly as given (homepage). */
   rawTitle?: boolean;
+  /** "academy" renders the light Academy theme, "gateway" the split home page; default is the dark agency theme. */
+  side?: "agency" | "academy" | "gateway";
 }
 
 const BRAND = "Media 360 Concept";
-const { title, description, ogSlug = "home", noindex = false, schema, rawTitle = false } = Astro.props;
+const { title, description, ogSlug = "home", noindex = false, schema, rawTitle = false, side = "agency" } = Astro.props;
 const withBrand = `${title} | ${BRAND}`;
 const fullTitle = rawTitle || title.includes(BRAND) ? title : withBrand.length <= 65 ? withBrand : title;
 const site = Astro.site!;
@@ -32,7 +34,7 @@ const ogImage = new URL(`/og/${ogSlug}.png`, site).href;
 ---
 
 <!doctype html>
-<html lang="en-IN">
+<html lang="en-IN" class:list={[side === "academy" && "theme-light academy", side === "gateway" && "gate-page"]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,7 +49,7 @@ const ogImage = new URL(`/og/${ogSlug}.png`, site).href;
     <link rel="alternate" hreflang="en-IN" href={canonical} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
     <meta name="google-site-verification" content="lYUlUgsgLU7Te8J9oyto91OiAF2Dj4e6wcM7UdF0iK4" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content={side === "academy" ? "#f6f3ec" : "#050505"} />
     <meta name="geo.region" content="IN-KL" />
     <meta name="geo.placename" content="Kozhikode, Kerala" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -80,12 +82,13 @@ const ogImage = new URL(`/og/${ogSlug}.png`, site).href;
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-200 focus:rounded-full focus:bg-white focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-black"
       >Skip to content</a
     >
-    <Nav />
+    {side !== "gateway" && <Nav side={side} />}
     <slot />
-    <Footer />
+    <Footer side={side} />
     <div class="noise-overlay" aria-hidden="true"></div>
     <script>
       import "@/scripts/motion";
+      import "@/scripts/sides";
     </script>
   </body>
 </html>

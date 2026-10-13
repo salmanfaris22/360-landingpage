@@ -1,4 +1,5 @@
 import { CONTACT, SERVICES } from "./data";
+import { ALL_ROUTES, assetSlug } from "./routes";
 
 /**
  * Single source of truth for every JSON-LD graph on the site.
@@ -56,6 +57,19 @@ const organizationNode: Node = {
     addressCountry: CONTACT.postal.country,
   },
   geo: { "@type": "GeoCoordinates", latitude: CONTACT.geo.lat, longitude: CONTACT.geo.lng },
+  location: {
+    "@type": "Place",
+    name: "HiLITE Business Park",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: CONTACT.postal.street,
+      addressLocality: CONTACT.postal.locality,
+      addressRegion: CONTACT.postal.region,
+      postalCode: CONTACT.postal.postalCode,
+      addressCountry: CONTACT.postal.country,
+    },
+    containedInPlace: { "@type": "Place", name: "HiLITE City, Kozhikode (Calicut)" },
+  },
   hasMap: CONTACT.mapUrl,
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
@@ -72,7 +86,7 @@ const organizationNode: Node = {
     areaServed: ["IN", "SA", "AE", "US"],
   },
   areaServed: [
-    { "@type": "City", name: "Kozhikode" },
+    { "@type": "City", name: "Kozhikode", alternateName: "Calicut" },
     { "@type": "State", name: "Kerala" },
     { "@type": "Country", name: "India" },
     { "@type": "Country", name: "Saudi Arabia" },
@@ -146,7 +160,9 @@ function webPageNode(opts: {
   hasBreadcrumb: boolean;
 }): Node {
   const u = url(opts.path);
-  const slug = opts.path === "/" ? "home" : opts.path.slice(1).replace(/\//g, "-");
+  const own = assetSlug(opts.path);
+  // Pages without their own artwork (legal pages) fall back to the homepage image.
+  const slug = ALL_ROUTES.some((r) => r.og && assetSlug(r.path) === own) ? own : "home";
   return {
     "@type": opts.type ?? "WebPage",
     "@id": `${u}#webpage`,
@@ -155,7 +171,16 @@ function webPageNode(opts: {
     description: opts.description,
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": opts.about ?? ORG_ID },
-    primaryImageOfPage: { "@type": "ImageObject", url: `${SITE_URL}/og/${slug}.png`, width: 1200, height: 630 },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      "@id": `${u}#primaryimage`,
+      url: `${SITE_URL}/images/${slug}.webp`,
+      contentUrl: `${SITE_URL}/images/${slug}.webp`,
+      width: 1600,
+      height: 900,
+      caption: `${opts.title} — Media 360 Concept, HiLITE Business Park, Kozhikode`,
+    },
+    image: [`${SITE_URL}/images/${slug}.webp`, `${SITE_URL}/og/${slug}.png`],
     ...(opts.hasBreadcrumb ? { breadcrumb: { "@id": `${u}#breadcrumb` } } : {}),
     inLanguage: "en-IN",
   };
@@ -203,6 +228,7 @@ export function servicePageGraph(page: {
   faqs: Faq[];
   steps?: { title: string; text: string }[];
   crumbs: Crumb[];
+  image?: string;
 }) {
   const path = `/${page.slug}`;
   const u = url(path);

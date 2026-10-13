@@ -30,12 +30,17 @@ const faqs = [
 ---
 
 <Base title={title} description={description} ogSlug="about" schema={pageGraph({ path: "/about", title, description, crumbs, type: "AboutPage", faqs })}>
-  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24">
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 md:pt-24">
     <Breadcrumbs items={crumbs} />
     <h1 class="max-w-4xl font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">About Media 360 Concept</h1>
     <p class="mt-8 max-w-3xl border-l-2 border-cyan pl-5 text-lg leading-relaxed text-white/90" data-speakable>{BRAND_DESCRIPTION}</p>
 
-    <section class="mt-20 border-t border-line pt-12" aria-labelledby="facts">
+    <figure class="mt-14 overflow-hidden rounded-3xl border border-line">
+      <img src="/images/about.webp" alt="About Media 360 Concept — agency at HiLITE Business Park, Kozhikode with experience across Saudi Arabia, India and the USA" width="1600" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+    </figure>
+
+    <div class="theme-light bleed mt-20 py-20 md:py-28">
+    <section class="border-t border-line pt-12" aria-labelledby="facts">
       <h2 id="facts" class="font-display text-3xl font-semibold tracking-tight">Media 360 Concept at a glance</h2>
       <table class="data mt-8 max-w-4xl">
         <tbody>{facts.map(([k, v]) => <tr><th scope="row" class="w-48">{k}</th><td>{v}</td></tr>)}</tbody>
@@ -74,5 +79,6 @@ const faqs = [
     </section>
 
     <div class="mt-20"><CtaBlock /></div>
+  </div>
   </main>
 </Base>

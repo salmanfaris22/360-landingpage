@@ -44,7 +44,7 @@ The single-page ceiling described in §1/§6 below is now removed. This phase sh
 
 ### Do these next (owner actions, in order)
 
-1. **Google Search Console**: the verification tag is live in the site head — deploy, then in GSC choose "URL prefix" → `https://www.360mediaconcepts.com` → verify via HTML tag. Immediately submit `https://www.360mediaconcepts.com/sitemap.xml` and request indexing for the homepage + all 9 landing pages.
+1. **Google Search Console**: the verification tag is live in the site head — deploy, then in GSC choose "URL prefix" → `https://www.media360concept.com` → verify via HTML tag. Immediately submit `https://www.media360concept.com/sitemap.xml` and request indexing for the homepage + all 9 landing pages.
 2. **Google Business Profile** (highest-impact single action, unchanged from §3): create/claim "Media 360 Concept", category *Advertising agency* (secondary: Graphic designer, Website designer, Marketing agency). Use exactly the NAP on the site: Media 360 Concept · Kochi, Kerala · +91 9061 460 360 · media360concept@gmail.com. Add the street address to GBP **and** to `schema.ts`/Contact section the same day. Upload real work photos, list the 9 services using the same names as the landing pages, and post monthly.
 3. **Reviews engine**: after every delivered project, send the GBP review link on WhatsApp. 10+ reviews unlocks meaningful Map Pack movement; once real reviews exist, revisit review schema.
 4. **Citations / NAP consistency** (same NAP string everywhere): JustDial, Sulekha, IndiaMART, Clutch, DesignRush, GoodFirms, Behance/Dribbble portfolio profiles, LinkedIn company page, Instagram business profile. Add every live profile URL to `sameAs` in `schema.ts`.

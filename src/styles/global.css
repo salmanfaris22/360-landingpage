@@ -233,3 +233,39 @@ table.data td { color: var(--color-dim); }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: clip; }
+
+/* ── Dark + light hybrid ─────────────────────────────────────────────
+   .theme-light flips the colour tokens for a section, so every utility
+   (text-white, text-dim, border-line, bg-base, bg-white/text-black…)
+   re-themes itself. Ink stays ≥ 4.5:1 on the paper background. */
+.theme-light {
+  --color-base: #f4f2ee;
+  --color-surface: #ffffff;
+  --color-elevated: #ebe8e2;
+  --color-white: #0b0b0f;
+  --color-black: #ffffff;
+  --color-dim: #55555d;
+  --color-line: rgb(11 11 15 / 11%);
+  --color-blue: #2557e8;
+  --color-violet: #6d3fe0;
+  --color-cyan: #0e7490;
+  background: var(--color-base);
+  color: var(--color-white);
+  color-scheme: light;
+}
+/* Full-width band for light sections that sit inside a centred container. */
+.bleed {
+  box-shadow: 0 0 0 100vmax var(--color-base);
+  clip-path: inset(0 -100vmax);
+}
+.theme-light ::selection { color: #fff; }
+.theme-light .text-stroke { -webkit-text-stroke: 1px rgb(11 11 15 / 55%); }
+.theme-light .glass { background: rgb(255 255 255 / 70%); border-color: rgb(11 11 15 / 10%); }
+.theme-light .btn-solid { background: #0b0b0f; color: #fff; }
+.theme-light .btn-solid:hover { color: #fff; }
+.theme-light .btn-ghost { border-color: rgb(11 11 15 / 25%); color: #0b0b0f; }
+.theme-light .btn-ghost::before { background: #0b0b0f; }
+.theme-light .btn-ghost:hover { color: #fff; }
+.theme-light table.data tbody th { color: #0b0b0f; }
+.theme-light .prose-dim strong { color: #0b0b0f; }
+.theme-light img { box-shadow: 0 30px 60px -30px rgb(11 11 15 / 35%); }

@@ -14,8 +14,8 @@ export const CONTACT = {
   phoneDisplay: "+91 9061 460 360",
   whatsapp:
     "https://wa.me/919061460360?text=Hi%20Media%20360%20Concept%2C%20I%27d%20like%20to%20talk%20about%20branding%20for%20my%20business.",
-  site: "https://www.360mediaconcepts.com",
-  siteDisplay: "www.360mediaconcepts.com",
+  site: "https://www.media360concept.com",
+  siteDisplay: "www.media360concept.com",
   city: "Kozhikode (Calicut)",
   region: "Kerala, India",
   address: "HiLITE Business Park, Calicut",

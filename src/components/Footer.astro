@@ -8,6 +8,7 @@ const columns = [
   { label: "Software, Apps & AI", pages: pagesInCluster("software") },
   { label: "Branding & Creative", pages: pagesInCluster("branding") },
 ];
+const local = pagesInCluster("local");
 const year = new Date().getFullYear();
 ---
 
@@ -49,11 +50,21 @@ const year = new Date().getFullYear();
       }
     </div>
 
+    <nav aria-label="HiLITE Business Park & Calicut" class="mt-14 border-t border-line pt-10">
+      <p class="label-mono mb-5">HiLITE Business Park &amp; Calicut</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-3">
+        {local.map((p) => (
+          <li><a href={`/${p.slug}`} class="link-underline text-sm text-dim hover:text-white">{p.navLabel}</a></li>
+        ))}
+      </ul>
+    </nav>
+
     <div class="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 font-mono text-[11px] tracking-[0.15em] text-dim uppercase">
       <p>© {year} Media 360 Concept</p>
       <ul class="flex flex-wrap gap-6">
         <li><a href="/services" class="hover:text-white">All services</a></li>
         <li><a href="/about" class="hover:text-white">About</a></li>
+        <li><a href="/faq" class="hover:text-white">FAQ</a></li>
         <li><a href="/contact" class="hover:text-white">Contact</a></li>
         <li><a href="/privacy-policy" class="hover:text-white">Privacy</a></li>
         <li><a href="/terms" class="hover:text-white">Terms</a></li>

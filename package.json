@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "seo:verify": "python3 scripts/verify_seo.py dist --site https://www.360mediaconcepts.com"
+    "seo:verify": "python3 scripts/verify_seo.py dist --site https://www.media360concept.com"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",

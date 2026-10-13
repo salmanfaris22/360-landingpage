@@ -3,6 +3,7 @@ import { MARKETING_PAGES } from "./pages/marketing";
 import { WEB_PAGES } from "./pages/web";
 import { SOFTWARE_PAGES } from "./pages/software";
 import { LOCAL_PAGES } from "./pages/local";
+import { HILITE_PAGES } from "./pages/hilite";
 
 /**
  * Keyword-targeted landing pages, one per search-intent cluster.
@@ -886,6 +887,7 @@ export const SEO_PAGES: SeoPage[] = [
   ...WEB_PAGES,
   ...SOFTWARE_PAGES,
   ...LOCAL_PAGES,
+  ...HILITE_PAGES,
 ];
 
 export const getSeoPage = (slug: string) =>

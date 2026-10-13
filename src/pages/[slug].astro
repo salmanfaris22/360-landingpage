@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import CtaBlock from "@/components/CtaBlock.astro";
 import Button from "@/components/Button.astro";
 import { CONTACT } from "@/lib/data";
-import { SEO_PAGES, getSeoPage, type SeoPage, type Cluster } from "@/lib/seo-pages";
+import { SEO_PAGES, getSeoPage, pagesInCluster, type SeoPage, type Cluster } from "@/lib/seo-pages";
 import { servicePageGraph, type Crumb } from "@/lib/schema";
 
 export function getStaticPaths() {
@@ -16,7 +16,7 @@ const HUBS: Record<Cluster, Crumb | null> = {
   web: { name: "Web Development", path: "/web-development-kozhikode" },
   software: { name: "Software & AI", path: "/software-development-company-kozhikode" },
   branding: { name: "Branding & Creative", path: "/branding-agency-kozhikode" },
-  local: null,
+  local: { name: "HiLITE Business Park", path: "/hilite-business-park-calicut" },
 };
 
 const { page } = Astro.props as { page: SeoPage };
@@ -29,11 +29,13 @@ const crumbs: Crumb[] = [
   { name: page.serviceName, path },
 ];
 const related = page.related.map(getSeoPage).filter((p): p is SeoPage => Boolean(p));
-const schema = servicePageGraph({ ...page, crumbs });
+const localPages = page.cluster === "local" ? pagesInCluster("local").filter((p) => p.slug !== page.slug) : [];
+const image = { src: `/images/${page.slug}.webp`, alt: `${page.keyword} — Media 360 Concept, HiLITE Business Park, Kozhikode (Calicut)` };
+const schema = servicePageGraph({ ...page, crumbs, image: image.src });
 ---
 
 <Base title={page.title} description={page.description} ogSlug={page.slug} schema={schema}>
-  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24">
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 md:pt-24">
     <Breadcrumbs items={crumbs} />
 
     <header class="max-w-4xl">
@@ -53,7 +55,11 @@ const schema = servicePageGraph({ ...page, crumbs });
       </div>
     </header>
 
-    <div class="mt-20 space-y-16 md:mt-28">
+    <figure class="mt-14 overflow-hidden rounded-3xl border border-line">
+      <img src={image.src} alt={image.alt} width="1600" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+    </figure>
+
+    <div class="theme-light bleed mt-20 space-y-16 py-20 md:mt-28 md:py-28">
       {
         page.sections.map((section) => (
           <section data-reveal class="border-t border-line pt-12">
@@ -65,7 +71,7 @@ const schema = servicePageGraph({ ...page, crumbs });
                   <dl class="mt-2 grid gap-5 sm:grid-cols-2">
                     {section.bullets.map((b) => (
                       <div data-tilt="5" class="rounded-2xl border border-line p-6 transition-colors hover:border-white/20">
-                        <dt class="font-display text-base font-semibold">{b.title}</dt>
+                        <dt class="font-display text-[1rem] font-semibold">{b.title}</dt>
                         <dd class="mt-2 text-sm leading-relaxed text-dim">{b.text}</dd>
                       </div>
                     ))}
@@ -161,7 +167,7 @@ const schema = servicePageGraph({ ...page, crumbs });
               related.map((rel) => (
                 <li>
                   <a href={`/${rel.slug}`} class="group flex items-baseline justify-between gap-4 rounded-2xl border border-line p-6 hover:border-white/30">
-                    <span class="font-display text-base font-semibold">{rel.keyword}</span>
+                    <span class="font-display text-[1rem] font-semibold">{rel.keyword}</span>
                     <span aria-hidden="true" class="text-dim group-hover:text-cyan">→</span>
                   </a>
                 </li>
@@ -170,6 +176,21 @@ const schema = servicePageGraph({ ...page, crumbs });
           </ul>
         </div>
       </section>
+
+      {
+        localPages.length > 0 && (
+          <section data-reveal class="border-t border-line pt-12">
+            <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">HiLITE Business Park &amp; Calicut pages</h2>
+              <ul class="flex flex-wrap gap-3">
+                {localPages.map((p) => (
+                  <li><a href={`/${p.slug}`} class="inline-block rounded-full border border-line px-5 py-2.5 text-sm text-white/80 hover:border-white/40 hover:text-white">{p.keyword}</a></li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )
+      }
 
       <CtaBlock />
     </div>

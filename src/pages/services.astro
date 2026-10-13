@@ -14,17 +14,22 @@ const groups = [
   { id: "web", label: "Web development", intro: "Websites, stores and web products built for speed, search and conversion.", pages: pagesInCluster("web") },
   { id: "software", label: "Software, apps & AI", intro: "Systems that run your operations, apps your customers use, and AI that removes repetitive work.", pages: pagesInCluster("software") },
   { id: "branding", label: "Branding & creative", intro: "Strategy, identity, packaging, print, signage, advertising and video.", pages: pagesInCluster("branding") },
+  { id: "hilite", label: "HiLITE Business Park & Calicut", intro: "Our office, and guides to choosing an agency in HiLITE Business Park, Calicut and Kerala.", pages: pagesInCluster("local") },
 ];
 ---
 
 <Base title={title} description={description} ogSlug="services" schema={pageGraph({ path: "/services", title, description, crumbs, type: "CollectionPage" })}>
-  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24">
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 md:pt-24">
     <Breadcrumbs items={crumbs} />
     <h1 class="max-w-4xl font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">Digital marketing, web, software, AI and branding services</h1>
     <p class="mt-8 max-w-3xl border-l-2 border-cyan pl-5 text-lg leading-relaxed text-white/90">
       Media 360 Concept offers four connected service lines from HiLITE Business Park, Kozhikode (Calicut): digital marketing, web development, software and AI, and branding and creative production. Most clients start with one and add others as they grow, with one team accountable for all of it.
     </p>
-    <div class="mt-20 space-y-16">
+
+    <figure class="mt-14 overflow-hidden rounded-3xl border border-line">
+      <img src="/images/services.webp" alt="Media 360 Concept services — digital marketing, websites, software, AI automation, branding and video from HiLITE Business Park, Calicut" width="1600" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+    </figure>
+    <div class="theme-light bleed mt-20 space-y-16 py-20 md:py-28">
       {groups.map((g) => (
         <section id={g.id} class="border-t border-line pt-12">
           <h2 class="font-display text-3xl font-semibold tracking-tight">{g.label}</h2>

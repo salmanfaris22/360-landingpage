@@ -5,6 +5,7 @@ import ContactForm from "@/components/ContactForm.astro";
 import Button from "@/components/Button.astro";
 import { CONTACT, STATS, SERVICES, CAPABILITIES, INDUSTRIES, PROCESS, TEAM, PRINCIPLES, MILESTONES, PRICING, FAQS, OFFICES } from "@/lib/data";
 import { pagesInCluster, getSeoPage } from "@/lib/seo-pages";
+const localPages = pagesInCluster("local");
 import { homeGraph, BRAND_DESCRIPTION } from "@/lib/schema";
 
 const title = "Digital Marketing & Web Development Agency in Calicut | Media 360";
@@ -91,7 +92,7 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
           <div class="flex shrink-0 items-center">
             {CAPABILITIES.map((c) => (
               <span class="flex items-center gap-8 px-4 font-display text-2xl font-semibold tracking-tight text-white/80 md:text-4xl">
-                {c}<span class="text-cyan text-base">◆</span>
+                {c}<span class="text-cyan text-[1rem]">◆</span>
               </span>
             ))}
           </div>
@@ -100,7 +101,7 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
     </div>
 
     <!-- About -->
-    <section id="about" class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+    <section id="about" class="theme-light"><div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
       <SectionHead index="01" label="About us" title="The story behind Media 360 Concept." />
       <div class="grid gap-14 lg:grid-cols-2">
         <div data-reveal class="space-y-6 text-lg leading-relaxed text-dim">
@@ -117,6 +118,7 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
           ))}
         </ol>
       </div>
+    </div>
     </section>
 
     <!-- Services: every cluster links to its hub and each service page -->
@@ -175,15 +177,30 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
       </div>
     </section>
 
+    <!-- HiLITE Business Park: local entity + links to every location page -->
+    <section id="hilite" class="border-t border-line">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-6 py-24 md:py-36 lg:grid-cols-2">
+        <div>
+          <SectionHead index="03" label="HiLITE Business Park" title="The agency inside HiLITE Business Park, Calicut." blurb="Meet the team that plans and builds your marketing, website and software at HiLITE City, Thondayad Bypass, Kozhikode 673014 — or work with us remotely from anywhere in Kerala or the Gulf." />
+          <ul data-reveal class="flex flex-wrap gap-3">
+            {localPages.map((p) => <li><a href={`/${p.slug}`} class="inline-block rounded-full border border-line px-5 py-2.5 text-sm text-white/80 hover:border-white/40 hover:text-white">{p.keyword}</a></li>)}
+          </ul>
+        </div>
+        <a href="/best-agency-in-hilite-business-park" data-reveal data-tilt="4" class="block overflow-hidden rounded-3xl border border-line">
+          <img src="/images/best-agency-in-hilite-business-park.webp" alt="Media 360 Concept — best agency in HiLITE Business Park, Calicut: marketing, websites, software, AI and branding" width="1600" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+        </a>
+      </div>
+    </section>
+
     <!-- Industries & capabilities -->
-    <section class="border-t border-line">
+    <section class="theme-light">
       <div class="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:py-36 lg:grid-cols-2">
         <div>
-          <SectionHead index="03" label="Industries" title="Fluent in twelve industries." blurb="A restaurant is won at the table, a hospital on trust, a school on reputation. We design for how each one's customers actually decide." />
+          <SectionHead index="04" label="Industries" title="Fluent in twelve industries." blurb="A restaurant is won at the table, a hospital on trust, a school on reputation. We design for how each one's customers actually decide." />
           <ul data-reveal class="flex flex-wrap gap-3">{INDUSTRIES.map((i) => <li class="rounded-full border border-line px-5 py-2.5 text-sm">{i}</li>)}</ul>
         </div>
         <div>
-          <SectionHead index="04" label="Capabilities" title="Every discipline your brand needs." blurb="The complete creative, digital and technology toolkit, without juggling five vendors." />
+          <SectionHead index="05" label="Capabilities" title="Every discipline your brand needs." blurb="The complete creative, digital and technology toolkit, without juggling five vendors." />
           <ul data-reveal class="flex flex-wrap gap-3">{CAPABILITIES.map((c) => <li class="rounded-full border border-line px-5 py-2.5 text-sm">{c}</li>)}</ul>
         </div>
       </div>
@@ -192,7 +209,7 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
     <!-- Process -->
     <section id="process" class="border-t border-line">
       <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
-        <SectionHead index="05" label="How we work" title="From first call to lasting brand." blurb="A nine-step process from research and strategy through design, production, launch and growth — with you in the loop at every stage." />
+        <SectionHead index="06" label="How we work" title="From first call to lasting brand." blurb="A nine-step process from research and strategy through design, production, launch and growth — with you in the loop at every stage." />
         <div class="process-list relative">
           <span aria-hidden="true" class="process-line absolute top-0 left-5 h-full w-px bg-gradient-to-b from-blue via-violet to-cyan md:left-1/2"></span>
           <ol class="space-y-14 md:space-y-0">
@@ -212,9 +229,9 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
     </section>
 
     <!-- Team roles & principles -->
-    <section class="border-t border-line">
+    <section class="theme-light">
       <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
-        <SectionHead index="06" label="The team" title="The people behind the work." blurb="Senior strategists, designers, engineers and producers — the same people who scope your project deliver it." />
+        <SectionHead index="07" label="The team" title="The people behind the work." blurb="Senior strategists, designers, engineers and producers — the same people who scope your project deliver it." />
         <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {TEAM.map((t, i) => (
             <li data-reveal data-delay={(i % 4) * 0.06}><div data-tilt="6" class="h-full rounded-2xl border border-line p-6 transition-colors hover:border-white/20">
@@ -239,7 +256,7 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
     <!-- Engagement models -->
     <section id="pricing" class="border-t border-line">
       <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
-        <SectionHead index="07" label="Engagement" title="Three ways to work with us." blurb="Every engagement is scoped to your goals and budget, with a clear, itemised quote before work begins." />
+        <SectionHead index="08" label="Engagement" title="Three ways to work with us." blurb="Every engagement is scoped to your goals and budget, with a clear, itemised quote before work begins." />
         <div class="grid gap-6 lg:grid-cols-3">
                     {PRICING.map((p, i) => (
             <article data-reveal data-delay={i * 0.1} class:list={["rounded-3xl border p-8", p.featured ? "border-cyan/50" : "border-line"]}>
@@ -254,9 +271,9 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="border-t border-line">
+    <section id="faq" class="theme-light">
       <div class="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:py-36 lg:grid-cols-[1fr_1.6fr]">
-        <SectionHead index="08" label="Questions" title="Asked, answered." />
+        <SectionHead index="09" label="Questions" title="Asked, answered." />
         <div data-reveal class="divide-y divide-line border-y border-line">
           {FAQS.map((f, i) => (
             <details class="group py-6" open={i === 0}>
@@ -273,7 +290,7 @@ const disciplines = ["Digital Marketing", "Web Development", "Software & AI", "B
     <!-- Contact -->
     <section id="contact" class="border-t border-line">
       <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
-        <SectionHead index="09" label="Contact" title="Let's build something." blurb={`Tell us what you're launching, fixing or planning — we reply within 24 hours. Prefer to talk now? WhatsApp ${CONTACT.phoneDisplay}.`} />
+        <SectionHead index="10" label="Contact" title="Let's build something." blurb={`Tell us what you're launching, fixing or planning — we reply within 24 hours. Prefer to talk now? WhatsApp ${CONTACT.phoneDisplay}.`} />
         <div class="grid gap-16 lg:grid-cols-[1.4fr_1fr]">
           <ContactForm />
           <ul class="space-y-5">

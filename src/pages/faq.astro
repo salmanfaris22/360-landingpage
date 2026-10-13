@@ -1,0 +1,67 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBlock from "@/components/CtaBlock.astro";
+import { FAQS } from "@/lib/data";
+import { pagesInCluster, type Cluster } from "@/lib/seo-pages";
+import { pageGraph, type Faq } from "@/lib/schema";
+
+const title = "FAQ: Media 360 Concept, HiLITE Business Park, Calicut";
+const description =
+  "Answers about Media 360 Concept: location at HiLITE Business Park, services, pricing, timelines, SEO, websites, software and AI automation in Calicut.";
+const crumbs = [{ name: "Home", path: "/" }, { name: "FAQ", path: "/faq" }];
+
+// Every answer below is the same text shown on the page it links to.
+const fromCluster = (c: Cluster, perPage: number) =>
+  pagesInCluster(c).flatMap((p) => p.faqs.slice(0, perPage).map((f) => ({ ...f, href: `/${p.slug}`, page: p.keyword })));
+
+const groups: { id: string; label: string; items: (Faq & { href?: string; page?: string })[] }[] = [
+  { id: "general", label: "About Media 360 Concept", items: FAQS },
+  { id: "hilite", label: "HiLITE Business Park, Calicut & Kerala", items: fromCluster("local", 2) },
+  { id: "marketing", label: "Digital marketing & SEO", items: fromCluster("marketing", 1) },
+  { id: "web", label: "Websites & e-commerce", items: fromCluster("web", 1) },
+  { id: "software", label: "Software, apps & AI", items: fromCluster("software", 1) },
+  { id: "branding", label: "Branding & creative", items: fromCluster("branding", 1) },
+];
+const all = groups.flatMap((g) => g.items.map(({ q, a }) => ({ q, a })));
+---
+
+<Base title={title} rawTitle description={description} ogSlug="faq" schema={pageGraph({ path: "/faq", title, description, crumbs, faqs: all })}>
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 md:pt-24">
+    <Breadcrumbs items={crumbs} />
+    <h1 class="max-w-4xl font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">Questions about Media 360 Concept</h1>
+    <p class="mt-8 max-w-3xl border-l-2 border-cyan pl-5 text-lg leading-relaxed text-white/90" data-speakable>
+      Media 360 Concept is a digital marketing, web development, software, AI automation and branding agency at HiLITE Business Park, Kozhikode (Calicut). Below are straight answers to the questions businesses ask us most, grouped by topic.
+    </p>
+
+    <figure class="mt-14 overflow-hidden rounded-3xl border border-line">
+      <img src="/images/faq.webp" alt="Media 360 Concept FAQ — services, pricing, timelines and location at HiLITE Business Park, Calicut" width="1600" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+    </figure>
+
+    <nav aria-label="FAQ topics" class="mt-14">
+      <ul class="flex flex-wrap gap-3">
+        {groups.map((g) => <li><a href={`#${g.id}`} class="inline-block rounded-full border border-line px-5 py-2.5 text-sm text-white/80 hover:border-white/40">{g.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="theme-light bleed mt-16 space-y-16 py-20 md:py-28">
+      {groups.map((g) => (
+        <section id={g.id} data-reveal class="border-t border-line pt-12">
+          <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+            <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">{g.label}</h2>
+            <div class="divide-y divide-line border-y border-line">
+              {g.items.map((f) => (
+                <div class="py-6">
+                  <h3 class="font-display text-lg font-medium md:text-xl">{f.q}</h3>
+                  <p class="mt-3 max-w-2xl leading-relaxed text-dim">{f.a}</p>
+                  {f.href && <a href={f.href} class="link-underline mt-3 inline-block font-mono text-[11px] tracking-[0.15em] text-cyan uppercase">{f.page} →</a>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+      <CtaBlock heading="Didn't find your answer?" text="Message us on WhatsApp and a specialist will reply within 24 hours." />
+    </div>
+  </main>
+</Base>

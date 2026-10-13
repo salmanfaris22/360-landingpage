@@ -6,14 +6,15 @@ import { CONTACT } from "@/lib/data";
 import { ACADEMY, COURSES, LEVELS, ACADEMY_METHOD, CAREER_SUPPORT, ACADEMY_FAQS, getCourse, tintOf, type Course } from "@/lib/academy";
 import { academyGraph } from "@/lib/schema";
 
-const title = "AI-First Coding & Video Editing Courses in Calicut";
+const title = "Best Digital Marketing & Coding Courses in HiLITE, Calicut";
 const description =
-  "Media 360 Academy, Calicut: MERN, Python, Golang, frontend, AI developer, generative AI, Premiere Pro, After Effects and DaVinci courses. Offline + online.";
+  "Media 360 Academy, HiLITE Calicut: 3-month digital marketing + AI program, MERN, Python, AI developer, Premiere Pro and more. Offline + live online.";
 const crumbs = [{ name: "Home", path: "/" }, { name: "Academy", path: "/academy" }];
 const schema = academyGraph({ title, description, academyDescription: ACADEMY.description, courses: COURSES, faqs: ACADEMY_FAQS, crumbs });
 
 // Course grid: tile size per course (mixed sizes, packed densely) in display order.
 const BENTO: [string, "feature" | "wide" | "tall" | "normal"][] = [
+  ["digital-marketing-ai-master-program-kozhikode", "feature"],
   ["mern-stack-course-kozhikode", "feature"],
   ["python-full-stack-course-kozhikode", "normal"],
   ["ai-developer-vibe-coding-course-kozhikode", "tall"],
@@ -21,7 +22,7 @@ const BENTO: [string, "feature" | "wide" | "tall" | "normal"][] = [
   ["ai-video-editing-course-kozhikode", "wide"],
   ["premiere-pro-course-kozhikode", "normal"],
   ["after-effects-course-kozhikode", "tall"],
-  ["generative-ai-video-design-course-kozhikode", "feature"],
+  ["generative-ai-video-design-course-kozhikode", "wide"],
   ["golang-backend-course-kozhikode", "wide"],
   ["ai-web-development-course-kozhikode", "wide"],
   ["davinci-resolve-course-kozhikode", "normal"],
@@ -36,7 +37,7 @@ const students = [
   { who: "Freshers & students", text: "Start from zero and graduate with deployed projects, not just notes.", go: "mern-stack-course-kozhikode" },
   { who: "Career switchers", text: "Move from non-IT work into development with a guided, project-first path.", go: "python-full-stack-course-kozhikode" },
   { who: "Working developers", text: "Add AI engineering, Go or forward deployed skills to what you already know.", go: "ai-developer-vibe-coding-course-kozhikode" },
-  { who: "Creators & marketers", text: "Produce reels, ads and brand films with Premiere, After Effects, DaVinci and AI.", go: "ai-video-editing-course-kozhikode" },
+  { who: "Creators & marketers", text: "Learn digital marketing, AI websites, video and PR in one 3-month program.", go: "digital-marketing-ai-master-program-kozhikode" },
 ];
 ---
 
@@ -49,7 +50,7 @@ const students = [
           <span class="hero-line block text-[clamp(2.8rem,8vw,6.5rem)] leading-[0.95]" style="--stagger:0">Learn to <span class="hl">build</span></span>
           <span class="hero-line block text-[clamp(2.8rem,8vw,6.5rem)] leading-[0.95]" style="--stagger:1">with AI.</span>
           <span class="hero-line mt-6 block text-[clamp(1.25rem,2.4vw,1.75rem)] leading-snug font-semibold tracking-tight" style="--stagger:2">
-            Coding &amp; video editing courses in Calicut
+            Digital marketing, coding &amp; video editing courses in HiLITE Business Park, Calicut
           </span>
         </h1>
         <div class="hero-fade mt-10 flex flex-wrap justify-center gap-4 lg:justify-start" style="--stagger:2">
@@ -227,7 +228,7 @@ const students = [
         <span class="absolute -top-8 left-6 hidden sm:block md:left-12"><Icon3D brand="openai" size="4rem" float /></span>
         <span class="absolute -right-3 -bottom-8 hidden sm:block md:right-10"><Icon3D brand="premiere" size="3.5rem" float delay="-2.5s" /></span>
         <h2 class="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-5xl">Not sure which course fits? <span class="text-[#ffd23f]">Ask us.</span></h2>
-        <p class="mx-auto mt-5 max-w-xl text-[#f6f3ec]/70">Free counselling on WhatsApp, or visit us at HiLITE Business Park, Kozhikode.</p>
+        <p class="mx-auto mt-5 max-w-xl text-[#f6f3ec]/70">Free counselling on WhatsApp, or visit us at HiLITE Business Park, Kozhikode. Compare every option on <a href="/academy/best-courses-in-hilite-business-park" class="underline">best courses in HiLITE Business Park</a>, or join <a href="/academy/online-courses" class="underline">live online</a>.</p>
         <a href={CONTACT.whatsappAcademy} target="_blank" rel="noopener" class="glow mt-8 inline-flex min-h-[52px] items-center rounded-full bg-[#ffd23f] px-8 font-display font-semibold text-[#121212] hover:bg-[#ff6a3d]">WhatsApp {CONTACT.phoneDisplay}</a>
       </div>
     </section>

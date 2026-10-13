@@ -300,7 +300,7 @@ const academyNode = (description: string): Node => ({
   logo: { "@id": LOGO_ID },
 });
 
-type CourseLite = { slug: string; name: string; description: string; tools: string[]; careers: string[]; level: string; duration?: string };
+type CourseLite = { slug: string; name: string; description: string; tools: string[]; careers: string[]; level: string; duration?: string; durationIso?: string };
 
 const courseNode = (c: CourseLite): Node => {
   const u = url(`/academy/${c.slug}`);
@@ -311,7 +311,7 @@ const courseNode = (c: CourseLite): Node => {
     description: c.description,
     url: u,
     provider: { "@id": ACADEMY_ID },
-    inLanguage: "en",
+    inLanguage: ["en", "ml"],
     teaches: c.tools,
     educationalLevel: c.level,
     hasCourseInstance: [
@@ -319,16 +319,16 @@ const courseNode = (c: CourseLite): Node => {
         "@type": "CourseInstance",
         courseMode: "Onsite",
         location: { "@type": "Place", name: "HiLITE Business Park, Kozhikode", address: organizationNode.address },
-        ...(c.duration ? { courseWorkload: c.duration } : {}),
+        ...(c.durationIso ? { courseWorkload: c.durationIso } : {}),
       },
-      { "@type": "CourseInstance", courseMode: "Online", ...(c.duration ? { courseWorkload: c.duration } : {}) },
+      { "@type": "CourseInstance", courseMode: "Online", ...(c.durationIso ? { courseWorkload: c.durationIso } : {}) },
     ],
   };
 };
 
 /** Academy hub: the academy entity + an ItemList of every course. */
-export function academyGraph(opts: { title: string; description: string; academyDescription: string; courses: CourseLite[]; faqs: Faq[]; crumbs: Crumb[] }) {
-  const path = "/academy";
+export function academyGraph(opts: { title: string; description: string; academyDescription: string; courses: CourseLite[]; faqs: Faq[]; crumbs: Crumb[]; path?: string; listName?: string }) {
+  const path = opts.path ?? "/academy";
   return graph([
     organizationNode,
     websiteNode,
@@ -339,7 +339,7 @@ export function academyGraph(opts: { title: string; description: string; academy
     {
       "@type": "ItemList",
       "@id": `${url(path)}#courses`,
-      name: "Media 360 Academy courses",
+      name: opts.listName ?? "Media 360 Academy courses",
       itemListElement: opts.courses.map((c, i) => ({ "@type": "ListItem", position: i + 1, item: courseNode(c) })),
     },
     faqNode(path, opts.faqs),

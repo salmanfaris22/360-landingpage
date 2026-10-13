@@ -30,6 +30,16 @@ const crumbs: Crumb[] = [
 ];
 const related = page.related.map(getSeoPage).filter((p): p is SeoPage => Boolean(p));
 const localPages = page.cluster === "local" ? pagesInCluster("local").filter((p) => p.slug !== page.slug) : [];
+// Agency HiLITE + marketing pages point students to the academy in the same complex.
+const academyLinks =
+  page.cluster === "local" || page.cluster === "marketing"
+    ? [
+        { href: "/academy/best-courses-in-hilite-business-park", label: "Best Courses in HiLITE Business Park" },
+        { href: "/academy/digital-marketing-ai-master-program-kozhikode", label: "3-Month Digital Marketing & AI Program" },
+        { href: "/academy/ai-web-development-course-kozhikode", label: "AI Web Development Course" },
+        { href: "/academy/online-courses", label: "Live Online Courses" },
+      ]
+    : [];
 const image = { src: `/images/${page.slug}.webp`, alt: `${page.keyword} — Media 360 Concept, HiLITE Business Park, Kozhikode (Calicut)` };
 const schema = servicePageGraph({ ...page, crumbs, image: image.src });
 ---
@@ -184,6 +194,21 @@ const schema = servicePageGraph({ ...page, crumbs, image: image.src });
               <ul class="flex flex-wrap gap-3">
                 {localPages.map((p) => (
                   <li><a href={`/${p.slug}`} class="inline-block rounded-full border border-line px-5 py-2.5 text-sm text-white/80 hover:border-white/40 hover:text-white">{p.keyword}</a></li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )
+      }
+
+      {
+        academyLinks.length > 0 && (
+          <section data-reveal class="border-t border-line pt-12">
+            <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">Learn it yourself at Media 360 Academy</h2>
+              <ul class="flex flex-wrap gap-3">
+                {academyLinks.map((l) => (
+                  <li><a href={l.href} class="inline-block rounded-full border border-line px-5 py-2.5 text-sm text-white/80 hover:border-white/40 hover:text-white">{l.label}</a></li>
                 ))}
               </ul>
             </div>

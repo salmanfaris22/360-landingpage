@@ -333,6 +333,24 @@ a.card-ink:hover, .card-ink:has(a:hover) { transform: translate(-3px, -3px); box
 .track-AI { background: var(--color-hl); }
 .track-Creative { background: #ffc9b8; }
 
+/* Academy tables (syllabus, careers, comparison): scroll inside their box on phones */
+.table-wrap { overflow-x: auto; border-block: 2px solid var(--color-ink); -webkit-overflow-scrolling: touch; }
+.data-table { width: 100%; min-width: 34rem; border-collapse: collapse; text-align: left; }
+.data-table thead th { padding: 0.75rem 1rem 0.75rem 0; border-bottom: 2px solid var(--color-ink); font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-dim); }
+.data-table tbody td, .data-table tbody th { padding: 1rem 1rem 1rem 0; vertical-align: top; border-top: 1px solid rgb(18 18 18 / 18%); }
+.data-table tbody tr:first-child > * { border-top: 0; }
+/* Phones: each row becomes a stacked card with its column label */
+@media (max-width: 639px) {
+  .data-table { min-width: 0; }
+  .data-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .data-table tbody tr { display: block; padding: 1rem 0; border-top: 1px solid rgb(18 18 18 / 18%); }
+  .data-table tbody tr:first-child { border-top: 0; }
+  .data-table tbody td, .data-table tbody th { display: block; padding: 0.2rem 0; border: 0; }
+  .data-table td.num { font-size: 1.25rem; }
+  .data-table td[data-label]::before { content: attr(data-label); display: block; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-dim); }
+  .data-table td[data-label="Module"]::before { display: none; }
+}
+
 /* Decorative terminal in the Academy hero */
 .term { background: #121212; color: #f6f3ec; border-radius: 1.25rem; box-shadow: 10px 10px 0 var(--color-tang); }
 .term .caret { display: inline-block; width: 0.55em; height: 1.1em; vertical-align: -0.2em; background: var(--color-hl); animation: caret 1s steps(1) infinite; }

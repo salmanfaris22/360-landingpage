@@ -1,5 +1,6 @@
 import type { Faq } from "./schema";
 import { BRANDS, type BrandKey } from "./brands";
+import { DETAILS, type CourseDetails } from "./academy-details";
 
 /**
  * Media 360 Academy — the learning side of Media 360 Concept.
@@ -8,8 +9,11 @@ import { BRANDS, type BrandKey } from "./brands";
  *
  * Copy rules match the agency pages: no invented placement numbers,
  * salaries, fees, batch dates or student testimonials.
- * TODO(owner): confirm duration, fees, batch timings and certificate wording
- * per course, then fill `duration` (rendered + added to Course schema).
+ * Owner-confirmed (2026-10-13): batches run Sunday to Friday, morning and
+ * evening; classes are taught in Malayalam and English; every course is also
+ * live online; fees are not published. The AI Digital Master Program is 3 months.
+ * TODO(owner): confirm the other courses' durations, certificate wording and
+ * instructor names (an instructor block is not rendered until they are given).
  */
 
 /** Glossy 3D tile drawn in CSS/SVG by Icon3D.astro. */
@@ -18,7 +22,7 @@ export type IconKind = "stack" | "python" | "server" | "browser" | "globe" | "sp
 export type IconTone = "tangerine" | "yellow" | "sky" | "lilac" | "mint" | "pink" | "blue" | "violet" | "cyan" | "magenta";
 export type Level = "Beginner" | "Intermediate" | "Advanced";
 
-export type Course = {
+type CourseBase = {
   slug: string;
   /** Primary keyword — used as internal anchor text. */
   keyword: string;
@@ -40,16 +44,21 @@ export type Course = {
   careers: string[];
   faqs: Faq[];
   related: string[];
-  /** e.g. "4 months" — leave empty until confirmed by the owner. */
+  /** e.g. "3 months" — leave empty until confirmed by the owner. */
   duration?: string;
+  /** ISO 8601 form of `duration` for schema, e.g. "P3M". */
+  durationIso?: string;
+  /** Flagship multi-skill program: shown first and highlighted. */
+  featured?: boolean;
 };
+export type Course = CourseBase & CourseDetails;
 
 export const ACADEMY = {
   name: "Media 360 Academy",
   path: "/academy",
   tagline: "Learn to build with AI — from the people who build for clients.",
   description:
-    "Media 360 Academy is the AI-first training arm of Media 360 Concept at HiLITE Business Park, Kozhikode (Calicut). It teaches MERN stack, Python full stack, Golang, frontend, AI development, vibe coding, forward deployed engineering, generative AI, AI video editing, Premiere Pro, After Effects and DaVinci Resolve through real client-style projects, offline in Calicut and online.",
+    "Media 360 Academy is the AI-first training arm of Media 360 Concept at HiLITE Business Park, Kozhikode (Calicut). It runs a 3-month AI Digital Master Program (digital marketing, AI web development, video editing and PR) and teaches MERN stack, Python full stack, Golang, frontend, AI development, vibe coding, forward deployed engineering, generative AI, AI video editing, Premiere Pro, After Effects and DaVinci Resolve through real client-style projects, offline in Calicut and live online, in Malayalam and English.",
 };
 
 const AI_FAQ_CREATIVE: Faq = {
@@ -62,7 +71,43 @@ const AI_FAQ: Faq = {
   a: "Yes. You use AI assistants from the first week — to generate, explain, refactor and test — and you are graded on whether you can read, debug and defend what the AI produced. The goal is a developer or editor who is faster with AI, not dependent on it.",
 };
 
-export const COURSES: Course[] = [
+const BASE: CourseBase[] = [
+  {
+    slug: "digital-marketing-ai-master-program-kozhikode",
+    featured: true,
+    duration: "3 months",
+    durationIso: "P3M",
+    level: "Beginner",
+    icon: { kind: "megaphone", tone: "yellow" },
+    keyword: "Digital Marketing & AI Course in Kozhikode",
+    name: "AI Digital Master Program",
+    short: "3 months: digital marketing, AI web development, Premiere Pro video editing and PR — one program, four job skills.",
+    track: "AI",
+    title: "Digital Marketing & AI Master Program, HiLITE Calicut",
+    description:
+      "3-month AI Digital Master Program at HiLITE Business Park, Calicut: digital marketing, AI web development, Premiere Pro video and PR. Offline + online.",
+    h1: "Digital Marketing & AI Master Program in HiLITE Business Park, Kozhikode",
+    answer:
+      "The AI Digital Master Program is Media 360 Academy's 3-month course in digital marketing, AI web development, video editing with Premiere Pro, and PR and personal branding. It runs at HiLITE Business Park, Kozhikode (Calicut) and live online, Sunday to Friday, and ends with a full launch campaign you plan, build and run for one brand.",
+    forWho: ["Graduates who want a marketing job in 3 months", "Business owners who want to run their own marketing", "Freelancers who want to sell websites, ads, video and PR together"],
+    tools: ["ChatGPT & Claude", "Google Business Profile", "Google Ads", "Meta Ads", "GA4", "Next.js / WordPress", "Adobe Premiere Pro", "AI video tools", "LinkedIn"],
+    modules: [
+      { title: "Digital marketing & SEO", topics: ["Funnels and customer research", "SEO and Google Business Profile", "Content and copy with AI"] },
+      { title: "Social media & paid ads", topics: ["Meta Ads and Instagram growth", "Google Ads search and Performance Max", "GA4, pixels and conversion tracking"] },
+      { title: "AI web development", topics: ["Landing pages and websites built with AI", "Forms, WhatsApp and integrations", "Technical SEO, schema and AI search (GEO)"] },
+      { title: "Video for marketing", topics: ["Premiere Pro editing for reels and ads", "Hooks, captions and retention", "AI video, voice and visuals"] },
+      { title: "PR & personal branding", topics: ["Press releases and media outreach", "LinkedIn and personal brand", "Reviews, reputation and crisis replies"] },
+      { title: "Capstone launch", topics: ["One brand: website, ads, video and PR", "Reporting dashboards", "Portfolio, freelancing and interviews"] },
+    ],
+    projects: [
+      { title: "Local business growth plan", text: "SEO audit, Google Business Profile and an ads plan for a real Kozhikode business." },
+      { title: "AI-built landing page + reels", text: "A live landing page and a reel series that drive enquiries to it." },
+      { title: "Brand launch campaign", text: "Website, ads, video and a press kit for one brand, with a results report." },
+    ],
+    careers: ["Digital Marketing Executive", "Performance Marketer", "Social Media & Video Marketer", "PR & Content Executive", "Freelance Digital Marketer"],
+    faqs: [],
+    related: ["ai-web-development-course-kozhikode", "premiere-pro-course-kozhikode", "generative-ai-video-design-course-kozhikode"],
+  },
   {
     slug: "mern-stack-course-kozhikode",
     level: "Beginner",
@@ -71,10 +116,10 @@ export const COURSES: Course[] = [
     name: "MERN Stack Development",
     short: "MongoDB, Express, React, Node — full stack JavaScript with AI pair-programming.",
     track: "Development",
-    title: "MERN Stack Course in Kozhikode (AI-First)",
+    title: "MERN Stack Course in HiLITE Business Park, Calicut",
     description:
       "AI-first MERN stack course in Kozhikode (Calicut): MongoDB, Express, React, Node.js and TypeScript, with real projects and career support. Offline and online.",
-    h1: "MERN Stack Course in Kozhikode, Taught AI-First",
+    h1: "MERN Stack Course in HiLITE Business Park, Kozhikode",
     answer:
       "The Media 360 Academy MERN stack course teaches full stack JavaScript — MongoDB, Express, React and Node.js, with TypeScript — at HiLITE Business Park, Calicut and online. You build and deploy production-style apps using AI pair-programming, with code reviews from working developers.",
     forWho: ["Graduates and final-year students starting a developer career", "Non-IT professionals switching into software", "Frontend developers who want to own the backend too"],
@@ -95,7 +140,6 @@ export const COURSES: Course[] = [
     careers: ["MERN Stack Developer", "Full Stack Developer", "React Developer", "Node.js Backend Developer"],
     faqs: [
       { q: "Do I need coding experience to join the MERN stack course?", a: "No. The course starts from web and JavaScript fundamentals. You need a laptop, basic computer skills and time to practise every day." },
-      { q: "Is the MERN course offline in Calicut or online?", a: "Both. Offline classes run at HiLITE Business Park, Kozhikode, and the same course is available online with live sessions and code reviews." },
       AI_FAQ,
     ],
     related: ["python-full-stack-course-kozhikode", "frontend-development-course-kozhikode", "ai-web-development-course-kozhikode"],
@@ -108,10 +152,10 @@ export const COURSES: Course[] = [
     name: "Python Full Stack Development",
     short: "Python, Django, FastAPI and React — plus the AI and data skills Python is known for.",
     track: "Development",
-    title: "Python Full Stack Course in Kozhikode (AI-First)",
+    title: "Python Full Stack Course in HiLITE Business Park, Calicut",
     description:
       "Python full stack course in Calicut: Python, Django, FastAPI, PostgreSQL and React, with AI and LLM integration and real projects. Offline at HiLITE + online.",
-    h1: "Python Full Stack Course in Kozhikode with AI Built In",
+    h1: "Python Full Stack Course in HiLITE Business Park, Kozhikode",
     answer:
       "The Python full stack course at Media 360 Academy covers Python, Django, FastAPI, PostgreSQL and React, then adds LLM APIs and automation — the reason most companies hire Python developers now. Classes run at HiLITE Business Park, Calicut and online.",
     forWho: ["Freshers who want a versatile first language", "Engineers moving toward AI and data work", "Working professionals automating their own jobs"],
@@ -145,10 +189,10 @@ export const COURSES: Course[] = [
     name: "Golang Backend Development",
     short: "Go, microservices, PostgreSQL, gRPC and cloud — backend engineering that scales.",
     track: "Development",
-    title: "Golang Backend Course in Kozhikode",
+    title: "Golang Course in HiLITE Business Park, Calicut",
     description:
       "Golang backend course in Kozhikode: Go, REST and gRPC microservices, PostgreSQL, Redis, Docker and Kubernetes, with AI-assisted coding. Calicut + online.",
-    h1: "Golang Backend Development Course in Kozhikode",
+    h1: "Golang Backend Course in HiLITE Business Park, Kozhikode",
     answer:
       "Media 360 Academy's Golang course trains backend engineers in Go — APIs, concurrency, microservices, PostgreSQL, Redis, Docker and cloud deployment — using AI assistants for speed and code review for quality. Offline at HiLITE Business Park, Calicut, or online.",
     forWho: ["Developers who know one language and want backend depth", "MERN or Python developers moving to high-performance systems", "CS graduates aiming for product companies"],
@@ -182,10 +226,10 @@ export const COURSES: Course[] = [
     name: "Frontend Development",
     short: "React, Next.js, TypeScript and Figma-to-code — interfaces that are fast and found on Google.",
     track: "Development",
-    title: "Frontend Development Course in Kozhikode",
+    title: "Frontend Course in HiLITE Business Park, Calicut",
     description:
       "Frontend course in Kozhikode: HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind and Figma-to-code, with SEO and AI tools. Calicut + online.",
-    h1: "Frontend Development Course in Kozhikode — React, Next.js & AI",
+    h1: "Frontend Development Course in HiLITE Business Park, Kozhikode",
     answer:
       "The frontend development course at Media 360 Academy teaches HTML, CSS, JavaScript, TypeScript, React and Next.js, plus Figma-to-code, accessibility, SEO and Core Web Vitals. You learn from the team that designs and ships client websites at HiLITE Business Park, Calicut.",
     forWho: ["Beginners who like visual, design-led work", "Designers who want to code their own designs", "Developers who want stronger UI skills"],
@@ -219,10 +263,10 @@ export const COURSES: Course[] = [
     name: "AI Web Development",
     short: "Build and launch websites and web apps with AI — prompts, Next.js, CMS, SEO and deployment.",
     track: "AI",
-    title: "AI Web Development Course in Kozhikode",
+    title: "AI Web Development Course in HiLITE Business Park",
     description:
       "AI web development course in Calicut: build, launch and rank websites and web apps with AI tools, Next.js, a headless CMS and SEO. Offline and online.",
-    h1: "AI Web Development Course in Kozhikode",
+    h1: "AI Web Development Course in HiLITE Business Park, Kozhikode",
     answer:
       "Media 360 Academy's AI web development course teaches you to plan, build, launch and rank websites and web apps with AI — prompt-driven development, Next.js, a headless CMS, technical SEO and deployment — so you can deliver client websites in days, not months.",
     forWho: ["Freelancers who want to sell websites", "Marketers and business owners building their own sites", "Students who want a fast route to paid projects"],
@@ -256,10 +300,10 @@ export const COURSES: Course[] = [
     name: "AI Developer & Vibe Coding",
     short: "LLMs, agents, RAG and vibe coding — ship AI products fast, then make them reliable.",
     track: "AI",
-    title: "AI Developer & Vibe Coding Course in Kozhikode",
+    title: "AI Developer & Vibe Coding Course in HiLITE, Calicut",
     description:
       "AI developer and vibe coding course in Calicut: LLM APIs, prompt engineering, RAG, AI agents, MCP and AI coding tools — build and ship real AI products.",
-    h1: "AI Developer & Vibe Coding Course in Kozhikode",
+    h1: "AI Developer & Vibe Coding Course in HiLITE Business Park, Kozhikode",
     answer:
       "The AI developer and vibe coding course at Media 360 Academy teaches you to build products with large language models — prompt engineering, RAG, AI agents, tool use and MCP — and to vibe code with AI assistants while keeping the code tested, secure and maintainable.",
     forWho: ["Developers who want to move into AI engineering", "Founders prototyping AI products", "Python or JavaScript learners who want the newest skill set"],
@@ -293,10 +337,10 @@ export const COURSES: Course[] = [
     name: "Forward Deployed Engineer (AI)",
     short: "Engineer + consultant: deploy AI systems inside real businesses and make them work.",
     track: "AI",
-    title: "Forward Deployed Engineer Course in Kerala (AI FDE)",
+    title: "Forward Deployed Engineer Course, HiLITE Calicut",
     description:
       "Forward deployed engineer course in Kerala: deploy AI and software inside real businesses — integrations, data, agents, client skills. Calicut + online.",
-    h1: "Forward Deployed Engineer (AI) Course in Kerala",
+    h1: "Forward Deployed Engineer Course in HiLITE Business Park, Kozhikode",
     answer:
       "A forward deployed engineer (FDE) works with customers to deploy software and AI inside their business. Media 360 Academy's FDE course trains you in integrations, data pipelines, AI agents and client communication by placing you on live, agency-style deployments run from HiLITE Business Park, Calicut.",
     forWho: ["Developers who enjoy talking to customers", "Engineers aiming for AI startups and product companies", "Consultants who want hands-on technical depth"],
@@ -329,10 +373,10 @@ export const COURSES: Course[] = [
     name: "AI Video Editing",
     short: "Premiere Pro, After Effects, DaVinci Resolve and AI video tools — edit like a studio.",
     track: "Creative",
-    title: "AI Video Editing Course in Kozhikode",
+    title: "AI Video Editing Course in HiLITE Business Park, Calicut",
     description:
       "AI video editing course in Kozhikode: Premiere Pro, After Effects, DaVinci Resolve, colour, motion graphics and AI video tools for reels, ads and YouTube.",
-    h1: "AI Video Editing Course in Kozhikode — Premiere Pro, After Effects & DaVinci",
+    h1: "AI Video Editing Course in HiLITE Business Park, Kozhikode",
     answer:
       "Media 360 Academy's AI video editing course teaches Adobe Premiere Pro, After Effects and DaVinci Resolve together with AI tools for captions, voice, generative video and clean-up. You edit reels, ads and brand films alongside the agency's production team in Calicut.",
     forWho: ["Content creators and YouTubers", "Students aiming for media and agency jobs", "Marketers who want to produce their own videos"],
@@ -366,10 +410,10 @@ export const COURSES: Course[] = [
     name: "Premiere Pro Video Editing",
     short: "Edit reels, ads and YouTube videos in Adobe Premiere Pro — with AI for captions, clean-up and speed.",
     track: "Creative",
-    title: "Premiere Pro Course in Kozhikode (AI Editing)",
+    title: "Premiere Pro Course in HiLITE Business Park, Calicut",
     description:
       "Adobe Premiere Pro course in Kozhikode (Calicut): editing, audio, colour, captions and AI tools for reels, ads and YouTube. Offline at HiLITE + online.",
-    h1: "Adobe Premiere Pro Course in Kozhikode, with AI Editing",
+    h1: "Premiere Pro Course in HiLITE Business Park, Kozhikode",
     answer:
       "Media 360 Academy's Premiere Pro course teaches professional video editing in Adobe Premiere Pro — cutting, audio, colour, titles and export — plus the AI features that speed up captions, clean-up and rough cuts. Classes run at HiLITE Business Park, Calicut and online.",
     forWho: ["Beginners who want a first editing job or freelance work", "YouTubers and content creators", "Marketing teams producing their own video"],
@@ -403,10 +447,10 @@ export const COURSES: Course[] = [
     name: "After Effects & Motion Graphics",
     short: "Motion graphics, kinetic type, logo animation and VFX basics in Adobe After Effects — sped up with AI.",
     track: "Creative",
-    title: "After Effects Course in Kozhikode (Motion Graphics)",
+    title: "After Effects Course in HiLITE Business Park, Calicut",
     description:
       "Adobe After Effects course in Calicut: motion graphics, kinetic typography, logo animation, VFX basics and AI tools. Offline at HiLITE Business Park + online.",
-    h1: "After Effects & Motion Graphics Course in Kozhikode",
+    h1: "After Effects Course in HiLITE Business Park, Kozhikode",
     answer:
       "The After Effects course at Media 360 Academy teaches motion graphics in Adobe After Effects — keyframes, kinetic typography, shape animation, logo reveals, tracking and compositing — with AI tools for rotoscoping, clean-up and generating assets. Learn offline at HiLITE Business Park, Calicut, or online.",
     forWho: ["Video editors who want to add motion graphics", "Graphic designers moving into animation", "Content creators who want branded, animated videos"],
@@ -440,10 +484,10 @@ export const COURSES: Course[] = [
     name: "DaVinci Resolve Editing & Colour",
     short: "Edit, colour grade and finish in DaVinci Resolve — the studio-grade editor with a free version and AI tools.",
     track: "Creative",
-    title: "DaVinci Resolve Course in Kozhikode (Colour Grading)",
+    title: "DaVinci Resolve Course in HiLITE Business Park, Calicut",
     description:
       "DaVinci Resolve course in Kozhikode: editing, colour grading, Fairlight audio and AI-powered Neural Engine tools. Offline at HiLITE Business Park + online.",
-    h1: "DaVinci Resolve Editing & Colour Grading Course in Kozhikode",
+    h1: "DaVinci Resolve Course in HiLITE Business Park, Kozhikode",
     answer:
       "Media 360 Academy's DaVinci Resolve course covers editing, colour correction and grading, Fairlight audio and delivery in DaVinci Resolve, including its AI-powered Neural Engine tools such as Magic Mask and voice isolation. Classes run at HiLITE Business Park, Calicut and online.",
     forWho: ["Editors who want professional colour skills", "Filmmakers and wedding videographers", "Beginners who want a free, professional editor"],
@@ -477,10 +521,10 @@ export const COURSES: Course[] = [
     name: "Generative AI for Video & Design",
     short: "Create images, video, voice and ads with generative AI — then finish them like a professional.",
     track: "AI",
-    title: "Generative AI Course in Kozhikode (Video & Design)",
+    title: "Generative AI Course in HiLITE Business Park, Calicut",
     description:
       "Generative AI course in Calicut: create images, video, voice and ads with AI tools, then edit and finish them professionally. Offline at HiLITE + online.",
-    h1: "Generative AI Course in Kozhikode for Video, Images & Ads",
+    h1: "Generative AI Course in HiLITE Business Park, Kozhikode",
     answer:
       "The generative AI course at Media 360 Academy teaches you to create images, video, voice and ad creatives with current AI tools — prompting, consistency, editing and rights — and to finish the results in professional software so they are ready for clients and social media.",
     forWho: ["Content creators and social media managers", "Designers and editors adding AI to their work", "Marketers who want to produce creatives in-house"],
@@ -508,6 +552,22 @@ export const COURSES: Course[] = [
   },
 ];
 
+/** FAQs every course page answers (owner-confirmed facts only). */
+const commonFaqs = (c: CourseBase): Faq[] => [
+  { q: `Can I take the ${c.name} course online?`, a: `Yes. ${c.name} runs offline at HiLITE Business Park, Kozhikode and live online, with the same syllabus, projects and reviews. Online students join live classes, get help on screen share and submit work for the same feedback as classroom students.` },
+  { q: "Are classes taught in Malayalam or English?", a: "Both. Concepts are explained in Malayalam and English, while technical terms, notes, code and project briefs are in English, so you are ready for interviews and client work in either language." },
+  { q: "What are the batch timings?", a: "Batches run Sunday to Friday, with morning and evening batches so students and working professionals can both attend. Message us on WhatsApp for the next start date." },
+  // TODO(owner): confirm certificate wording.
+  { q: "Do I get a certificate?", a: `Yes, you receive a Media 360 Academy certificate for ${c.name}. Your portfolio of finished projects is what employers and clients will look at most.` },
+];
+
+export const COURSES: Course[] = BASE.map((c) => {
+  const d = DETAILS[c.slug];
+  if (!d) throw new Error(`academy-details.ts is missing ${c.slug}`);
+  if (d.syllabus.length !== c.modules.length) throw new Error(`${c.slug}: syllabus rows must match modules`);
+  return { ...c, ...d, faqs: [...(d.extraFaqs ?? []), ...c.faqs, ...commonFaqs(c)] };
+});
+
 const TONE_TINT: Record<IconTone, string> = {
   tangerine: "rgb(255 122 69 / 22%)", yellow: "rgb(255 210 63 / 34%)", sky: "rgb(90 169 255 / 22%)", lilac: "rgb(161 127 240 / 22%)",
   mint: "rgb(52 201 142 / 22%)", pink: "rgb(244 114 182 / 22%)", blue: "rgb(77 124 255 / 22%)", violet: "rgb(139 92 246 / 22%)",
@@ -526,7 +586,7 @@ export const ACADEMY_METHOD = [
   { title: "AI in every class", text: "You build with AI assistants from week one, then learn to review, test and own what they produce." },
   { title: "Agency projects, not toy apps", text: "Briefs come from the kind of work Media 360 Concept ships for clients: stores, CRMs, AI agents, ads." },
   { title: "Code review by working developers", text: "Your pull requests are reviewed by people who build software for a living." },
-  { title: "Offline in Calicut or online", text: "Learn at HiLITE Business Park, Kozhikode, or join the same live course online." },
+  { title: "Offline in Calicut or online", text: "Learn at HiLITE Business Park, Kozhikode, or join the same live course online — Sunday to Friday, morning or evening." },
 ];
 
 /** Career support offered. TODO(owner): confirm each item before launch. */
@@ -541,16 +601,103 @@ export const CAREER_SUPPORT = [
 export const ACADEMY_FAQS: Faq[] = [
   { q: "What is Media 360 Academy?", a: ACADEMY.description },
   { q: "Where are classes held?", a: "Offline classes are at HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), Kerala 673014. Every course is also available online with live sessions." },
-  { q: "Which course should I choose?", a: "Beginners usually start with MERN stack, Python full stack or frontend. Developers who already code move to Golang, AI developer & vibe coding or forward deployed engineering. Creatives take AI video editing, Premiere Pro, After Effects, DaVinci Resolve or generative AI. Book a free counselling session and we will recommend one." },
-  { q: "What are the fees and duration?", a: "Fees, duration and batch timings depend on the course and mode. Message us on WhatsApp for the current schedule — we reply within 24 hours." },
+  { q: "Which is the best course in HiLITE Business Park?", a: "Media 360 Academy runs a 3-month AI Digital Master Program and twelve AI-first coding and video editing courses inside HiLITE Business Park, Calicut. The best one depends on your goal: the AI Digital Master Program for digital marketing, websites, video and PR together, MERN stack or Python full stack for a developer career, AI developer & vibe coding for AI engineering, and AI video editing or Premiere Pro for video. See the full comparison on the best courses in HiLITE Business Park page." },
+  { q: "Which course should I choose?", a: "If you want digital marketing, AI web development, video and PR in one go, take the 3-month AI Digital Master Program. Beginners in coding usually start with MERN stack, Python full stack or frontend. Developers who already code move to Golang, AI developer & vibe coding or forward deployed engineering. Creatives take AI video editing, Premiere Pro, After Effects, DaVinci Resolve or generative AI. Book a free counselling session and we will recommend one." },
+  { q: "What are the batch timings and duration?", a: "Batches run Sunday to Friday, with morning and evening batches. The AI Digital Master Program takes 3 months; other courses vary. Message us on WhatsApp for the next start date and fees — we reply within 24 hours." },
+  { q: "Are the courses available online?", a: "Yes. Every course runs offline at HiLITE Business Park, Kozhikode and live online, with the same syllabus, projects and reviews, so you can join from anywhere in Kerala, India or the Gulf." },
+  { q: "Are classes in Malayalam or English?", a: "Both. Concepts are explained in Malayalam and English; notes, code and briefs are in English." },
   // TODO(owner): confirm certificate wording.
   { q: "Do I get a certificate?", a: "Yes, you receive a Media 360 Academy course certificate, but your portfolio of deployed projects is what employers and clients will look at." },
 ];
 
 export const ACADEMY_NAV = [
   { label: "Courses", href: "/academy#courses" },
+  { label: "3-Month Program", href: "/academy/digital-marketing-ai-master-program-kozhikode" },
   { label: "MERN Stack", href: "/academy/mern-stack-course-kozhikode" },
   { label: "Python Full Stack", href: "/academy/python-full-stack-course-kozhikode" },
   { label: "AI Developer", href: "/academy/ai-developer-vibe-coding-course-kozhikode" },
-  { label: "Careers", href: "/academy#careers" },
+  { label: "Online", href: "/academy/online-courses" },
 ];
+
+/**
+ * "Best courses in HiLITE Business Park" — the academy's local landing page.
+ * Like the agency's HiLITE pages, "best" is never self-awarded with invented
+ * proof: the page gives the criteria to judge any institute, then shows how
+ * the academy works against them and which course fits which student.
+ */
+export const BEST_COURSES = {
+  slug: "best-courses-in-hilite-business-park",
+  path: "/academy/best-courses-in-hilite-business-park",
+  name: "Best Courses in HiLITE Business Park",
+  title: "Best Courses in HiLITE Business Park, Calicut",
+  description:
+    "Best courses in HiLITE Business Park, Calicut: AI-first MERN, Python, Golang, AI developer, video editing and generative AI courses. Offline + online.",
+  h1: "Best Courses in HiLITE Business Park, Calicut",
+  answer:
+    "Media 360 Academy runs AI-first coding and video editing courses inside HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut). A 3-month AI Digital Master Program covers digital marketing, AI web development, video editing and PR, and twelve specialist courses cover MERN stack, Python full stack, Golang, frontend, AI web development, AI developer & vibe coding, forward deployed engineering, AI video editing, Premiere Pro, After Effects, DaVinci Resolve and generative AI, taught on real agency projects, offline at HiLITE and live online, Sunday to Friday.",
+  intro: [
+    "Students searching for the best course in HiLITE Business Park usually want three things: skills a company will actually hire for, a place they can reach every day, and teachers who do the work themselves. A certificate on its own rarely gets anyone hired.",
+    "Media 360 Academy is the training side of Media 360 Concept, the agency in the same complex that builds websites, software, AI tools and video for clients. Course briefs come from that client work, and your projects are reviewed by the people who ship it.",
+  ],
+  criteria: [
+    { title: "Real projects, deployed", text: "You should leave with live apps, edits and reels in a portfolio, not only class notes." },
+    { title: "AI in every module", text: "Employers now expect AI-assisted work. Look for a course that teaches you to use AI and to check what it produces." },
+    { title: "Teachers who practise", text: "Ask who reviews your work. Here it is developers and editors who deliver client projects every week." },
+    { title: "Clear syllabus up front", text: "Every module, tool and project should be listed before you pay. Ours is on each course page." },
+    { title: "Offline and online", text: "Classes at HiLITE Business Park, Calicut, with the same live course available online." },
+    { title: "Honest career support", text: "Portfolio, resume and interview preparation, without invented placement percentages or salary claims." },
+  ],
+  picks: [
+    { who: "Wants one 3-month program covering marketing, websites, video and PR", slug: "digital-marketing-ai-master-program-kozhikode" },
+    { who: "Complete beginner who wants a developer job", slug: "mern-stack-course-kozhikode" },
+    { who: "Beginner who prefers Python, data or AI", slug: "python-full-stack-course-kozhikode" },
+    { who: "Wants to design and build websites", slug: "frontend-development-course-kozhikode" },
+    { who: "Business owner or marketer building sites with AI", slug: "ai-web-development-course-kozhikode" },
+    { who: "Developer moving into AI engineering", slug: "ai-developer-vibe-coding-course-kozhikode" },
+    { who: "Backend developer aiming for scale", slug: "golang-backend-course-kozhikode" },
+    { who: "Engineer who wants client-facing AI work", slug: "forward-deployed-engineer-course-kerala" },
+    { who: "Creator who wants to edit reels, ads and YouTube", slug: "ai-video-editing-course-kozhikode" },
+    { who: "Editor focused on Adobe Premiere Pro", slug: "premiere-pro-course-kozhikode" },
+    { who: "Designer moving into motion graphics", slug: "after-effects-course-kozhikode" },
+    { who: "Editor who wants colour grading skills", slug: "davinci-resolve-course-kozhikode" },
+    { who: "Marketer making images, video and ads with AI", slug: "generative-ai-video-design-course-kozhikode" },
+  ],
+  faqs: [
+    { q: "Which is the best course in HiLITE Business Park?", a: "It depends on your goal. For digital marketing, websites, video and PR together, take the 3-month AI Digital Master Program. For a developer career, start with the MERN stack or Python full stack course. For AI engineering, take AI developer & vibe coding. For video, take AI video editing or Premiere Pro. Media 360 Academy offers all of them at HiLITE Business Park, Calicut, and free counselling helps you choose." },
+    { q: "Where exactly are the classes in HiLITE Business Park?", a: "Classes are held at Media 360 Concept, HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), Kerala 673014. Message us on WhatsApp before visiting so we can meet you." },
+    { q: "Are the courses available online as well?", a: "Yes. Every course runs offline at HiLITE Business Park and online with live sessions, code reviews and the same projects." },
+    { q: "Can I join without an IT background?", a: "Yes. The MERN stack, Python full stack, frontend, AI web development, AI video editing and Premiere Pro courses start from the basics. Advanced courses such as Golang and forward deployed engineering expect some coding experience." },
+    { q: "What are the batch timings?", a: "Batches run Sunday to Friday, with morning and evening batches. The AI Digital Master Program takes 3 months. Message us on WhatsApp for the next start date and fees — we reply within 24 hours." },
+    { q: "Which course near HiLITE Mall is best for digital marketing?", a: "Media 360 Academy's AI Digital Master Program is taught inside HiLITE Business Park, next to HiLITE Mall on Thondayad Bypass, Kozhikode. It covers SEO, Google Business Profile, Meta and Google Ads, AI web development, Premiere Pro video and PR in 3 months." },
+  ] as Faq[],
+};
+
+/**
+ * Online courses hub. Every course already runs live online; this page is the
+ * single place that answers "online course" searches without city doorway pages.
+ */
+export const ONLINE_COURSES = {
+  slug: "online-courses",
+  path: "/academy/online-courses",
+  name: "Online Courses",
+  title: "Live Online AI, Coding & Video Editing Courses, Kerala",
+  description:
+    "Live online courses from Media 360 Academy, HiLITE Calicut: digital marketing, MERN, Python, AI developer, Premiere Pro and more. Malayalam + English.",
+  h1: "Live Online Courses from HiLITE Business Park, Calicut",
+  answer:
+    "Every Media 360 Academy course runs live online as well as in the classroom at HiLITE Business Park, Kozhikode. Online students join the same live classes, follow the same syllabus, build the same projects and get the same reviews, Sunday to Friday in morning or evening batches, taught in Malayalam and English.",
+  how: [
+    { title: "Live, not recorded", text: "You attend real classes with a teacher who can see your screen and answer questions as you work." },
+    { title: "Same projects and reviews", text: "Online students build the same portfolio projects and get the same code, edit and campaign reviews." },
+    { title: "Malayalam and English", text: "Concepts explained in both; notes, code and briefs in English." },
+    { title: "Morning or evening batches", text: "Sunday to Friday, so students, working professionals and Gulf learners can fit it in." },
+    { title: "Visit any time", text: "Online students are welcome at HiLITE Business Park, Kozhikode for help sessions and events." },
+  ],
+  faqs: [
+    { q: "Are Media 360 Academy courses available online?", a: "Yes. All courses, including the 3-month AI Digital Master Program, run live online with the same syllabus, projects and reviews as the classroom at HiLITE Business Park, Kozhikode." },
+    { q: "Can I join from the Gulf or another state?", a: "Yes. Classes are live online, Sunday to Friday, with morning and evening batches. Message us on WhatsApp and we will suggest the batch that fits your time zone." },
+    { q: "Are online classes recorded?", a: "Classes are live so you can ask questions and get help on your own screen. Ask during counselling how missed classes are covered for your batch." },
+    // TODO(owner): confirm certificate wording.
+    { q: "Is the online certificate the same?", a: "Yes. Online and classroom students receive the same Media 360 Academy course certificate." },
+  ] as Faq[],
+};

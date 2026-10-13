@@ -1,0 +1,119 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Button from "@/components/Button.astro";
+import Icon3D from "@/components/Icon3D.astro";
+import { CONTACT } from "@/lib/data";
+import { ACADEMY, COURSES, ONLINE_COURSES as P } from "@/lib/academy";
+import { academyGraph, type Crumb } from "@/lib/schema";
+
+const crumbs: Crumb[] = [
+  { name: "Home", path: "/" },
+  { name: "Academy", path: "/academy" },
+  { name: P.name, path: P.path },
+];
+const schema = academyGraph({
+  title: P.title,
+  description: P.description,
+  academyDescription: ACADEMY.description,
+  courses: COURSES,
+  faqs: P.faqs,
+  crumbs,
+  path: P.path,
+  listName: "Live online courses from Media 360 Academy",
+});
+const glance = [
+  { k: "Courses online", v: String(COURSES.length) },
+  { k: "Classes", v: "Live, with a teacher" },
+  { k: "Batches", v: "Sunday–Friday" },
+  { k: "Times", v: "Morning & evening" },
+  { k: "Language", v: "Malayalam + English" },
+];
+---
+
+<Base title={P.title} description={P.description} ogSlug={`academy-${P.slug}`} schema={schema} side="academy">
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-14 md:pt-20">
+    <Breadcrumbs items={crumbs} />
+
+    <header class="max-w-4xl">
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.02] font-bold tracking-[-0.035em]">{P.h1}</h1>
+      <p class="mt-8 max-w-3xl text-lg leading-relaxed text-white/90" data-speakable>{P.answer}</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4 sm:justify-start">
+        <Button href={CONTACT.whatsappAcademy} external size="sm">Ask about online batches</Button>
+        <Button href="#courses" variant="ghost" size="sm">See online courses</Button>
+      </div>
+    </header>
+
+    <dl class="card-ink mt-14 grid gap-px overflow-hidden bg-[var(--color-ink)] p-0 sm:grid-cols-2 lg:grid-cols-5">
+      {glance.map((g) => (
+        <div class="bg-[var(--color-surface)] p-6">
+          <dt class="font-mono text-[11px] text-dim">{g.k}</dt>
+          <dd class="mt-1 font-display text-lg font-semibold">{g.v}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <div class="mt-20 space-y-20 md:mt-28 md:space-y-28">
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">How online classes work</h2>
+        <ul class="grid gap-5 sm:grid-cols-2">
+          {P.how.map((c) => (
+            <li data-reveal class="card-ink p-6">
+              <h3 class="font-display text-lg font-bold"><span class="hl">{c.title}</span></h3>
+              <p class="mt-3 text-sm leading-relaxed text-dim">{c.text}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="courses" class="scroll-mt-24 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Courses you can take online</h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption class="sr-only">Media 360 Academy courses available live online</caption>
+            <thead>
+              <tr><th scope="col">Course</th><th scope="col">Best for</th><th scope="col">Level</th><th scope="col">Duration</th></tr>
+            </thead>
+            <tbody>
+              {COURSES.map((c) => (
+                <tr>
+                  <th scope="row">
+                    <a href={`/academy/${c.slug}`} class="flex items-center gap-3 font-display font-semibold">
+                      <Icon3D {...c.icon} size="2.25rem" /><span class="link-underline">{c.name}</span>
+                    </a>
+                  </th>
+                  <td data-label="Best for" class="text-sm">{c.bestFor}</td>
+                  <td data-label="Level" class="text-sm">{c.level}</td>
+                  <td data-label="Duration" class="text-sm text-dim">{c.duration ?? "Ask on WhatsApp"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" class="font-display text-3xl font-bold tracking-tight">Frequently asked questions</h2>
+        <div class="divide-y-2 divide-[var(--color-ink)] border-y-2 border-[var(--color-ink)]">
+          {P.faqs.map((f, i) => (
+            <details class="group py-5" open={i === 0}>
+              <summary class="flex cursor-pointer items-baseline justify-between gap-6 font-display text-lg font-medium">
+                <h3>{f.q}</h3><span aria-hidden="true" class="text-cyan group-open:rotate-45">+</span>
+              </summary>
+              <p class="mt-4 max-w-2xl leading-relaxed text-dim">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="term mb-24 p-10 text-center md:p-16">
+        <h2 class="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-4xl">Join live from anywhere</h2>
+        <p class="mx-auto mt-4 max-w-xl text-[#f6f3ec]/70">Or visit the classroom at {CONTACT.postal.street}, {CONTACT.postal.locality} {CONTACT.postal.postalCode}.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href={CONTACT.whatsappAcademy} target="_blank" rel="noopener" class="glow inline-flex min-h-[48px] items-center rounded-full bg-[#ffd23f] px-7 font-display font-semibold text-[#121212] hover:bg-[#ff6a3d]">WhatsApp {CONTACT.phoneDisplay}</a>
+          <a href="/academy/best-courses-in-hilite-business-park" class="inline-flex min-h-[48px] items-center rounded-full border border-[#f6f3ec]/30 px-7 font-display font-semibold text-[#f6f3ec] hover:bg-[#f6f3ec] hover:text-[#121212]">Compare all courses</a>
+        </div>
+      </section>
+    </div>
+  </main>
+</Base>

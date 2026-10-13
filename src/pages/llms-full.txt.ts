@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { SEO_PAGES } from "@/lib/seo-pages";
 import { FAQS } from "@/lib/data";
 import { BRAND_DESCRIPTION } from "@/lib/schema";
-import { ACADEMY, COURSES } from "@/lib/academy";
+import { ACADEMY, COURSES, BEST_COURSES, ONLINE_COURSES } from "@/lib/academy";
 
 // Plain-text mirror of the service pages (identical to what visitors see).
 export const GET: APIRoute = ({ site }) => {
@@ -21,12 +21,18 @@ export const GET: APIRoute = ({ site }) => {
     out.push("### FAQ", ...p.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
   }
   out.push("## Media 360 Academy", `URL: ${new URL("/academy", site).href}`, "", ACADEMY.description, "");
+  for (const pg of [BEST_COURSES, ONLINE_COURSES]) {
+    out.push(`## ${pg.h1}`, `URL: ${new URL(pg.path, site).href}`, "", pg.answer, "", "### FAQ", ...pg.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
+  }
   for (const c of COURSES) {
     out.push(`## ${c.h1}`, `URL: ${new URL(`/academy/${c.slug}`, site).href}`, "", c.answer, "");
+    out.push(...c.overview.flatMap((x) => [x, ""]));
+    out.push(`Duration: ${c.duration ?? "ask on WhatsApp"}. Batches: Sunday to Friday, morning and evening. Mode: offline at HiLITE Business Park, Kozhikode, or live online. Language: Malayalam and English. Best for: ${c.bestFor}.`, "");
     out.push("### Who it is for", ...c.forWho.map((w) => `- ${w}`), "");
-    out.push("### Syllabus", ...c.modules.map((m, i) => `${i + 1}. ${m.title}: ${m.topics.join("; ")}`), "");
+    out.push("### Syllabus", "| # | Module | Topics | Tools | What you build |", "|---|---|---|---|---|", ...c.modules.map((m, i) => `| ${i + 1}${c.syllabus[i].when ? ` (${c.syllabus[i].when})` : ""} | ${m.title} | ${m.topics.join("; ")} | ${c.syllabus[i].tools} | ${c.syllabus[i].build} |`), "");
+    out.push("### Careers", "| Role | What you do | Skills | Where |", "|---|---|---|---|", ...c.careerTable.map((r) => `| ${r.role} | ${r.does} | ${r.skills} | ${r.where} |`), "");
     out.push("### Projects", ...c.projects.map((p) => `- ${p.title}: ${p.text}`), "");
-    out.push(`### Tools\n${c.tools.join(", ")}`, "", `### Careers\n${c.careers.join(", ")}`, "");
+    out.push(`### Tools\n${c.tools.join(", ")}`, "");
     out.push("### FAQ", ...c.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
   }
   return new Response(out.join("\n"), { headers: { "Content-Type": "text/plain; charset=utf-8" } });

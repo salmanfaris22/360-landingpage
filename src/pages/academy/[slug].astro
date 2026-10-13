@@ -23,10 +23,14 @@ const schema = courseGraph({ course, title: course.title, description: course.de
 const glance = [
   { k: "Track", v: course.track },
   { k: "Level", v: course.level },
-  { k: "Mode", v: "Offline in Calicut · Online" },
-  { k: "Where", v: "HiLITE Business Park, Kozhikode" },
-  { k: "Duration & fees", v: course.duration ?? "Shared at counselling" },
+  { k: "Duration", v: course.duration ?? "Ask on WhatsApp" },
+  { k: "Mode", v: "Offline at HiLITE · Live online" },
+  { k: "Batches", v: "Sunday–Friday · Morning & evening" },
+  { k: "Language", v: "Malayalam + English" },
 ];
+const showWeeks = course.syllabus.some((r) => r.when);
+// This course next to the ones students usually weigh it against.
+const compare = [course, ...related];
 ---
 
 <Base title={course.title} description={course.description} ogSlug={`academy-${course.slug}`} schema={schema} side="academy">
@@ -55,7 +59,7 @@ const glance = [
       </div>
     </header>
 
-    <dl class="card-ink mt-14 grid gap-px overflow-hidden bg-[var(--color-ink)] p-0 sm:grid-cols-2 lg:grid-cols-5">
+    <dl class="card-ink mt-14 grid gap-px overflow-hidden bg-[var(--color-ink)] p-0 sm:grid-cols-2 lg:grid-cols-3">
       {glance.map((g) => (
         <div class="bg-[var(--color-surface)] p-6">
           <dt class="font-mono text-[11px] text-dim">{g.k}</dt>
@@ -66,6 +70,13 @@ const glance = [
 
     <div class="mt-20 space-y-20 md:mt-28 md:space-y-28">
       <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">About the {course.name} course</h2>
+        <div class="max-w-3xl space-y-5 text-lg leading-relaxed">
+          {course.overview.map((t) => <p>{t}</p>)}
+        </div>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
         <h2 class="font-display text-3xl font-bold tracking-tight">Who this course is for</h2>
         <ul class="grid gap-4 sm:grid-cols-3">
           {course.forWho.map((w) => <li class="card-ink p-5 leading-relaxed">{w}</li>)}
@@ -73,20 +84,35 @@ const glance = [
       </section>
 
       <section id="syllabus" class="scroll-mt-24 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-        <h2 class="font-display text-3xl font-bold tracking-tight">Syllabus</h2>
-        <ol class="divide-y-2 divide-[var(--color-ink)] border-y-2 border-[var(--color-ink)]">
-          {course.modules.map((m, i) => (
-            <li class="grid grid-cols-[3.5rem_1fr] gap-4 py-6">
-              <span class="font-display text-3xl font-bold text-cyan">{String(i + 1).padStart(2, "0")}</span>
-              <div>
-                <h3 class="font-display text-xl font-semibold">{m.title}</h3>
-                <ul class="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-dim">
-                  {m.topics.map((t) => <li>{t}</li>)}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <h2 class="font-display text-3xl font-bold tracking-tight">{course.name} syllabus</h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption class="sr-only">{course.name} syllabus: modules, topics, tools and what you build</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                {showWeeks && <th scope="col">When</th>}
+                <th scope="col">Module &amp; topics</th>
+                <th scope="col">Tools</th>
+                <th scope="col">What you build</th>
+              </tr>
+            </thead>
+            <tbody>
+              {course.modules.map((m, i) => (
+                <tr>
+                  <td class="num font-display text-2xl font-bold text-cyan">{String(i + 1).padStart(2, "0")}</td>
+                  {showWeeks && <td data-label="When" class="whitespace-nowrap font-mono text-xs">{course.syllabus[i].when}</td>}
+                  <td data-label="Module">
+                    <h3 class="font-display text-lg font-semibold">{m.title}</h3>
+                    <p class="mt-1 text-sm text-dim">{m.topics.join(" · ")}</p>
+                  </td>
+                  <td data-label="Tools" class="text-sm">{course.syllabus[i].tools}</td>
+                  <td data-label="You build" class="text-sm font-medium">{course.syllabus[i].build}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
@@ -109,16 +135,77 @@ const glance = [
       </section>
 
       <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-        <h2 class="font-display text-3xl font-bold tracking-tight">Careers after this course</h2>
-        <div class="grid gap-6 sm:grid-cols-2">
-          <ul class="space-y-3">
-            {course.careers.map((c) => <li class="font-display text-xl font-semibold">{c}</li>)}
-          </ul>
+        <h2 class="font-display text-3xl font-bold tracking-tight">Careers after the {course.name} course</h2>
+        <div class="space-y-6">
+          <div class="table-wrap">
+            <table class="data-table">
+              <caption class="sr-only">Jobs after {course.name}: what you do, skills used and where you could work</caption>
+              <thead>
+                <tr><th scope="col">Job role</th><th scope="col">What you do</th><th scope="col">Skills used</th><th scope="col">Where you could work</th></tr>
+              </thead>
+              <tbody>
+                {course.careerTable.map((r) => (
+                  <tr>
+                    <th scope="row" class="font-display font-semibold">{r.role}</th>
+                    <td data-label="What you do" class="text-sm">{r.does}</td>
+                    <td data-label="Skills" class="text-sm">{r.skills}</td>
+                    <td data-label="Where" class="text-sm text-dim">{r.where}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div class="card-ink p-6">
             <h3 class="font-display text-lg font-bold">Career support</h3>
             <ul class="mt-4 space-y-2 text-sm">
               {CAREER_SUPPORT.map((c) => <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">✓</span>{c}</li>)}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">{course.name} vs. similar courses</h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption class="sr-only">{course.name} compared with similar Media 360 Academy courses</caption>
+            <thead>
+              <tr><th scope="col">Course</th><th scope="col">Best for</th><th scope="col">Level</th><th scope="col">Main tools</th></tr>
+            </thead>
+            <tbody>
+              {compare.map((c) => (
+                <tr class:list={[c.slug === course.slug && "bg-[var(--color-hl)]/40"]}>
+                  <th scope="row" class="font-display font-semibold">
+                    {c.slug === course.slug ? c.name : <a href={`/academy/${c.slug}`} class="link-underline">{c.name}</a>}
+                  </th>
+                  <td data-label="Best for" class="text-sm">{c.bestFor}</td>
+                  <td data-label="Level" class="text-sm">{c.level}</td>
+                  <td data-label="Main tools" class="text-sm text-dim">{c.tools.slice(0, 4).join(", ")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="visit" class="scroll-mt-24 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <h2 class="font-display text-3xl font-bold tracking-tight">Batches &amp; visit</h2>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div class="card-ink p-6">
+            <h3 class="font-display text-lg font-bold">Classroom at HiLITE Business Park</h3>
+            <address class="mt-3 leading-relaxed not-italic">{CONTACT.postal.street}, {CONTACT.postal.locality}, {CONTACT.postal.region} {CONTACT.postal.postalCode}</address>
+            <p class="mt-2 text-sm text-dim">Inside HiLITE City, next to HiLITE Mall on Thondayad Bypass, Kozhikode.</p>
+            <a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="link-underline mt-4 inline-block font-display font-semibold">Open in Google Maps →</a>
+          </div>
+          <div class="card-ink p-6">
+            <h3 class="font-display text-lg font-bold">Batches</h3>
+            <ul class="mt-3 space-y-2">
+              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">✓</span>Sunday to Friday</li>
+              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">✓</span>Morning and evening batches</li>
+              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">✓</span>Offline at HiLITE or live online</li>
+              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">✓</span>Taught in Malayalam and English</li>
+            </ul>
+            <a href={CONTACT.whatsappAcademy} target="_blank" rel="noopener" class="link-underline mt-4 inline-block font-display font-semibold">Ask for the next batch on WhatsApp →</a>
           </div>
         </div>
       </section>

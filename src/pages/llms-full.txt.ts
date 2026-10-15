@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { SEO_PAGES } from "@/lib/seo-pages";
 import { FAQS } from "@/lib/data";
 import { BRAND_DESCRIPTION } from "@/lib/schema";
-import { ACADEMY, COURSES, BEST_COURSES, ONLINE_COURSES } from "@/lib/academy";
+import { ACADEMY, COURSES, BEST_PAGES, ONLINE_COURSES } from "@/lib/academy";
 
 // Plain-text mirror of the service pages (identical to what visitors see).
 export const GET: APIRoute = ({ site }) => {
@@ -21,8 +21,11 @@ export const GET: APIRoute = ({ site }) => {
     out.push("### FAQ", ...p.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
   }
   out.push("## Media 360 Academy", `URL: ${new URL("/academy", site).href}`, "", ACADEMY.description, "");
-  for (const pg of [BEST_COURSES, ONLINE_COURSES]) {
-    out.push(`## ${pg.h1}`, `URL: ${new URL(pg.path, site).href}`, "", pg.answer, "", "### FAQ", ...pg.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
+  for (const pg of [...BEST_PAGES, ONLINE_COURSES]) {
+    out.push(`## ${pg.h1}`, `URL: ${new URL(pg.path, site).href}`, "", pg.answer, "");
+    if ("intro" in pg) out.push(...pg.intro.flatMap((x) => [x, ""]));
+    if ("table" in pg && pg.table) out.push(`### ${pg.table.heading}`, `| ${pg.table.head.join(" | ")} |`, `|${pg.table.head.map(() => "---").join("|")}|`, ...pg.table.rows.map((r) => `| ${r.join(" | ")} |`), "");
+    out.push("### FAQ", ...pg.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
   }
   for (const c of COURSES) {
     out.push(`## ${c.h1}`, `URL: ${new URL(`/academy/${c.slug}`, site).href}`, "", c.answer, "");

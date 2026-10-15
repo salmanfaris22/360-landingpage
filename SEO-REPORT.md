@@ -45,7 +45,7 @@ The single-page ceiling described in §1/§6 below is now removed. This phase sh
 ### Do these next (owner actions, in order)
 
 1. **Google Search Console**: the verification tag is live in the site head — deploy, then in GSC choose "URL prefix" → `https://www.media360concept.com` → verify via HTML tag. Immediately submit `https://www.media360concept.com/sitemap.xml` and request indexing for the homepage + all 9 landing pages.
-2. **Google Business Profile** (highest-impact single action, unchanged from §3): create/claim "Media 360 Concept", category *Advertising agency* (secondary: Graphic designer, Website designer, Marketing agency). Use exactly the NAP on the site: Media 360 Concept · Kochi, Kerala · +91 9061 460 360 · media360concept@gmail.com. Add the street address to GBP **and** to `schema.ts`/Contact section the same day. Upload real work photos, list the 9 services using the same names as the landing pages, and post monthly.
+2. **Google Business Profile** (highest-impact single action, unchanged from §3): create/claim "Media 360 Concept", category *Advertising agency* (secondary: Graphic designer, Website designer, Marketing agency). Use exactly the NAP on the site: Media 360 Concept · HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), Kerala 673014 · +91 81578 74951 · media360concept@gmail.com. Add the street address to GBP **and** to `schema.ts`/Contact section the same day. Upload real work photos, list the 9 services using the same names as the landing pages, and post monthly.
 3. **Reviews engine**: after every delivered project, send the GBP review link on WhatsApp. 10+ reviews unlocks meaningful Map Pack movement; once real reviews exist, revisit review schema.
 4. **Citations / NAP consistency** (same NAP string everywhere): JustDial, Sulekha, IndiaMART, Clutch, DesignRush, GoodFirms, Behance/Dribbble portfolio profiles, LinkedIn company page, Instagram business profile. Add every live profile URL to `sameAs` in `schema.ts`.
 5. **Backlink starters**: "Branding by Media 360 Concept" footer credits on client sites; Kerala business media (Dhanam, Manorama business desk); Kerala Startup Mission ecosystem listings.
@@ -118,7 +118,7 @@ Real testimonials/team photos, wired contact form backend, live social profiles,
 - **Blog teasers** replaced vision fluff with 4 real search-intent titles (cost guide, restaurant branding, startup checklist, rebranding).
 
 ### Conversion
-- **WhatsApp deep link** (`wa.me/919061460360` with pre-filled message) in Contact and Footer — the #1 enquiry channel for Kerala SMBs.
+- **WhatsApp deep link** (`wa.me/918157874951` with pre-filled message) in Contact and Footer — the #1 enquiry channel for Kerala SMBs.
 - Budget selector **USD → INR** (Under ₹1L / ₹1–5L / ₹5L+).
 - Placeholders localized ("Priya Menon", "We're opening a new restaurant in Kochi…").
 - Hero CTA: "Let's Create Together" → **"Get a Free Brand Consultation"** (specific value beats vague poetry).

@@ -568,6 +568,9 @@ export const COURSES: Course[] = BASE.map((c) => {
   return { ...c, ...d, faqs: [...(d.extraFaqs ?? []), ...c.faqs, ...commonFaqs(c)] };
 });
 
+// The HiLITE page's title and description say "13 courses" (academy-best.ts).
+if (COURSES.length !== 13) throw new Error("Course count changed: update the number in academy-best.ts (BEST_COURSES title, description, answer).");
+
 const TONE_TINT: Record<IconTone, string> = {
   tangerine: "rgb(255 122 69 / 22%)", yellow: "rgb(255 210 63 / 34%)", sky: "rgb(90 169 255 / 22%)", lilac: "rgb(161 127 240 / 22%)",
   mint: "rgb(52 201 142 / 22%)", pink: "rgb(244 114 182 / 22%)", blue: "rgb(77 124 255 / 22%)", violet: "rgb(139 92 246 / 22%)",
@@ -602,6 +605,7 @@ export const ACADEMY_FAQS: Faq[] = [
   { q: "What is Media 360 Academy?", a: ACADEMY.description },
   { q: "Where are classes held?", a: "Offline classes are at HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), Kerala 673014. Every course is also available online with live sessions." },
   { q: "Which is the best course in HiLITE Business Park?", a: "Media 360 Academy runs a 3-month AI Digital Master Program and twelve AI-first coding and video editing courses inside HiLITE Business Park, Calicut. The best one depends on your goal: the AI Digital Master Program for digital marketing, websites, video and PR together, MERN stack or Python full stack for a developer career, AI developer & vibe coding for AI engineering, and AI video editing or Premiere Pro for video. See the full comparison on the best courses in HiLITE Business Park page." },
+  { q: "What is the best course in Calicut, Kozhikode or Kerala?", a: "Media 360 Academy at HiLITE Business Park, Kozhikode (Calicut) teaches AI-first digital marketing, coding and video editing courses, offline and live online across Kerala and India. The best choice depends on your goal; compare them on the best courses in Calicut (Kozhikode), best courses in Kerala and best online courses in India pages." },
   { q: "Which course should I choose?", a: "If you want digital marketing, AI web development, video and PR in one go, take the 3-month AI Digital Master Program. Beginners in coding usually start with MERN stack, Python full stack or frontend. Developers who already code move to Golang, AI developer & vibe coding or forward deployed engineering. Creatives take AI video editing, Premiere Pro, After Effects, DaVinci Resolve or generative AI. Book a free counselling session and we will recommend one." },
   { q: "What are the batch timings and duration?", a: "Batches run Sunday to Friday, with morning and evening batches. The AI Digital Master Program takes 3 months; other courses vary. Message us on WhatsApp for the next start date and fees — we reply within 24 hours." },
   { q: "Are the courses available online?", a: "Yes. Every course runs offline at HiLITE Business Park, Kozhikode and live online, with the same syllabus, projects and reviews, so you can join from anywhere in Kerala, India or the Gulf." },
@@ -619,58 +623,7 @@ export const ACADEMY_NAV = [
   { label: "Online", href: "/academy/online-courses" },
 ];
 
-/**
- * "Best courses in HiLITE Business Park" — the academy's local landing page.
- * Like the agency's HiLITE pages, "best" is never self-awarded with invented
- * proof: the page gives the criteria to judge any institute, then shows how
- * the academy works against them and which course fits which student.
- */
-export const BEST_COURSES = {
-  slug: "best-courses-in-hilite-business-park",
-  path: "/academy/best-courses-in-hilite-business-park",
-  name: "Best Courses in HiLITE Business Park",
-  title: "Best Courses in HiLITE Business Park, Calicut",
-  description:
-    "Best courses in HiLITE Business Park, Calicut: AI-first MERN, Python, Golang, AI developer, video editing and generative AI courses. Offline + online.",
-  h1: "Best Courses in HiLITE Business Park, Calicut",
-  answer:
-    "Media 360 Academy runs AI-first coding and video editing courses inside HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut). A 3-month AI Digital Master Program covers digital marketing, AI web development, video editing and PR, and twelve specialist courses cover MERN stack, Python full stack, Golang, frontend, AI web development, AI developer & vibe coding, forward deployed engineering, AI video editing, Premiere Pro, After Effects, DaVinci Resolve and generative AI, taught on real agency projects, offline at HiLITE and live online, Sunday to Friday.",
-  intro: [
-    "Students searching for the best course in HiLITE Business Park usually want three things: skills a company will actually hire for, a place they can reach every day, and teachers who do the work themselves. A certificate on its own rarely gets anyone hired.",
-    "Media 360 Academy is the training side of Media 360 Concept, the agency in the same complex that builds websites, software, AI tools and video for clients. Course briefs come from that client work, and your projects are reviewed by the people who ship it.",
-  ],
-  criteria: [
-    { title: "Real projects, deployed", text: "You should leave with live apps, edits and reels in a portfolio, not only class notes." },
-    { title: "AI in every module", text: "Employers now expect AI-assisted work. Look for a course that teaches you to use AI and to check what it produces." },
-    { title: "Teachers who practise", text: "Ask who reviews your work. Here it is developers and editors who deliver client projects every week." },
-    { title: "Clear syllabus up front", text: "Every module, tool and project should be listed before you pay. Ours is on each course page." },
-    { title: "Offline and online", text: "Classes at HiLITE Business Park, Calicut, with the same live course available online." },
-    { title: "Honest career support", text: "Portfolio, resume and interview preparation, without invented placement percentages or salary claims." },
-  ],
-  picks: [
-    { who: "Wants one 3-month program covering marketing, websites, video and PR", slug: "digital-marketing-ai-master-program-kozhikode" },
-    { who: "Complete beginner who wants a developer job", slug: "mern-stack-course-kozhikode" },
-    { who: "Beginner who prefers Python, data or AI", slug: "python-full-stack-course-kozhikode" },
-    { who: "Wants to design and build websites", slug: "frontend-development-course-kozhikode" },
-    { who: "Business owner or marketer building sites with AI", slug: "ai-web-development-course-kozhikode" },
-    { who: "Developer moving into AI engineering", slug: "ai-developer-vibe-coding-course-kozhikode" },
-    { who: "Backend developer aiming for scale", slug: "golang-backend-course-kozhikode" },
-    { who: "Engineer who wants client-facing AI work", slug: "forward-deployed-engineer-course-kerala" },
-    { who: "Creator who wants to edit reels, ads and YouTube", slug: "ai-video-editing-course-kozhikode" },
-    { who: "Editor focused on Adobe Premiere Pro", slug: "premiere-pro-course-kozhikode" },
-    { who: "Designer moving into motion graphics", slug: "after-effects-course-kozhikode" },
-    { who: "Editor who wants colour grading skills", slug: "davinci-resolve-course-kozhikode" },
-    { who: "Marketer making images, video and ads with AI", slug: "generative-ai-video-design-course-kozhikode" },
-  ],
-  faqs: [
-    { q: "Which is the best course in HiLITE Business Park?", a: "It depends on your goal. For digital marketing, websites, video and PR together, take the 3-month AI Digital Master Program. For a developer career, start with the MERN stack or Python full stack course. For AI engineering, take AI developer & vibe coding. For video, take AI video editing or Premiere Pro. Media 360 Academy offers all of them at HiLITE Business Park, Calicut, and free counselling helps you choose." },
-    { q: "Where exactly are the classes in HiLITE Business Park?", a: "Classes are held at Media 360 Concept, HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), Kerala 673014. Message us on WhatsApp before visiting so we can meet you." },
-    { q: "Are the courses available online as well?", a: "Yes. Every course runs offline at HiLITE Business Park and online with live sessions, code reviews and the same projects." },
-    { q: "Can I join without an IT background?", a: "Yes. The MERN stack, Python full stack, frontend, AI web development, AI video editing and Premiere Pro courses start from the basics. Advanced courses such as Golang and forward deployed engineering expect some coding experience." },
-    { q: "What are the batch timings?", a: "Batches run Sunday to Friday, with morning and evening batches. The AI Digital Master Program takes 3 months. Message us on WhatsApp for the next start date and fees — we reply within 24 hours." },
-    { q: "Which course near HiLITE Mall is best for digital marketing?", a: "Media 360 Academy's AI Digital Master Program is taught inside HiLITE Business Park, next to HiLITE Mall on Thondayad Bypass, Kozhikode. It covers SEO, Google Business Profile, Meta and Google Ads, AI web development, Premiere Pro video and PR in 3 months." },
-  ] as Faq[],
-};
+export { BEST_COURSES, BEST_PAGES, type BestPage } from "./academy-best";
 
 /**
  * Online courses hub. Every course already runs live online; this page is the

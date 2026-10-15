@@ -53,15 +53,15 @@ export type SeoPage = {
 const BRANDING_PAGES: SeoPage[] = [
   {
     slug: "branding-agency-kozhikode",
-    keyword: "Branding Agency in Kozhikode",
-    navLabel: "Branding Agency Kozhikode",
-    title: "Branding Agency in Kozhikode, Kerala",
+    keyword: "Branding Agency in Calicut",
+    navLabel: "Branding Agency Calicut",
+    title: "Branding Agency in Calicut (Kozhikode), Kerala",
     description:
-      "Branding agency in Kozhikode (Calicut) — brand strategy, logo and identity, packaging, signage and launch campaigns for Kerala businesses.",
+      "Branding agency in Calicut (Kozhikode): brand strategy, logo and identity, packaging, signage and launch campaigns for Kerala businesses. At HiLITE.",
     eyebrow: "Branding Agency · Kozhikode, Kerala",
     answer:
-      "Media 360 Concept is a full-service branding agency at HiLITE Business Park, Kozhikode (Calicut). We handle brand strategy, logo and identity design, brand guidelines, packaging, print, signage and launch campaigns for Kerala businesses — one accountable team from research to rollout, backed by 17+ years of Gulf and 12+ years of Indian branding experience.",
-    h1: "A Branding Agency in Kozhikode That Builds Brands Kerala Remembers",
+      "Media 360 Concept is a full-service branding agency in Calicut (Kozhikode), based at HiLITE Business Park. We handle brand strategy, logo and identity design, brand guidelines, packaging, print, signage and launch campaigns for Kerala businesses — one accountable team from research to rollout, backed by 17+ years of Gulf and 12+ years of Indian branding experience.",
+    h1: "Branding Agency in Calicut (Kozhikode) That Builds Brands Kerala Remembers",
     intro: [
       "Media 360 Concept is a full-service branding and creative agency headquartered at HiLITE Business Park, Calicut (Kozhikode), working with businesses across Kerala — from restaurants and hospitals to builders, retailers, and startups. We handle the entire journey under one roof: research, brand strategy, identity design, packaging, print, signage, and the campaigns that carry it all to market.",
       "What makes us different is range with accountability. The same team that writes your positioning designs your logo, produces your signage, and launches your campaign — so nothing gets lost in handoffs, and the brand that reaches your customers is exactly the brand that was planned.",
@@ -155,15 +155,15 @@ const BRANDING_PAGES: SeoPage[] = [
   },
   {
     slug: "advertising-agency-kerala",
-    keyword: "Advertising Agency in Kerala",
-    navLabel: "Advertising Agency Kerala",
-    title: "Advertising Agency in Kerala",
+    keyword: "Advertising Agency in Calicut",
+    navLabel: "Advertising Agency Calicut",
+    title: "Advertising Agency in Calicut (Kozhikode), Kerala",
     description:
-      "Advertising agency in Kerala — campaign creative and media buying across outdoor, print, broadcast, digital and Gulf media. Based in Kozhikode.",
+      "Advertising agency in Calicut (Kozhikode), Kerala: campaign creative and media buying across outdoor, print, radio, digital and Gulf media. At HiLITE.",
     eyebrow: "Advertising Agency · Kerala",
     answer:
-      "Media 360 Concept is an advertising agency in Kerala, based in Kozhikode, that plans campaigns, creates the ads and buys the media. We work across outdoor hoardings, Malayalam press, radio, broadcast, digital and Gulf media, and report what each channel delivered — strategy, creative, placement and measurement by one team.",
-    h1: "Advertising That Kerala Notices — and Remembers",
+      "Media 360 Concept is an advertising agency in Calicut (Kozhikode), Kerala, based at HiLITE Business Park, that plans campaigns, creates the ads and buys the media. We work across outdoor hoardings, Malayalam press, radio, broadcast, digital and Gulf media, and report what each channel delivered — strategy, creative, placement and measurement by one team.",
+    h1: "Advertising Agency in Calicut, Kerala: Ads People Notice and Remember",
     intro: [
       "Media 360 Concept plans, creates, and places advertising for businesses across Kerala from our base at HiLITE Business Park, Calicut (Kozhikode). One team handles the whole chain: campaign strategy, the creative idea, design and production, media buying, and the reporting that tells you what your budget actually did.",
       "Most wasted ad spend comes from the gap between the people who make the ad and the people who place it. We closed that gap by doing both — so the creative is built for the exact hoarding, newspaper, screen, or feed where it will run.",
@@ -427,15 +427,15 @@ const BRANDING_PAGES: SeoPage[] = [
   {
     slug: "digital-marketing-kozhikode",
     cluster: "marketing",
-    keyword: "Digital Marketing Agency in Kozhikode",
-    navLabel: "Digital Marketing Kozhikode",
-    title: "Digital Marketing Agency in Kozhikode (Calicut)",
+    keyword: "Digital Marketing Agency in Calicut",
+    navLabel: "Digital Marketing Agency Calicut",
+    title: "Digital Marketing Agency in Calicut (Kozhikode)",
     description:
-      "Digital marketing agency in Calicut — SEO, Google Business Profile, social media, Google & Meta ads, tracked to real enquiries. Free audit.",
+      "Digital marketing agency in Calicut (Kozhikode): SEO, Google Business Profile, social media, Google & Meta Ads tracked to real leads. At HiLITE. Free audit.",
     eyebrow: "Digital Marketing · Kozhikode, Kerala",
     answer:
-      "Media 360 Concept is a digital marketing agency at HiLITE Business Park, Kozhikode (Calicut). We run SEO, Google Business Profile, social media, Google Ads and Meta Ads, content and landing pages for Kerala businesses, with tracking that connects every rupee spent to calls, WhatsApp messages and enquiries.",
-    h1: "Digital Marketing in Kozhikode That Turns Searches Into Sales",
+      "Media 360 Concept is a digital marketing agency and digital marketing company in Calicut (Kozhikode), based at HiLITE Business Park. We run SEO, Google Business Profile, social media, Google Ads and Meta Ads, content and landing pages for Kerala businesses, with tracking that connects every rupee spent to calls, WhatsApp messages and enquiries.",
+    h1: "Digital Marketing Agency in Calicut (Kozhikode) That Turns Searches Into Sales",
     intro: [
       "When someone in Kerala needs what you sell, they search, scroll, or ask — on Google, Instagram, YouTube, or WhatsApp. Media 360 Concept is a digital marketing and SEO company in Kozhikode that makes sure your business is what they find, and that finding you leads to an enquiry, not just a visit.",
       "We run full-funnel digital marketing: search visibility to bring people in, content and social to build trust, performance ads to accelerate, and tracking so you always know what your budget returned.",
@@ -474,6 +474,14 @@ const BRANDING_PAGES: SeoPage[] = [
     ],
     faqs: [
       {
+        q: "Which is the best digital marketing agency in Calicut?",
+        a: "The best digital marketing agency for you is one that tracks enquiries and sales rather than likes, sets up conversion tracking before spending ad money, keeps every account in your name and reports monthly in plain language. Media 360 Concept works this way from HiLITE Business Park, Calicut (Kozhikode), and a free audit shows what we would fix first.",
+      },
+      {
+        q: "Are you a digital marketing agency in Calicut or Kozhikode?",
+        a: "Both — Calicut and Kozhikode are the same city. Our office is at HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), and we work with businesses across the city, Kerala and the Gulf.",
+      },
+      {
         q: "How long does SEO take to show results in Kozhikode?",
         a: "For most Kerala businesses, meaningful movement shows in three to four months, with strong results in six to twelve depending on competition. Local SEO — Map Pack visibility via Google Business Profile — often moves faster. Anyone promising page one in two weeks is describing an ad, or a trick that won't survive Google's next update.",
       },
@@ -507,15 +515,15 @@ const BRANDING_PAGES: SeoPage[] = [
   {
     slug: "web-development-kozhikode",
     cluster: "web",
-    keyword: "Web Development Company in Kozhikode",
-    navLabel: "Web Development Kozhikode",
-    title: "Web Development Company in Kozhikode (Calicut)",
+    keyword: "Web Design Company in Calicut",
+    navLabel: "Web Design Company Calicut",
+    title: "Web Design & Development Company in Calicut",
     description:
-      "Web development company in Calicut — fast, SEO-ready websites, landing pages, e-commerce and web apps designed in Figma. HiLITE Business Park.",
+      "Web design and development company in Calicut (Kozhikode): fast, SEO-ready websites, e-commerce and landing pages designed in Figma, at HiLITE Business Park.",
     eyebrow: "Web Development · Kozhikode, Kerala",
     answer:
-      "Media 360 Concept is a web development company at HiLITE Business Park, Kozhikode (Calicut). We design websites in Figma and build fast, SEO-ready business sites, landing pages, e-commerce stores and web applications on modern stacks such as Next.js — then host, maintain and market them for businesses across Kerala and the Gulf.",
-    h1: "Websites Built to Rank, Load, and Convert",
+      "Media 360 Concept is a web design and web development company in Calicut (Kozhikode), based at HiLITE Business Park. We design websites in Figma and build fast, SEO-ready business sites, landing pages, e-commerce stores and web applications on modern stacks such as Next.js — then host, maintain and market them for businesses across Kerala and the Gulf.",
+    h1: "Web Design Company in Calicut (Kozhikode): Websites Built to Rank and Convert",
     intro: [
       "Your website is the one salesperson that meets every customer. Media 360 Concept designs and develops websites in Kozhikode for businesses across Kerala — sites that load fast on real Kerala mobile networks, rank on Google for the searches that matter, and turn visitors into WhatsApp messages, calls, and orders.",
       "Every build follows the same discipline: designed in Figma first so you approve exactly what will be built, then engineered on modern architecture with SEO and Core Web Vitals treated as requirements, not afterthoughts.",
@@ -572,6 +580,10 @@ const BRANDING_PAGES: SeoPage[] = [
       "Hosting & maintenance",
     ],
     faqs: [
+      {
+        q: "Are you a web design company or a web development company in Calicut?",
+        a: "Both. Media 360 Concept designs every website in Figma first, then develops it as a fast, SEO-ready site or web app, from our office at HiLITE Business Park, Calicut (Kozhikode). You get design, development, hosting and support from one team.",
+      },
       {
         q: "How much does a website cost in Kozhikode?",
         a: "It depends on scope: a focused landing page, a multi-page business site, an e-commerce store, and a custom web application are very different builds. After a free consultation we quote a fixed price for a defined scope — with design, development, SEO setup, and launch itemised so you can see exactly what you are paying for.",

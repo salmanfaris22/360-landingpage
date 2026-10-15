@@ -9,15 +9,15 @@ export const MARKETING_PAGES: SeoPage[] = [
   {
     slug: "seo-services-kozhikode",
     cluster: "marketing",
-    keyword: "SEO Services in Kozhikode",
-    navLabel: "SEO Services Kozhikode",
-    title: "SEO Services Company in Kozhikode (Calicut)",
+    keyword: "SEO Agency in Calicut",
+    navLabel: "SEO Agency Calicut",
+    title: "SEO Agency in Calicut (Kozhikode) — SEO Services",
     description:
-      "SEO company in Kozhikode — local SEO, Google Business Profile, technical fixes, content and AI-search readiness, reported clearly. Free SEO audit.",
+      "SEO agency in Calicut (Kozhikode): local SEO, Google Business Profile, technical SEO, content and ChatGPT/AI-search visibility, reported monthly. Free audit.",
     eyebrow: "SEO Services · Kozhikode (Calicut), Kerala",
-    h1: "SEO Services in Kozhikode for Businesses That Want to Be Found",
+    h1: "SEO Agency in Calicut (Kozhikode) for Businesses That Want to Be Found",
     answer:
-      "Media 360 Concept is an SEO services company at HiLITE Business Park, Kozhikode (Calicut). We handle local SEO and Google Business Profile, technical SEO, content and structured data so Kerala businesses appear in Google results, the Map Pack and AI answers — with monthly reports on rankings, traffic and enquiries.",
+      "Media 360 Concept is an SEO agency and SEO services company in Calicut (Kozhikode), based at HiLITE Business Park. We handle local SEO and Google Business Profile, technical SEO, content and structured data so Kerala businesses appear in Google results, the Map Pack and AI answers — with monthly reports on rankings, traffic and enquiries.",
     intro: [
       "Search engine optimisation is the work of making your website the answer Google — and increasingly ChatGPT, Gemini and Perplexity — gives when a customer asks for what you sell. For most Kerala businesses that means three things done well: a technically clean site, pages that genuinely answer customer questions, and a local presence Google trusts.",
       "We are a small, senior team, so the people who audit your site are the people who fix it. No outsourced link packages, no ranking guarantees — just the work that compounds.",

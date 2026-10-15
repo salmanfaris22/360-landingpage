@@ -10,12 +10,12 @@ export type Service = {
 
 export const CONTACT = {
   email: "media360concept@gmail.com",
-  phone: "+918590076355",
-  phoneDisplay: "+91 85900 76355",
+  phone: "+918157874951",
+  phoneDisplay: "+91 81578 74951",
   whatsapp:
-    "https://wa.me/918590076355?text=Hi%20Media%20360%20Concept%2C%20I%27d%20like%20to%20talk%20about%20branding%20for%20my%20business.",
+    "https://wa.me/918157874951?text=Hi%20Media%20360%20Concept%2C%20I%27d%20like%20to%20talk%20about%20branding%20for%20my%20business.",
   whatsappAcademy:
-    "https://wa.me/918590076355?text=Hi%20Media%20360%20Academy%2C%20I%27d%20like%20free%20course%20counselling.",
+    "https://wa.me/918157874951?text=Hi%20Media%20360%20Academy%2C%20I%27d%20like%20free%20course%20counselling.",
   site: "https://www.media360concept.com",
   siteDisplay: "www.media360concept.com",
   city: "Kozhikode (Calicut)",
@@ -283,7 +283,7 @@ export const FAQS = [
   },
   {
     q: "How do I get started?",
-    a: "Message us on WhatsApp at +91 85900 76355, email media360concept@gmail.com, or use the contact form. Tell us what you are building and we will reply within 24 hours with next steps and a free consultation.",
+    a: "Message us on WhatsApp at +91 81578 74951, email media360concept@gmail.com, or use the contact form. Tell us what you are building and we will reply within 24 hours with next steps and a free consultation.",
   },
 ];
 

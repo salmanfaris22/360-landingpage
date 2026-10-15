@@ -1,5 +1,5 @@
 import { SEO_PAGES } from "./seo-pages";
-import { COURSES, BEST_COURSES, ONLINE_COURSES } from "./academy";
+import { COURSES, BEST_PAGES, ONLINE_COURSES } from "./academy";
 
 /** Every indexable URL with the text used for its social preview image. */
 export type RouteInfo = { path: string; og: string; heading: string; eyebrow: string; priority: number; chips?: string[]; theme?: string };
@@ -9,10 +9,10 @@ export const STATIC_ROUTES: RouteInfo[] = [
   { path: "/agency", og: "agency", heading: "Digital Marketing, Web, Software & Branding Agency", eyebrow: "Media 360 Agency · HiLITE Business Park, Calicut", priority: 0.95, chips: ["Digital Marketing", "SEO", "Websites", "Software", "AI Automation", "Branding"] },
   { path: "/services", og: "services", heading: "Marketing, Web, Software, AI & Branding Services", eyebrow: "All services", priority: 0.9, chips: ["Marketing", "Web", "Software & Apps", "AI", "Branding", "Video"] },
   { path: "/about", og: "about", heading: "About Media 360 Concept", eyebrow: "Facts · Team · Approach", priority: 0.7, chips: ["Kozhikode", "Saudi Arabia", "India", "USA", "One team"] },
-  { path: "/contact", og: "contact", heading: "Talk to Media 360 Concept", eyebrow: "WhatsApp +91 85900 76355", priority: 0.7, chips: ["WhatsApp", "Call", "Email", "Visit HiLITE"] },
+  { path: "/contact", og: "contact", heading: "Talk to Media 360 Concept", eyebrow: "WhatsApp +91 81578 74951", priority: 0.7, chips: ["WhatsApp", "Call", "Email", "Visit HiLITE"] },
   { path: "/faq", og: "faq", heading: "Questions About Media 360 Concept", eyebrow: "FAQ · HiLITE Business Park, Calicut", priority: 0.7, chips: ["Services", "Pricing", "Timelines", "Location", "AI & SEO"] },
   { path: "/academy", og: "academy", heading: "Media 360 Academy — AI-First Tech & Creative Courses", eyebrow: "Academy · HiLITE Business Park, Calicut", priority: 0.9, chips: ["MERN Stack", "Python", "AI Developer", "Generative AI", "Premiere Pro", "After Effects"], theme: "academy" },
-  { path: BEST_COURSES.path, og: `academy-${BEST_COURSES.slug}`, heading: BEST_COURSES.h1, eyebrow: "Media 360 Academy · HiLITE Business Park", priority: 0.9, chips: ["MERN Stack", "Python", "AI Developer", "Video Editing", "Generative AI", "Offline + Online"], theme: "academy" },
+  ...BEST_PAGES.map((b) => ({ path: b.path, og: `academy-${b.slug}`, heading: b.h1, eyebrow: `Media 360 Academy · ${b.place}`, priority: 0.9, chips: ["Digital Marketing", "MERN Stack", "Python", "AI Developer", "Video Editing", "Offline + Online"], theme: "academy" as const })),
   { path: ONLINE_COURSES.path, og: `academy-${ONLINE_COURSES.slug}`, heading: ONLINE_COURSES.h1, eyebrow: "Media 360 Academy · Live online", priority: 0.8, chips: ["Live classes", "Malayalam + English", "Sunday–Friday", "Digital Marketing", "MERN", "Premiere Pro"], theme: "academy" },
   { path: "/privacy-policy", og: "", heading: "", eyebrow: "", priority: 0.2 },
   { path: "/terms", og: "", heading: "", eyebrow: "", priority: 0.2 },

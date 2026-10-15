@@ -249,7 +249,7 @@ export function servicePageGraph(page: {
       url: u,
       provider: { "@id": ORG_ID },
       areaServed: [
-        { "@type": "City", name: "Kozhikode" },
+        { "@type": "City", name: "Kozhikode", alternateName: "Calicut" },
         { "@type": "State", name: "Kerala" },
         { "@type": "Country", name: "India" },
       ],

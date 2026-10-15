@@ -638,11 +638,11 @@ export const HILITE_PAGES: SeoPage[] = [
     cluster: "local",
     keyword: "Best Digital Marketing Agency in Calicut",
     navLabel: "Best Digital Marketing Agency Calicut",
-    title: "Best Digital Marketing Agency in Calicut: A Buyer's Guide",
+    title: "Best Digital Marketing Agency & Company in Calicut",
     description:
-      "How to choose the best digital marketing agency in Calicut: questions to ask, red flags to avoid and how Media 360 Concept works with Kozhikode businesses.",
+      "Best digital marketing agency or company in Calicut? Questions to ask, red flags to avoid and how Media 360 Concept at HiLITE Business Park works. Free audit.",
     eyebrow: "Buyer's Guide · Digital Marketing in Calicut",
-    h1: "Best Digital Marketing Agency in Calicut: What to Look For",
+    h1: "Best Digital Marketing Agency in Calicut (Kozhikode): How to Choose",
     answer:
       "The best digital marketing agency in Calicut tracks enquiries and sales, not just likes; sets up conversion tracking before spending ad money; keeps your accounts in your name; and reports monthly in plain language. Media 360 Concept is a Calicut digital marketing agency at HiLITE Business Park that works to these standards.",
     intro: [
@@ -727,13 +727,13 @@ export const HILITE_PAGES: SeoPage[] = [
   {
     slug: "best-web-development-company-in-calicut",
     cluster: "local",
-    keyword: "Best Web Development Company in Calicut",
+    keyword: "Best Web Design Company in Calicut",
     navLabel: "Best Web Development Company Calicut",
-    title: "Best Web Development Company in Calicut",
+    title: "Best Web Design & Development Company in Calicut",
     description:
-      "Choosing the best web development company in Calicut: what to check on speed, SEO, ownership and support, and how Media 360 Concept builds websites.",
+      "Choosing the best web design company in Calicut: what to check on speed, SEO, ownership and support, and how Media 360 Concept builds websites at HiLITE.",
     eyebrow: "Buyer's Guide · Web Development in Calicut",
-    h1: "Best Web Development Company in Calicut: How to Choose",
+    h1: "Best Web Design & Development Company in Calicut: How to Choose",
     answer:
       "The best web development company in Calicut designs before it builds, delivers fast mobile-first sites with technical SEO, gives you ownership of the domain, hosting and code, and supports you after launch. Media 360 Concept, at HiLITE Business Park, builds business websites, e-commerce stores and web apps to this standard.",
     intro: [

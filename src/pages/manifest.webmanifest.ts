@@ -10,7 +10,7 @@ export const GET: APIRoute = () =>
       display: "standalone",
       background_color: "#050505",
       theme_color: "#050505",
-      icons: [{ src: "/logo.png", sizes: "512x512", type: "image/png" }],
+      icons: [{ src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" }, { src: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     }),
     { headers: { "Content-Type": "application/manifest+json" } },
   );

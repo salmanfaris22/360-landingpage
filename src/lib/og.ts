@@ -93,3 +93,48 @@ export async function logoPng() {
   const svg = await satori(tree as never, { width: 512, height: 512, fonts });
   return sharp(Buffer.from(svg)).png().toBuffer();
 }
+
+/** Favicon mark: bold "360" over the brand gradient bar, drawn on a 64px grid. */
+async function faviconSvg() {
+  const tree = h("div", {
+    width: 64, height: 64, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+    background: "#050505", borderRadius: 12, color: "#fff", fontFamily: "Grotesk", fontWeight: 700,
+  }, [
+    h("div", { fontSize: 35, letterSpacing: -1, lineHeight: 1, marginTop: -2 }, "360"),
+    h("div", { width: 38, height: 6, borderRadius: 3, marginTop: 4, background: "linear-gradient(90deg,#4d7cff,#22d3ee)" }),
+  ]);
+  return satori(tree as never, { width: 64, height: 64, fonts });
+}
+
+export const faviconSvgText = faviconSvg;
+
+/** The favicon mark as a square PNG of the given size. */
+export async function faviconPng(size: number) {
+  const svg = await faviconSvg();
+  return sharp(Buffer.from(svg), { density: Math.ceil((72 * size) / 64) * 2 }).resize(size, size).png().toBuffer();
+}
+
+/** favicon.ico holding 16, 32 and 48 px PNGs (PNG-in-ICO, supported by every current browser). */
+export async function faviconIco() {
+  const sizes = [16, 32, 48];
+  const images = await Promise.all(sizes.map(faviconPng));
+  const header = Buffer.alloc(6);
+  header.writeUInt16LE(0, 0);
+  header.writeUInt16LE(1, 2); // type: icon
+  header.writeUInt16LE(sizes.length, 4);
+  const dir = Buffer.alloc(16 * sizes.length);
+  let offset = header.length + dir.length;
+  sizes.forEach((s, i) => {
+    const e = i * 16;
+    dir.writeUInt8(s, e);
+    dir.writeUInt8(s, e + 1);
+    dir.writeUInt8(0, e + 2); // palette colours
+    dir.writeUInt8(0, e + 3);
+    dir.writeUInt16LE(1, e + 4); // colour planes
+    dir.writeUInt16LE(32, e + 6); // bits per pixel
+    dir.writeUInt32LE(images[i].length, e + 8);
+    dir.writeUInt32LE(offset, e + 12);
+    offset += images[i].length;
+  });
+  return Buffer.concat([header, dir, ...images]);
+}

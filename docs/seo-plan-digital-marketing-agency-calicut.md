@@ -11,7 +11,7 @@ Ahrefs returned "Insufficient plan", so **search volumes, difficulty and our cur
 | No third-party presence found | Searches for the brand and its profiles returned nothing; `sameAs` is empty | Owner |
 | Map pack is not covered | No confirmed Google Business Profile, reviews or hours | Owner |
 | No proof on the site | No client names, case studies or team names | Owner |
-| Homepage is thin | Competitors rank their homepages; ours was a 115-word gateway | Partly done (title + link); it stays a gateway by design |
+| Homepage was thin | Competitors rank their homepages; ours was a 115-word gateway | Done (gateway kept, crawlable overview added below it) |
 | Hub was weaker than its own siblings | Hub 957 words, HiLITE "best" page 1,308 | Done (hub now about 2,000) |
 | `/agency` title competed with the hub | Both targeted the same phrase | Done |
 

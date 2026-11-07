@@ -208,11 +208,12 @@ function processLine() {
 function serviceIndex() {
   const list = document.querySelector<HTMLElement>("[data-service-list]");
   const chip = document.querySelector<HTMLElement>("[data-service-chip]");
-  if (!list || !chip) return;
+  // The chip is hidden below lg, which leaves it with no offsetParent.
+  const host = chip?.offsetParent as HTMLElement | null | undefined;
+  if (!list || !chip || !host) return;
   const num = chip.querySelector<HTMLElement>("[data-chip-num]")!;
   const xTo = gsap.quickTo(chip, "x", { duration: 0.7, ease: "power3" });
   const yTo = gsap.quickTo(chip, "y", { duration: 0.7, ease: "power3" });
-  const host = chip.offsetParent as HTMLElement;
   host.addEventListener(
     "mousemove",
     (e) => {

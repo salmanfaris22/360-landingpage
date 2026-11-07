@@ -6,6 +6,8 @@ import Button from "@/components/Button.astro";
 import { CONTACT } from "@/lib/data";
 import { SEO_PAGES, getSeoPage, pagesInCluster, type SeoPage, type Cluster } from "@/lib/seo-pages";
 import { servicePageGraph, type Crumb } from "@/lib/schema";
+import { inlineHtml } from "@/lib/inline";
+import { GUIDES } from "@/lib/guides";
 
 export function getStaticPaths() {
   return SEO_PAGES.map((page) => ({ params: { slug: page.slug }, props: { page } }));
@@ -43,6 +45,7 @@ const academyLinks =
         { href: "/academy/online-courses", label: "Live Online Courses" },
       ]
     : [];
+const guides = page.cluster === "marketing" ? GUIDES : [];
 const image = { src: `/images/${page.slug}.webp`, alt: `${page.keyword} — Media 360 Concept, HiLITE Business Park, Kozhikode (Calicut)` };
 const schema = servicePageGraph({ ...page, crumbs, image: image.src });
 ---
@@ -60,7 +63,7 @@ const schema = servicePageGraph({ ...page, crumbs, image: image.src });
           </p>
         )
       }
-      {page.intro.map((p) => <p class="mt-6 max-w-3xl text-lg leading-relaxed text-dim">{p}</p>)}
+      {page.intro.map((p) => <p class="mt-6 max-w-3xl text-lg leading-relaxed text-dim" set:html={inlineHtml(p)} />)}
       <div class="mt-10 flex flex-wrap justify-center gap-4 sm:justify-start">
         <Button href={CONTACT.whatsapp} external size="sm">Get a free consultation on WhatsApp</Button>
         <Button href="/contact" variant="ghost" size="sm">Get a project estimate</Button>
@@ -77,17 +80,34 @@ const schema = servicePageGraph({ ...page, crumbs, image: image.src });
           <section data-reveal class="border-t border-line pt-12">
             <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
               <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">{section.heading}</h2>
-              <div class="prose-dim">
-                {section.body.map((p) => <p class="mb-5">{p}</p>)}
+              <div class="prose-dim min-w-0">
+                {section.body.map((p) => <p class="mb-5" set:html={inlineHtml(p)} />)}
                 {section.bullets && (
                   <dl class="mt-2 grid gap-5 sm:grid-cols-2">
                     {section.bullets.map((b) => (
                       <div data-tilt="5" class="rounded-2xl border border-line p-6 transition-colors hover:border-white/20">
                         <dt class="font-display text-[1rem] font-semibold">{b.title}</dt>
-                        <dd class="mt-2 text-sm leading-relaxed text-dim">{b.text}</dd>
+                        <dd class="mt-2 text-sm leading-relaxed text-dim" set:html={inlineHtml(b.text)} />
                       </div>
                     ))}
                   </dl>
+                )}
+                {section.table && (
+                  <div class="mt-2 overflow-x-auto">
+                    <table class="data">
+                      <thead>
+                        <tr>{section.table.head.map((h) => <th scope="col">{h}</th>)}</tr>
+                      </thead>
+                      <tbody>
+                        {section.table.rows.map(([first, ...rest]) => (
+                          <tr>
+                            <th scope="row">{first}</th>
+                            {rest.map((c) => <td>{c}</td>)}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 )}
               </div>
             </div>
@@ -188,6 +208,21 @@ const schema = servicePageGraph({ ...page, crumbs, image: image.src });
           </ul>
         </div>
       </section>
+
+      {
+        guides.length > 0 && (
+          <section data-reveal class="border-t border-line pt-12">
+            <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">Marketing guides</h2>
+              <ul class="flex flex-wrap gap-3">
+                {guides.map((g) => (
+                  <li><a href={`/guides/${g.slug}`} class="inline-block rounded-full border border-line px-5 py-2.5 text-sm text-white/80 hover:border-white/40 hover:text-white">{g.short}</a></li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )
+      }
 
       {
         localPages.length > 0 && (

@@ -25,6 +25,14 @@ export const BRAND_DESCRIPTION =
 
 const url = (path: string) => (path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`);
 
+/** The city entity, disambiguated: Kozhikode and Calicut are one place. */
+const CITY: Node = {
+  "@type": "City",
+  name: "Kozhikode",
+  alternateName: "Calicut",
+  sameAs: ["https://en.wikipedia.org/wiki/Kozhikode", "https://www.wikidata.org/wiki/Q28729"],
+};
+
 const logoNode: Node = {
   "@type": "ImageObject",
   "@id": LOGO_ID,
@@ -68,6 +76,7 @@ const organizationNode: Node = {
       postalCode: CONTACT.postal.postalCode,
       addressCountry: CONTACT.postal.country,
     },
+    sameAs: "https://en.wikipedia.org/wiki/HiLITE_Business_Park",
     containedInPlace: { "@type": "Place", name: "HiLITE City, Kozhikode (Calicut)" },
   },
   hasMap: CONTACT.mapUrl,
@@ -90,7 +99,7 @@ const organizationNode: Node = {
     areaServed: ["IN", "SA", "AE", "US"],
   },
   areaServed: [
-    { "@type": "City", name: "Kozhikode", alternateName: "Calicut" },
+    CITY,
     { "@type": "State", name: "Kerala" },
     { "@type": "Country", name: "India" },
     { "@type": "Country", name: "Saudi Arabia" },
@@ -249,7 +258,7 @@ export function servicePageGraph(page: {
       url: u,
       provider: { "@id": ORG_ID },
       areaServed: [
-        { "@type": "City", name: "Kozhikode", alternateName: "Calicut" },
+        CITY,
         { "@type": "State", name: "Kerala" },
         { "@type": "Country", name: "India" },
       ],
@@ -278,6 +287,42 @@ export function servicePageGraph(page: {
     });
   }
   return graph(nodes);
+}
+
+/** Guide (blog) article. The organisation is author and publisher: no invented bylines. */
+export function articleGraph(opts: {
+  path: string;
+  title: string;
+  description: string;
+  h1: string;
+  published: string;
+  updated: string;
+  faqs: Faq[];
+  crumbs: Crumb[];
+}) {
+  const u = url(opts.path);
+  return graph([
+    organizationNode,
+    websiteNode,
+    logoNode,
+    {
+      "@type": "Article",
+      "@id": `${u}#article`,
+      headline: opts.h1,
+      description: opts.description,
+      url: u,
+      mainEntityOfPage: { "@id": `${u}#webpage` },
+      datePublished: opts.published,
+      dateModified: opts.updated,
+      author: { "@id": ORG_ID },
+      publisher: { "@id": ORG_ID },
+      image: `${SITE_URL}/og/${assetSlug(opts.path)}.png`,
+      inLanguage: "en-IN",
+    },
+    webPageNode({ path: opts.path, title: opts.title, description: opts.description, about: `${u}#article`, hasBreadcrumb: true }),
+    breadcrumbNode(opts.path, opts.crumbs),
+    faqNode(opts.path, opts.faqs),
+  ]);
 }
 
 /** Serialise JSON-LD safely: `<` escaped so copy can never close the script tag. */

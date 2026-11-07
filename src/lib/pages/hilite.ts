@@ -131,6 +131,7 @@ export const HILITE_PAGES: SeoPage[] = [
     intro: [
       "Good digital marketing is not about posting every day or boosting every post. It is about being found by people who are already looking for what you sell, and giving them a clear reason to contact you instead of the next result.",
       "From our office in HiLITE Business Park we plan, create and run campaigns in-house — strategy, design, video, copy in English and Malayalam, ad management and reporting — so nothing gets lost between a content team and an ads team.",
+      "For the full service, see our main [digital marketing agency in Calicut](/digital-marketing-kozhikode) page.",
     ],
     sections: [
       {
@@ -466,6 +467,7 @@ export const HILITE_PAGES: SeoPage[] = [
     intro: [
       "Search has changed. Customers still type into Google, but they also ask ChatGPT, Gemini and Perplexity for recommendations — and those tools quote websites that are clear, well-structured and trusted.",
       "Our SEO work covers both: classic rankings in Google and the structured, answer-first content that AI assistants pick up. We practise it on our own website before we sell it to clients.",
+      "SEO is planned alongside ads and social media at our [digital marketing agency in Calicut](/digital-marketing-kozhikode).",
     ],
     sections: [
       {
@@ -648,6 +650,7 @@ export const HILITE_PAGES: SeoPage[] = [
     intro: [
       "Search 'digital marketing agency Calicut' and every result claims to be the best. Directory rankings are mostly paid or self-reported, so they are a weak guide on their own.",
       "A more reliable approach is to ask each agency the same practical questions. Here is the checklist we recommend, followed by how we answer it.",
+      "If you already know what you want, go straight to our [digital marketing agency in Calicut](/digital-marketing-kozhikode) page.",
     ],
     sections: [
       {
@@ -823,6 +826,7 @@ export const HILITE_PAGES: SeoPage[] = [
     intro: [
       "SEO is one of the hardest services to judge because the work is mostly invisible. The easiest way to compare SEO companies is to ask exactly what they deliver each month and how they prove it.",
       "Below is what we believe a monthly SEO retainer in Calicut should include.",
+      "SEO usually works best as part of a plan from a [digital marketing company in Calicut](/digital-marketing-kozhikode).",
     ],
     sections: [
       {
@@ -908,6 +912,7 @@ export const HILITE_PAGES: SeoPage[] = [
     intro: [
       "Marketing in Kerala has its own rules. Customers move easily between Malayalam and English, WhatsApp is often preferred to phone calls, and many purchase decisions involve family members living in the Gulf.",
       "We plan campaigns around those realities — from a clinic in Kozhikode to a retail brand with customers in Kochi, Thrissur, Kannur and Dubai.",
+      "Our team is based in Kozhikode: see how our [digital marketing agency in Calicut](/digital-marketing-kozhikode) works.",
     ],
     sections: [
       {

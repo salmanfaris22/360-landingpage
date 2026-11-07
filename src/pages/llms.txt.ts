@@ -3,6 +3,7 @@ import { CONTACT } from "@/lib/data";
 import { pagesInCluster, type Cluster } from "@/lib/seo-pages";
 import { BRAND_DESCRIPTION } from "@/lib/schema";
 import { ACADEMY, COURSES, BEST_PAGES, ONLINE_COURSES } from "@/lib/academy";
+import { GUIDES } from "@/lib/guides";
 
 // llmstxt.org summary: same facts as the visible site, never anything extra.
 export const GET: APIRoute = ({ site }) => {
@@ -15,6 +16,10 @@ export const GET: APIRoute = ({ site }) => {
     `> ${BRAND_DESCRIPTION}`,
     "",
     ...section("Digital marketing", "marketing"),
+    "## Marketing guides",
+    `- [All guides](${u("/guides")})`,
+    ...GUIDES.map((g) => `- [${g.h1}](${u(`/guides/${g.slug}`)}): ${g.description}`),
+    "",
     ...section("Web development", "web"),
     ...section("Software, apps & AI", "software"),
     ...section("Branding & creative", "branding"),

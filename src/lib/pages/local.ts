@@ -21,6 +21,7 @@ export const LOCAL_PAGES: SeoPage[] = [
     intro: [
       "HiLITE Business Park is a commercial office complex in HiLITE City on the Kozhikode Bypass (NH 66), home to IT companies, startups and professional firms. Our team works from here — strategy, design, development and production under one roof.",
       "Businesses in and around the park, across Calicut and further afield come to us for one reason: a single accountable team that can build the brand, the website, the software and the marketing, instead of coordinating four separate vendors.",
+      "Most clients start with our [digital marketing agency in Calicut](/digital-marketing-kozhikode), then add a website, software or branding as they grow.",
     ],
     sections: [
       {

@@ -226,6 +226,9 @@ body {
 /* Long-form copy on service pages */
 .prose-dim p { line-height: 1.75; color: var(--color-dim); }
 .prose-dim strong { color: #fff; font-weight: 600; }
+.inline-link { color: var(--color-cyan); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.inline-link:hover { text-decoration-thickness: 2px; }
+.gate-link { color: #fff; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }

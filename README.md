@@ -27,6 +27,10 @@ Optional env (build time): `PUBLIC_GA4_ID`, `PUBLIC_CLARITY_ID` — analytics lo
 | JSON-LD | `src/lib/schema.ts` |
 | Head / canonical / OG | `src/layouts/Base.astro` |
 | robots, sitemap, llms.txt, OG images | `src/pages/robots.txt.ts`, `sitemap.xml.ts`, `llms.txt.ts`, `llms-full.txt.ts`, `og/[slug].png.ts` |
+| Marketing guides | `src/lib/guides.ts`, routes in `src/pages/guides/` |
+| Internal links in copy | Write `[anchor](/path)` in intro, section body or bullet text (`src/lib/inline.ts`) |
+| Sitemap dates | `scripts/lastmod.mjs` runs after every build; commit `seo/lastmod.json` when it changes |
+| SEO plan + owner tasks | `docs/seo-plan-digital-marketing-agency-calicut.md`, `docs/launch-actions.md` |
 | Redirects + headers (Vercel) | `vercel.json` |
 
 ## Adding a service page

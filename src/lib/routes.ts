@@ -1,5 +1,6 @@
 import { SEO_PAGES } from "./seo-pages";
 import { COURSES, BEST_PAGES, ONLINE_COURSES } from "./academy";
+import { GUIDES } from "./guides";
 
 /** Every indexable URL with the text used for its social preview image. */
 export type RouteInfo = { path: string; og: string; heading: string; eyebrow: string; priority: number; chips?: string[]; theme?: string };
@@ -14,6 +15,7 @@ export const STATIC_ROUTES: RouteInfo[] = [
   { path: "/academy", og: "academy", heading: "Media 360 Academy — AI-First Tech & Creative Courses", eyebrow: "Academy · HiLITE Business Park, Calicut", priority: 0.9, chips: ["MERN Stack", "Python", "AI Developer", "Generative AI", "Premiere Pro", "After Effects"], theme: "academy" },
   ...BEST_PAGES.map((b) => ({ path: b.path, og: `academy-${b.slug}`, heading: b.h1, eyebrow: `Media 360 Academy · ${b.place}`, priority: 0.9, chips: ["Digital Marketing", "MERN Stack", "Python", "AI Developer", "Video Editing", "Offline + Online"], theme: "academy" as const })),
   { path: ONLINE_COURSES.path, og: `academy-${ONLINE_COURSES.slug}`, heading: ONLINE_COURSES.h1, eyebrow: "Media 360 Academy · Live online", priority: 0.8, chips: ["Live classes", "Malayalam + English", "Sunday–Friday", "Digital Marketing", "MERN", "Premiere Pro"], theme: "academy" },
+  { path: "/guides", og: "guides", heading: "Digital Marketing Guides for Calicut Businesses", eyebrow: "Guides · Media 360 Concept, Calicut", priority: 0.7, chips: ["Local SEO", "Google Ads", "Budgets", "Map pack"] },
   { path: "/privacy-policy", og: "", heading: "", eyebrow: "", priority: 0.2 },
   { path: "/terms", og: "", heading: "", eyebrow: "", priority: 0.2 },
 ];
@@ -21,6 +23,7 @@ export const STATIC_ROUTES: RouteInfo[] = [
 export const ALL_ROUTES: RouteInfo[] = [
   ...STATIC_ROUTES,
   ...SEO_PAGES.map((p) => ({ path: `/${p.slug}`, og: p.slug, heading: p.h1, eyebrow: p.eyebrow, priority: p.cluster === "local" ? 0.9 : 0.8, chips: p.deliverables, theme: p.cluster ?? "branding" })),
+  ...GUIDES.map((g) => ({ path: `/guides/${g.slug}`, og: `guides-${g.slug}`, heading: g.h1, eyebrow: "Guide · Media 360 Concept, Calicut", priority: 0.7, chips: g.chips, theme: "marketing" })),
   ...COURSES.map((c) => ({ path: `/academy/${c.slug}`, og: `academy-${c.slug}`, heading: c.h1, eyebrow: `Media 360 Academy · ${c.track}`, priority: 0.8, chips: c.tools, theme: "academy" })),
 ];
 

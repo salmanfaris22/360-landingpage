@@ -1,0 +1,36 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBlock from "@/components/CtaBlock.astro";
+import { GUIDES } from "@/lib/guides";
+import { pageGraph } from "@/lib/schema";
+
+const title = "Digital Marketing Guides for Calicut Businesses";
+const description =
+  "Plain guides for Kozhikode and Kerala business owners: marketing budgets, SEO or Google Ads, and getting into the Google map pack.";
+const crumbs = [{ name: "Home", path: "/" }, { name: "Guides", path: "/guides" }];
+---
+
+<Base title={title} description={description} ogSlug="guides" schema={pageGraph({ path: "/guides", title, description, crumbs, type: "CollectionPage" })}>
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 md:pt-24">
+    <Breadcrumbs items={crumbs} />
+    <h1 class="max-w-4xl font-display text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.04] font-semibold tracking-[-0.03em]">Digital marketing guides for Calicut businesses</h1>
+    <p class="mt-6 max-w-3xl text-lg leading-relaxed text-dim">
+      Written by the team at <a href="/digital-marketing-kozhikode" class="inline-link">Media 360 Concept, a digital marketing agency in Calicut</a>, for owners who want to understand what they are paying for before they sign anything.
+    </p>
+    <ul class="mt-14 grid gap-5 md:grid-cols-3">
+      {
+        GUIDES.map((g) => (
+          <li>
+            <a href={`/guides/${g.slug}`} class="group flex h-full flex-col rounded-2xl border border-line p-7 hover:border-white/30">
+              <h2 class="font-display text-xl font-semibold tracking-tight">{g.h1}</h2>
+              <p class="mt-3 flex-1 leading-relaxed text-dim">{g.description}</p>
+              <span aria-hidden="true" class="mt-5 text-dim group-hover:text-cyan">Read →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-20"><CtaBlock /></div>
+  </main>
+</Base>

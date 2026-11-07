@@ -3,6 +3,11 @@ import { SEO_PAGES } from "@/lib/seo-pages";
 import { FAQS } from "@/lib/data";
 import { BRAND_DESCRIPTION } from "@/lib/schema";
 import { ACADEMY, COURSES, BEST_PAGES, ONLINE_COURSES } from "@/lib/academy";
+import { GUIDES } from "@/lib/guides";
+import { plainText } from "@/lib/inline";
+
+const mdTable = (head: string[], rows: string[][]) =>
+  [`| ${head.join(" | ")} |`, `|${head.map(() => "---").join("|")}|`, ...rows.map((r) => `| ${r.join(" | ")} |`)].join("\n");
 
 // Plain-text mirror of the service pages (identical to what visitors see).
 export const GET: APIRoute = ({ site }) => {
@@ -11,14 +16,24 @@ export const GET: APIRoute = ({ site }) => {
   for (const p of SEO_PAGES) {
     out.push(`## ${p.h1}`, `URL: ${new URL(`/${p.slug}`, site).href}`, "");
     if (p.answer) out.push(p.answer, "");
-    out.push(...p.intro.flatMap((x) => [x, ""]));
+    out.push(...p.intro.flatMap((x) => [plainText(x), ""]));
     for (const s of p.sections) {
-      out.push(`### ${s.heading}`, ...s.body.flatMap((x) => [x, ""]));
-      if (s.bullets) out.push(...s.bullets.map((b) => `- ${b.title}: ${b.text}`), "");
+      out.push(`### ${s.heading}`, ...s.body.flatMap((x) => [plainText(x), ""]));
+      if (s.bullets) out.push(...s.bullets.map((b) => `- ${b.title}: ${plainText(b.text)}`), "");
+      if (s.table) out.push(mdTable(s.table.head, s.table.rows), "");
     }
     if (p.steps) out.push("### Process", ...p.steps.map((s, i) => `${i + 1}. ${s.title}: ${s.text}`), "");
     if (p.table) out.push(`### ${p.table.caption}`, `| ${p.table.head.join(" | ")} |`, `|${p.table.head.map(() => "---").join("|")}|`, ...p.table.rows.map((r) => `| ${r.join(" | ")} |`), "");
     out.push("### FAQ", ...p.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
+  }
+  for (const g of GUIDES) {
+    out.push(`## ${g.h1}`, `URL: ${new URL(`/guides/${g.slug}`, site).href}`, "", g.answer, "");
+    for (const s of g.sections) {
+      out.push(`### ${s.heading}`, ...s.body.flatMap((x) => [plainText(x), ""]));
+      if (s.bullets) out.push(...s.bullets.map((b) => `- ${b.title}: ${plainText(b.text)}`), "");
+      if (s.table) out.push(mdTable(s.table.head, s.table.rows), "");
+    }
+    out.push("### FAQ", ...g.faqs.flatMap((f) => [`Q: ${f.q}`, `A: ${f.a}`, ""]));
   }
   out.push("## Media 360 Academy", `URL: ${new URL("/academy", site).href}`, "", ACADEMY.description, "");
   for (const pg of [...BEST_PAGES, ONLINE_COURSES]) {

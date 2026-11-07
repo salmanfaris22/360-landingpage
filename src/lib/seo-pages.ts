@@ -18,6 +18,7 @@ export type PageSection = {
   heading: string;
   body: string[];
   bullets?: { title: string; text: string }[];
+  table?: { head: string[]; rows: string[][] };
 };
 
 export type Cluster = "branding" | "marketing" | "web" | "software" | "local";
@@ -437,31 +438,113 @@ const BRANDING_PAGES: SeoPage[] = [
       "Media 360 Concept is a digital marketing agency and digital marketing company in Calicut (Kozhikode), based at HiLITE Business Park. We run SEO, Google Business Profile, social media, Google Ads and Meta Ads, content and landing pages for Kerala businesses, with tracking that connects every rupee spent to calls, WhatsApp messages and enquiries.",
     h1: "Digital Marketing Agency in Calicut (Kozhikode) That Turns Searches Into Sales",
     intro: [
-      "When someone in Kerala needs what you sell, they search, scroll, or ask — on Google, Instagram, YouTube, or WhatsApp. Media 360 Concept is a digital marketing and SEO company in Kozhikode that makes sure your business is what they find, and that finding you leads to an enquiry, not just a visit.",
-      "We run full-funnel digital marketing: search visibility to bring people in, content and social to build trust, performance ads to accelerate, and tracking so you always know what your budget returned.",
+      "When someone in Calicut needs what you sell, they search Google, scroll Instagram, watch YouTube or ask a friend on WhatsApp. Our job is to make sure your business is what they find, and that finding you leads to a call or a message.",
+      "We plan the whole funnel from our office at HiLITE Business Park: search visibility to bring people in, content and social media to build trust, paid ads to speed things up, and tracking so you can see what your budget returned. You meet the people doing the work, in person if you prefer, and every account stays in your name.",
     ],
     sections: [
       {
         heading: "SEO that wins local searches",
         body: [
-          "Most high-intent searches in Kerala are local — \"near me\", \"in Kozhikode\", \"in Thrissur\". As an SEO company in Kozhikode, we optimise for exactly those moments: technical SEO so Google can crawl and trust your site, content that answers what your customers actually ask, local SEO and Google Business Profile optimisation so you appear in the Map Pack, and clean structured data so search engines — and AI assistants — understand your business precisely.",
-          "SEO is a compounding investment: the rankings you earn keep sending customers without paying per click. We report positions, traffic, and enquiries monthly, in plain language.",
+          "Most buying searches in Kerala carry a place: 'near me', 'in Kozhikode', 'in Calicut'. Our [SEO services in Calicut](/seo-services-kozhikode) start with those moments: technical fixes so Google can crawl and trust your site, pages that answer what your customers ask, and clean structured data so search engines and AI assistants understand your business.",
+          "SEO compounds. The rankings you earn keep sending customers without a cost per click, which is why we pair it with ads rather than replacing one with the other. We report positions, traffic and enquiries every month in plain language.",
+        ],
+      },
+      {
+        heading: "Google Business Profile and the map pack",
+        body: [
+          "For a search like 'digital marketing agency near me' or 'dentist in Calicut', the map results usually appear above the websites. Google says local results depend on relevance, distance and prominence, and your [Google Business Profile and local SEO](/local-seo-google-business-profile-kozhikode) work covers all three: correct categories and services, real photos, regular posts, consistent address details across the web and a steady habit of asking happy customers for reviews.",
+          "Our free guide explains [how to get into the Google map pack](/guides/google-map-pack-kozhikode) if you would rather start on your own.",
         ],
       },
       {
         heading: "Social media that builds preference",
         body: [
-          "Kerala lives on Instagram, YouTube, Facebook, and WhatsApp. We plan and produce content calendars that fit your brand voice — reels, stories, carousels, and campaigns in English and Malayalam — and manage the daily publishing, engagement, and reporting. Because we are a branding agency first, your social presence stays visually consistent with everything else your customers see.",
+          "Kerala lives on Instagram, YouTube, Facebook and WhatsApp. Our [social media marketing team in Kozhikode](/social-media-marketing-kozhikode) plans content calendars that fit your brand, produces reels, stories, carousels and campaigns in English and Malayalam, and handles publishing, replies and reporting. Because design and video sit in the same office, your social presence stays consistent with everything else customers see.",
         ],
       },
       {
-        heading: "Performance marketing with honest measurement",
+        heading: "Google Ads and Meta Ads with honest measurement",
         body: [
-          "Google Ads for the moments customers are searching, Meta ads for the moments they are scrolling, remarketing to bring them back — set up with proper conversion tracking so we optimise for enquiries and orders, not vanity clicks. Landing pages are designed and built in-house, which is usually where the biggest conversion gains hide.",
-          "Every rupee is tracked from click to WhatsApp message, call, or form. If a channel is not paying for itself, we tell you and move the budget.",
+          "[Google Ads and Meta Ads](/performance-marketing-agency-kerala) reach people at different moments: Google when they are searching, Meta when they are scrolling, and remarketing when they need a second look. We set up conversion tracking first so campaigns optimise for enquiries and orders, and we build landing pages in-house, because that is often where the cheapest gains are.",
+          "Every rupee is tracked from click to WhatsApp message, call or form. If a channel is not paying for itself, we tell you and move the budget. Not sure where to begin? Read [SEO or Google Ads: which comes first](/guides/seo-vs-google-ads-kerala).",
+        ],
+      },
+      {
+        heading: "Why Calicut needs its own marketing plan",
+        body: [
+          "The city has two names, and people search both. A page that only says Kozhikode can miss the customer typing Calicut, so we plan content, Business Profile details and directory listings around both names without stuffing either.",
+          "Calicut's customers are also spread out. Many families here have someone working in the Gulf, so a purchase such as a flat, a hospital visit or a wedding can be researched from Dubai or Riyadh and decided at home. Campaigns can reach both ends of that conversation, with timing that follows Gulf holidays and Kerala's festival calendar, including Onam, Vishu, Ramadan and Eid.",
+          "Language matters too. Customers read in English, Malayalam and Manglish, and the right mix differs by audience, so we test instead of assuming. And because the city's business runs on trust and word of mouth, reviews, WhatsApp replies and a real address carry a lot of weight here. A digital marketing agency in Calicut should plan around all of this, which a copied national template will not do.",
+        ],
+      },
+      {
+        heading: "Businesses we plan for in Kozhikode",
+        body: [
+          "Each sector wins customers differently, so the channel mix changes with it.",
+        ],
+        bullets: [
+          { title: "Hospitals & clinics", text: "Doctor and treatment searches, with careful claims. See [digital marketing for hospitals](/digital-marketing-for-hospitals-kozhikode)." },
+          { title: "Restaurants & cafés", text: "Maps, reviews and reels that fill tables. See [restaurant digital marketing](/digital-marketing-for-restaurants-kozhikode)." },
+          { title: "Real estate & builders", text: "Qualified leads, in Kerala and the Gulf. See [real estate digital marketing](/real-estate-digital-marketing-kozhikode)." },
+          { title: "Schools, colleges & coaching", text: "Admission seasons planned early. See [digital marketing for education](/education-digital-marketing-kerala)." },
+          { title: "Retail & e-commerce", text: "Local shops and [online stores](/ecommerce-website-development-kerala) that need steady sales." },
+          { title: "Startups & professional firms", text: "A [website](/web-development-kozhikode) and a lead channel that can grow with you." },
+        ],
+      },
+      {
+        heading: "What you get every month",
+        body: [],
+        bullets: [
+          { title: "A plain-language report", text: "Leads, calls, WhatsApp chats, cost per lead, rankings and traffic, pulled from your own accounts." },
+          { title: "What we did", text: "Pages published, campaigns changed and content delivered, listed clearly." },
+          { title: "What changes next", text: "Budget moves and priorities for the coming month, with the reason for each." },
+          { title: "A review call or meeting", text: "On a call, or at HiLITE Business Park if you want to sit down with the team." },
+        ],
+      },
+      {
+        heading: "What we will not do",
+        body: [
+          "We will not promise a first-place ranking, because nobody controls Google. We will not buy followers or links, keep your ad account in our name, or report likes as if they were sales. If digital marketing is the wrong spend for your business right now, we will say so during the free audit.",
+        ],
+      },
+      {
+        heading: "Agency, freelancer or in-house?",
+        body: ["All three can work. The right choice depends on how many channels you need and who will own the result."],
+        table: {
+          head: ["", "Agency", "Freelancer", "In-house hire"],
+          rows: [
+            ["Range of skills", "Strategy, ads, SEO, design, video and web", "Usually one or two strong skills", "Depends on one person's experience"],
+            ["Accountability", "One team owns the result", "One person, limited capacity", "Your manager runs it day to day"],
+            ["Best for", "Several channels running together", "One defined task or channel", "Steady, high content volume"],
+            ["Main risk", "Generic work if the agency is not local or senior", "Delays when they are busy", "Skills gaps and tool costs"],
+          ],
+        },
+      },
+      {
+        heading: "Areas we serve around Calicut",
+        body: [
+          "Our office is on the Thondayad Bypass, which makes meetings and shoots simple across Kozhikode city, including Palazhi, Mavoor Road, Nadakkavu, Palayam, Feroke, Ramanattukara, Kunnamangalam, Koyilandy and Vadakara. We also work remotely with businesses across Kerala and the Gulf.",
         ],
       },
     ],
+    steps: [
+      { title: "Free audit (week 1)", text: "We review your website, Google Business Profile, ad accounts and competitors, then tell you what to fix first." },
+      { title: "Tracking and accounts (week 2)", text: "Analytics, conversion tracking, call and WhatsApp measurement, all set up in your name." },
+      { title: "Foundations (weeks 3–4)", text: "Business Profile clean-up, technical SEO fixes, landing pages and the first content calendar." },
+      { title: "Launch (month 2)", text: "Campaigns go live, content publishes on schedule and we begin weekly optimisation." },
+      { title: "Review and scale (month 3)", text: "We compare cost per lead by channel, stop what is not working and move budget to what is." },
+    ],
+    table: {
+      caption: "Which channel fits which goal",
+      head: ["Your goal", "Start with", "Why", "When it starts to move"],
+      rows: [
+        ["Enquiries this month", "Google Ads", "Reaches people already searching", "Days after launch"],
+        ["Customers from nearby", "Google Business Profile", "Puts you on Maps and 'near me' results", "Often weeks to a few months"],
+        ["Lower cost per lead over time", "SEO and content", "Rankings keep working without a click cost", "Three to six months"],
+        ["Be known before people search", "Instagram, YouTube, Meta Ads", "Builds familiarity and trust", "Builds over months"],
+        ["More leads from the same traffic", "Landing pages and tracking", "Fixes what happens after the click", "As soon as pages go live"],
+      ],
+    },
     deliverables: [
       "SEO audit & strategy",
       "Technical & on-page SEO",
@@ -479,38 +562,52 @@ const BRANDING_PAGES: SeoPage[] = [
       },
       {
         q: "Are you a digital marketing agency in Calicut or Kozhikode?",
-        a: "Both — Calicut and Kozhikode are the same city. Our office is at HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), and we work with businesses across the city, Kerala and the Gulf.",
+        a: "Both. Calicut and Kozhikode are the same city. Our office is at HiLITE Business Park, HiLITE City, Thondayad Bypass, Kozhikode (Calicut), and we work with businesses across the city, Kerala and the Gulf.",
       },
       {
         q: "How long does SEO take to show results in Kozhikode?",
-        a: "For most Kerala businesses, meaningful movement shows in three to four months, with strong results in six to twelve depending on competition. Local SEO — Map Pack visibility via Google Business Profile — often moves faster. Anyone promising page one in two weeks is describing an ad, or a trick that won't survive Google's next update.",
+        a: "For most Kerala businesses, meaningful movement shows in three to four months, with stronger results in six to twelve depending on competition. Local SEO through Google Business Profile often moves faster. Anyone promising page one in two weeks is describing an ad, or a trick that will not last.",
+      },
+      {
+        q: "Can you guarantee the first position on Google?",
+        a: "No, and be careful of anyone who does. Google decides rankings and no agency controls them. We can guarantee the work: a clear plan, agreed deliverables, honest monthly reporting and full ownership of your accounts.",
       },
       {
         q: "Should I invest in SEO or paid ads first?",
-        a: "Usually both, in different proportions over time. Ads buy immediate visibility while SEO compounds; as rankings grow, organic enquiries reduce your dependence on ad spend. We size the split around your urgency, margins, and competition — and show the numbers behind the recommendation.",
+        a: "Usually both, in different proportions over time. Ads buy immediate visibility while SEO compounds, and as rankings grow, organic enquiries reduce your dependence on ad spend. We size the split around your urgency, margins and competition, and show the numbers behind the recommendation.",
       },
       {
         q: "What does digital marketing cost per month in Kozhikode?",
-        a: "Retainers depend on scope: SEO only, social only, or a full program with content, ads, and landing pages. Ad spend is separate and goes to Google or Meta directly, in your own accounts. After a free consultation we propose a scope and fixed monthly fee — transparent, itemised, cancellable.",
+        a: "Retainers depend on scope: SEO only, social only, or a full program with content, ads and landing pages. Ad spend is separate and goes to Google or Meta directly, in your own accounts. After a free consultation we propose a scope and fixed monthly fee, itemised and cancellable.",
+      },
+      {
+        q: "Do you work with small businesses in Calicut?",
+        a: "Yes. A smaller business usually does better with one or two channels done well than five done thinly, so we often begin with Google Business Profile and a focused landing page, then add ads or social media once enquiries are being tracked.",
       },
       {
         q: "Do you manage Google Business Profile for local businesses?",
-        a: "Yes — GBP is the single highest-impact asset for local visibility in Kerala. We set up or clean the profile, optimise categories, services, photos, and posts, keep NAP details consistent everywhere, and build a review-generation habit so your profile earns the Map Pack position it deserves.",
+        a: "Yes. We set up or clean the profile, optimise categories, services, photos and posts, keep name, address and phone details consistent everywhere, and build a review habit so your profile can earn a stronger Map Pack position.",
       },
       {
         q: "Can you create content in Malayalam as well as English?",
-        a: "Yes. We produce bilingual content — social posts, ad copy, and campaign creative in Malayalam and English — matched to where each audience actually is. For many Kerala businesses, Malayalam content dramatically outperforms English on Meta platforms; we test both and follow the data.",
+        a: "Yes. We produce social posts, ad copy and campaign creative in Malayalam and English, matched to where each audience is. Which works better varies by business and audience, so we test both and follow the data.",
+      },
+      {
+        q: "What do you need from me to get started?",
+        a: "A short conversation about your goals, access to any existing website, ad and social accounts, and an idea of your monthly budget. Message us on WhatsApp and we will arrange a free audit by call or at HiLITE Business Park.",
       },
     ],
     related: [
       "seo-services-kozhikode",
+      "local-seo-google-business-profile-kozhikode",
       "social-media-marketing-kozhikode",
       "performance-marketing-agency-kerala",
+      "best-digital-marketing-agency-in-calicut",
       "web-development-kozhikode",
     ],
-    serviceName: "Digital Marketing & SEO",
+    serviceName: "Digital Marketing Agency in Calicut",
     serviceDescription:
-      "Full-funnel digital marketing in Kozhikode — SEO, Google Business Profile optimisation, social media management, and performance advertising with honest, enquiry-level measurement for Kerala businesses.",
+      "Full-funnel digital marketing in Calicut (Kozhikode): SEO, Google Business Profile optimisation, social media management and performance advertising with honest, enquiry-level measurement for Kerala businesses.",
   },
   {
     slug: "web-development-kozhikode",

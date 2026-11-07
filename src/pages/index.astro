@@ -2,14 +2,30 @@
 import Base from "@/layouts/Base.astro";
 import Button from "@/components/Button.astro";
 import { ACADEMY } from "@/lib/academy";
+import { CONTACT } from "@/lib/data";
 import { gatewayGraph } from "@/lib/schema";
 
-const title = "Media 360 — Digital Agency & AI Academy in Calicut";
+const title = "Media 360 — Digital Marketing Agency & AI Academy, Calicut";
 const description =
-  "Media 360, HiLITE Business Park, Calicut: an agency for digital marketing, AI, web, design and video, and an academy for AI-first coding and video courses.";
+  "Media 360, HiLITE Business Park: a digital marketing agency in Calicut for SEO, ads, web, AI and video, and an academy for AI-first coding and video courses.";
 
 // Moving type in each half. Decorative: every service and course is linked in full in the footer.
 const agencyWords = ["Digital Marketing", "AI Automation", "Web Development", "Graphic Design", "Video Editing", "Branding", "SEO", "Mobile Apps"];
+// Crawlable overview below the gateway: the homepage holds most of the site's authority.
+const marketingLinks = [
+  { href: "/seo-services-kozhikode", label: "SEO services", text: "Technical fixes, useful pages and steady authority building." },
+  { href: "/local-seo-google-business-profile-kozhikode", label: "Local SEO & Google Business Profile", text: "Show up on Maps when people nearby are ready to buy." },
+  { href: "/social-media-marketing-kozhikode", label: "Social media marketing", text: "Reels, carousels and campaigns in English and Malayalam." },
+  { href: "/performance-marketing-agency-kerala", label: "Google Ads & Meta Ads", text: "Campaigns tracked to calls, WhatsApp chats and sales." },
+  { href: "/web-development-kozhikode", label: "Website design", text: "Fast, search-ready sites and landing pages built in-house." },
+  { href: "/branding-agency-kozhikode", label: "Branding & video", text: "Identity, design and production from the same team." },
+];
+const reasons = [
+  { title: "Tracking comes first", text: "Calls, WhatsApp messages and forms are measured before ad money is spent." },
+  { title: "Your accounts stay yours", text: "Ad accounts, analytics, pages and your Google Business Profile remain in your name." },
+  { title: "Plain monthly reports", text: "Leads, cost per lead, rankings and what changes next." },
+  { title: "A team you can meet", text: "Sit down with us at HiLITE Business Park, by appointment." },
+];
 const academyWords = ["MERN Stack", "Premiere Pro", "Python Full Stack", "After Effects", "Golang", "Generative AI", "Frontend", "DaVinci Resolve", "AI Developer", "Vibe Coding", "AI Video Editing"];
 ---
 
@@ -29,7 +45,7 @@ const academyWords = ["MERN Stack", "Premiere Pro", "Python Full Stack", "After 
         </div>
         <div class="gate-copy">
           <h2 id="side-agency" class="gate-word">Agency</h2>
-          <p class="gate-line">Digital marketing, AI, development, graphic design and video. We build it for you.</p>
+          <p class="gate-line"><a href="/digital-marketing-kozhikode" class="gate-link">Digital marketing agency in Calicut</a>, plus AI, development, graphic design and video. We build it for you.</p>
           <Button href="/agency" side="agency">Enter Agency</Button>
         </div>
       </section>
@@ -45,5 +61,59 @@ const academyWords = ["MERN Stack", "Premiere Pro", "Python Full Stack", "After 
         </div>
       </section>
     </div>
+
+    <section class="mx-auto max-w-7xl px-6 py-20 md:py-28" aria-labelledby="home-agency">
+      <h2 id="home-agency" class="max-w-4xl font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.08] font-semibold tracking-[-0.03em]">
+        A digital marketing agency in Calicut, built around real enquiries
+      </h2>
+      <p class="mt-6 max-w-3xl text-lg leading-relaxed text-white/90" data-speakable>
+        Media 360 is a digital marketing agency in Calicut (Kozhikode) at HiLITE Business Park. We run SEO, Google Business Profile, social media, Google Ads and Meta Ads for businesses across Kerala and the Gulf, and connect the budget to the calls, WhatsApp messages and enquiries it brings in.
+      </p>
+      <p class="mt-5 max-w-3xl text-lg leading-relaxed text-dim">
+        One team handles strategy, design, video, websites and campaigns, so nothing gets lost between vendors. Start with our <a href="/digital-marketing-kozhikode" class="inline-link">digital marketing services in Calicut</a>, or see the full <a href="/agency" class="inline-link">agency overview</a>.
+      </p>
+
+      <h3 class="mt-14 font-display text-2xl font-semibold tracking-tight">What we do for Calicut businesses</h3>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          marketingLinks.map((l) => (
+            <li>
+              <a href={l.href} class="group block h-full rounded-2xl border border-line p-6 hover:border-white/30">
+                <span class="font-display text-[1.05rem] font-semibold">{l.label}</span>
+                <span class="mt-2 block text-sm leading-relaxed text-dim">{l.text}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h3 class="mt-14 font-display text-2xl font-semibold tracking-tight">How we work</h3>
+      <dl class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          reasons.map((r) => (
+            <div>
+              <dt class="font-display font-semibold">{r.title}</dt>
+              <dd class="mt-2 text-sm leading-relaxed text-dim">{r.text}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="mt-14 grid gap-10 border-t border-line pt-10 md:grid-cols-2">
+        <div>
+          <h3 class="font-display text-2xl font-semibold tracking-tight">Media 360 Academy</h3>
+          <p class="mt-3 leading-relaxed text-dim">
+            We also teach. The <a href="/academy" class="inline-link">academy</a> runs AI-first courses in coding, digital marketing and video editing, offline at HiLITE Business Park and live online.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-display text-2xl font-semibold tracking-tight">Talk to us</h3>
+          <p class="mt-3 leading-relaxed text-dim">
+            {CONTACT.postal.street}, {CONTACT.postal.locality} (Calicut), {CONTACT.postal.region} {CONTACT.postal.postalCode}. WhatsApp or call <a href={`tel:${CONTACT.phone}`} class="inline-link">{CONTACT.phoneDisplay}</a> for a free consultation.
+          </p>
+          <div class="mt-5"><Button href={CONTACT.whatsapp} external size="sm">Chat on WhatsApp</Button></div>
+        </div>
+      </div>
+    </section>
   </main>
 </Base>

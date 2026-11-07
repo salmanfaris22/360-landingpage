@@ -1,0 +1,129 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBlock from "@/components/CtaBlock.astro";
+import Button from "@/components/Button.astro";
+import { CONTACT } from "@/lib/data";
+import { GUIDES, type Guide } from "@/lib/guides";
+import { getSeoPage, type SeoPage } from "@/lib/seo-pages";
+import { articleGraph } from "@/lib/schema";
+import { inlineHtml } from "@/lib/inline";
+
+export function getStaticPaths() {
+  return GUIDES.map((guide) => ({ params: { slug: guide.slug }, props: { guide } }));
+}
+
+const { guide } = Astro.props as { guide: Guide };
+const path = `/guides/${guide.slug}`;
+const crumbs = [
+  { name: "Home", path: "/" },
+  { name: "Guides", path: "/guides" },
+  { name: guide.short, path },
+];
+const related = guide.related.map(getSeoPage).filter((p): p is SeoPage => Boolean(p));
+const others = GUIDES.filter((g) => g.slug !== guide.slug);
+const image = `/images/guides-${guide.slug}.webp`;
+const dateLabel = new Date(guide.updated).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+---
+
+<Base title={guide.title} description={guide.description} ogSlug={`guides-${guide.slug}`} schema={articleGraph({ path, title: guide.title, description: guide.description, h1: guide.h1, published: guide.published, updated: guide.updated, faqs: guide.faqs, crumbs })}>
+  <main id="main" class="mx-auto max-w-7xl px-6 pt-16 md:pt-24">
+    <Breadcrumbs items={crumbs} />
+    <header class="max-w-4xl">
+      <h1 class="font-display text-[clamp(2.2rem,5vw,4rem)] leading-[1.06] font-semibold tracking-[-0.03em]">{guide.h1}</h1>
+      <p class="mt-5 font-mono text-[11px] tracking-[0.15em] text-dim uppercase">By Media 360 Concept · Updated <time datetime={guide.updated}>{dateLabel}</time></p>
+      <p class="mt-8 max-w-3xl border-l-2 border-cyan pl-5 text-lg leading-relaxed text-white/90" data-speakable>{guide.answer}</p>
+    </header>
+
+    <figure class="mt-14 overflow-hidden rounded-3xl border border-line">
+      <img src={image} alt={`${guide.h1}, a guide by Media 360 Concept, Kozhikode (Calicut)`} width="1600" height="900" loading="lazy" decoding="async" class="h-auto w-full" />
+    </figure>
+
+    <div class="theme-light bleed mt-20 space-y-16 py-20 md:mt-28 md:py-28">
+      {
+        guide.sections.map((section) => (
+          <section data-reveal class="border-t border-line pt-12">
+            <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">{section.heading}</h2>
+              <div class="prose-dim min-w-0">
+                {section.body.map((p) => <p class="mb-5" set:html={inlineHtml(p)} />)}
+                {section.bullets && (
+                  <dl class="mt-2 grid gap-5 sm:grid-cols-2">
+                    {section.bullets.map((b) => (
+                      <div class="rounded-2xl border border-line p-6">
+                        <dt class="font-display text-[1rem] font-semibold">{b.title}</dt>
+                        <dd class="mt-2 text-sm leading-relaxed text-dim" set:html={inlineHtml(b.text)} />
+                      </div>
+                    ))}
+                  </dl>
+                )}
+                {section.table && (
+                  <div class="mt-2 overflow-x-auto">
+                    <table class="data">
+                      <thead>
+                        <tr>{section.table.head.map((h) => <th scope="col">{h}</th>)}</tr>
+                      </thead>
+                      <tbody>
+                        {section.table.rows.map(([first, ...rest]) => (
+                          <tr>
+                            <th scope="row">{first}</th>
+                            {rest.map((c) => <td>{c}</td>)}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        ))
+      }
+
+      <section data-reveal class="border-t border-line pt-12" aria-labelledby="faq-heading">
+        <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+          <h2 id="faq-heading" class="font-display text-2xl font-semibold tracking-tight md:text-3xl">Frequently asked questions</h2>
+          <div class="divide-y divide-line border-y border-line">
+            {
+              guide.faqs.map((faq, i) => (
+                <details class="group py-5" open={i === 0}>
+                  <summary class="flex cursor-pointer items-baseline justify-between gap-6 font-display text-lg font-medium">
+                    <h3>{faq.q}</h3>
+                    <span aria-hidden="true" class="text-cyan group-open:rotate-45">+</span>
+                  </summary>
+                  <p class="mt-4 max-w-2xl leading-relaxed text-dim">{faq.a}</p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section data-reveal class="border-t border-line pt-12">
+        <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+          <h2 class="font-display text-2xl font-semibold tracking-tight md:text-3xl">Keep reading</h2>
+          <ul class="grid gap-4 sm:grid-cols-2">
+            {
+              [
+                ...related.map((p) => ({ href: `/${p.slug}`, label: p.keyword })),
+                ...others.map((g) => ({ href: `/guides/${g.slug}`, label: g.short })),
+              ].map((l) => (
+                <li>
+                  <a href={l.href} class="group flex items-baseline justify-between gap-4 rounded-2xl border border-line p-6 hover:border-white/30">
+                    <span class="font-display text-[1rem] font-semibold">{l.label}</span>
+                    <span aria-hidden="true" class="text-dim group-hover:text-cyan">→</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <div class="flex flex-wrap gap-4">
+        <Button href={CONTACT.whatsapp} external size="sm">Get a free consultation on WhatsApp</Button>
+      </div>
+      <CtaBlock />
+    </div>
+  </main>
+</Base>
